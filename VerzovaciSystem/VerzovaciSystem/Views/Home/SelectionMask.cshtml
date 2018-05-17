@@ -1,0 +1,92 @@
+﻿@model VerzovaciSystem.Models.SelectionMaskViewModel
+@{
+    ViewBag.Title = "Contact";
+}
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <h2>Vyhledávací maska</h2>
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    Html.AntiForgeryToken();
+    Html.ValidationSummary(true);
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyTyp, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CompanyTyp, new SelectList(Model.CompanyTypes, "Value", "Text"))
+                @Html.ValidationMessageFor(model => model.CompanyTyp, "", new { @class = "text-danger" })
+            </div>
+            <br /><br />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Company, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.Company, new SelectList(Model.Companies, "Value", "Text"))
+                @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+            </div>
+            <br /><br />
+        </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.VersionDateFrom, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.VersionDateFrom, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.VersionDateFrom, "", new { @class = "text-danger" })
+                </div>
+            </div><br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.VersionDateTo, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.VersionDateTo, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.VersionDateTo, "", new { @class = "text-danger" })
+                </div>
+            </div><br />
+      
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreationDateFrom, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CreationDateFrom, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CreationDateFrom, "", new { @class = "text-danger" })
+                </div>
+            </div><br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CreationDateTo, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CreationDateTo, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CreationDateTo, "", new { @class = "text-danger" })
+                </div>
+            </div><br />
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.GlobalStatus, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.GlobalStatus, new SelectList(Model.GlobalStatusChoice, "Value", "Text"))
+                    @Html.ValidationMessageFor(model => model.GlobalStatus, "", new { @class = "text-danger" })
+                </div>
+                <br /><br />
+            </div>
+        </div>
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Vyhledat" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+
+}
