@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabseDBStoreContainer" CdmEntityContainer="OracleConnectionString">
+    <EntitySetMapping Name="EX_COMPANY_TYPE">
+      <EntityTypeMapping TypeName="DatabseDB.EX_COMPANY_TYPE">
+        <MappingFragment StoreEntitySet="EX_COMPANY_TYPE">
+          <ScalarProperty Name="EX_COMPANY_TYPE1" ColumnName="EX_COMPANY_TYPE" />
+          <ScalarProperty Name="EX_DESC" ColumnName="EX_DESC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VERSION_COMPANY">
+      <EntityTypeMapping TypeName="DatabseDB.VERSION_COMPANY">
+        <MappingFragment StoreEntitySet="VERSION_COMPANY">
+          <ScalarProperty Name="VER_COMPANY_LANGUAGE" ColumnName="VER_COMPANY_LANGUAGE" />
+          <ScalarProperty Name="VER_COMPANY_TYPE" ColumnName="VER_COMPANY_TYPE" />
+          <ScalarProperty Name="VER_COMPANY_INTERFACE" ColumnName="VER_COMPANY_INTERFACE" />
+          <ScalarProperty Name="VER_COMPANY_DESC" ColumnName="VER_COMPANY_DESC" />
+          <ScalarProperty Name="VER_COMPANY_ACTIVE" ColumnName="VER_COMPANY_ACTIVE" />
+          <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
+          <ScalarProperty Name="VER_COMPANY_ID" ColumnName="VER_COMPANY_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

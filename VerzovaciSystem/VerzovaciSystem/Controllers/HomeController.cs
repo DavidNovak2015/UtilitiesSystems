@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VerzovaciSystem.Models;
+using VerzovaciSystemDB;
 
 namespace VerzovaciSystem.Controllers
 {
@@ -24,7 +25,6 @@ namespace VerzovaciSystem.Controllers
         public ActionResult SelectionMask()
         {
             SelectionMaskViewModel selectionMaskViewModel = new SelectionMaskViewModel();
-
             return View(selectionMaskViewModel);
         }
 

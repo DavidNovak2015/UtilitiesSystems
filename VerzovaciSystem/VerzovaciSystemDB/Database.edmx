@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DatabseDB.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EX_COMPANY_TYPE">
+          <Key>
+            <PropertyRef Name="EX_COMPANY_TYPE" />
+          </Key>
+          <Property Name="EX_COMPANY_TYPE" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="EX_DESC" Type="varchar2" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="VERSION_COMPANY">
+          <Key>
+            <PropertyRef Name="VER_COMPANY" />
+          </Key>
+          <Property Name="VER_COMPANY_ID" Type="number" Precision="10" Scale="0" />
+          <Property Name="VER_COMPANY" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="VER_COMPANY_ACTIVE" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="VER_COMPANY_DESC" Type="varchar2" MaxLength="4000" />
+          <Property Name="VER_COMPANY_INTERFACE" Type="varchar2" MaxLength="4000" />
+          <Property Name="VER_COMPANY_TYPE" Type="char" MaxLength="1" />
+          <Property Name="VER_COMPANY_LANGUAGE" Type="varchar2" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="DatabseDBStoreContainer">
+          <EntitySet Name="EX_COMPANY_TYPE" EntityType="Self.EX_COMPANY_TYPE" Schema="USYSVER" store:Type="Tables" />
+          <EntitySet Name="VERSION_COMPANY" EntityType="Self.VERSION_COMPANY" Schema="USYSVER" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DatabseDB" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EX_COMPANY_TYPE">
+          <Key>
+            <PropertyRef Name="EX_COMPANY_TYPE1" />
+          </Key>
+          <Property Name="EX_COMPANY_TYPE1" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="EX_DESC" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="OracleConnectionString" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EX_COMPANY_TYPE" EntityType="Self.EX_COMPANY_TYPE" />
+          <EntitySet Name="VERSION_COMPANY" EntityType="DatabseDB.VERSION_COMPANY" />
+        </EntityContainer>
+        <EntityType Name="VERSION_COMPANY">
+          <Key>
+            <PropertyRef Name="VER_COMPANY" />
+          </Key>
+          <Property Name="VER_COMPANY_ID" Type="Int32" />
+          <Property Name="VER_COMPANY" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VER_COMPANY_ACTIVE" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VER_COMPANY_DESC" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="VER_COMPANY_INTERFACE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="VER_COMPANY_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VER_COMPANY_LANGUAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DatabseDBStoreContainer" CdmEntityContainer="OracleConnectionString">
+          <EntitySetMapping Name="EX_COMPANY_TYPE">
+            <EntityTypeMapping TypeName="DatabseDB.EX_COMPANY_TYPE">
+              <MappingFragment StoreEntitySet="EX_COMPANY_TYPE">
+                <ScalarProperty Name="EX_COMPANY_TYPE1" ColumnName="EX_COMPANY_TYPE" />
+                <ScalarProperty Name="EX_DESC" ColumnName="EX_DESC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VERSION_COMPANY">
+            <EntityTypeMapping TypeName="DatabseDB.VERSION_COMPANY">
+              <MappingFragment StoreEntitySet="VERSION_COMPANY">
+                <ScalarProperty Name="VER_COMPANY_LANGUAGE" ColumnName="VER_COMPANY_LANGUAGE" />
+                <ScalarProperty Name="VER_COMPANY_TYPE" ColumnName="VER_COMPANY_TYPE" />
+                <ScalarProperty Name="VER_COMPANY_INTERFACE" ColumnName="VER_COMPANY_INTERFACE" />
+                <ScalarProperty Name="VER_COMPANY_DESC" ColumnName="VER_COMPANY_DESC" />
+                <ScalarProperty Name="VER_COMPANY_ACTIVE" ColumnName="VER_COMPANY_ACTIVE" />
+                <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
+                <ScalarProperty Name="VER_COMPANY_ID" ColumnName="VER_COMPANY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

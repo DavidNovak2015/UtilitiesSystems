@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabseDB.Store" Provider="Oracle.ManagedDataAccess.Client" ProviderManifestToken="11.2" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="EX_COMPANY_TYPE">
+    <Key>
+      <PropertyRef Name="EX_COMPANY_TYPE" />
+    </Key>
+    <Property Name="EX_COMPANY_TYPE" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="EX_DESC" Type="varchar2" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="VERSION_COMPANY">
+    <Key>
+      <PropertyRef Name="VER_COMPANY" />
+    </Key>
+    <Property Name="VER_COMPANY_ID" Type="number" Precision="10" Scale="0" />
+    <Property Name="VER_COMPANY" Type="varchar2" MaxLength="100" Nullable="false" />
+    <Property Name="VER_COMPANY_ACTIVE" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="VER_COMPANY_DESC" Type="varchar2" MaxLength="4000" />
+    <Property Name="VER_COMPANY_INTERFACE" Type="varchar2" MaxLength="4000" />
+    <Property Name="VER_COMPANY_TYPE" Type="char" MaxLength="1" />
+    <Property Name="VER_COMPANY_LANGUAGE" Type="varchar2" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="DatabseDBStoreContainer">
+    <EntitySet Name="EX_COMPANY_TYPE" EntityType="Self.EX_COMPANY_TYPE" Schema="USYSVER" store:Type="Tables" />
+    <EntitySet Name="VERSION_COMPANY" EntityType="Self.VERSION_COMPANY" Schema="USYSVER" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

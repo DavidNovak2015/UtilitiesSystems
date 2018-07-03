@@ -1,0 +1,12 @@
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\VerzovaciSystemDB.dll.config
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\VerzovaciSystemDB.dll
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\VerzovaciSystemDB.pdb
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.dll
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.xml
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.dll
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.pdb
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.csprojResolveAssemblyReference.cache
