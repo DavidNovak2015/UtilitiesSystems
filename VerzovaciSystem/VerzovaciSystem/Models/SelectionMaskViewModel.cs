@@ -21,38 +21,39 @@ namespace VerzovaciSystem.Models
         [Required(ErrorMessage = "Vyberte prosím společnost")]
         public string Company { get; set; }
 
-        [Display(Name = "Datum verze od-do")]
+        [Display(Name = "Datum verze od")]
         [Required(ErrorMessage ="Vyberte prosím datum")]
+        [DataType(DataType.Date)]
         public DateTime VersionDateFrom { get; set; }
 
-        [Display(Name = "                 ")]
+        [Display(Name = "Datum verze do")]
         [Required(ErrorMessage = "Vyberte prosím datum")]
         [DataType(DataType.Date)]
         public DateTime VersionDateTo { get; set; }
 
-        [Display(Name = "Datum vytvoření od-do")]
+        [Display(Name = "Datum vytvoření od")]
         [Required(ErrorMessage = "Vyberte prosím datum")]
         [DataType(DataType.Date)]
         public DateTime CreationDateFrom { get; set; }
 
-        [Display(Name = "                     ")]
+        [Display(Name = "Datum vytvoření do")]
         [Required(ErrorMessage = "Vyberte prosím datum")]
         [DataType(DataType.Date)]
         public DateTime CreationDateTo { get; set; }
 
-        [Display(Name = "Global status")]
-        [Required(ErrorMessage = "Vyberte prosím global status")]
-        public string GlobalStatus { get; set; }
+        //[Display(Name = "Global status")]
+        //[Required(ErrorMessage = "Vyberte prosím global status")]
+        //public string GlobalStatus { get; set; }
 
         public List<SelectListItem> CompanyTypes { get; private set; }
 
         public List<SelectListItem> Companies { get; private set; }
 
-        public List<SelectListItem> GlobalStatusChoice { get; private set; }
+        //public List<SelectListItem> GlobalStatusChoice { get; private set; }
 
         public SelectionMaskViewModel()
         {
-            VersionDateFrom = DateTime.Today;
+            VersionDateFrom = DateTime.Now.Date;
             List<EX_COMPANY_TYPE> companyTypesFromDB = dbRepository.GetCompanyTypes();
             List<VERSION_COMPANY> companiesFromDB = dbRepository.GetCompanies();
 
@@ -61,7 +62,7 @@ namespace VerzovaciSystem.Models
             
             CompanyTypes = new List<SelectListItem>();
             Companies = new List<SelectListItem>();
-            GlobalStatusChoice = new List<SelectListItem>();
+            //GlobalStatusChoice = new List<SelectListItem>();
 
             CompanyTypes.Add(new SelectListItem { Text = "option", Value = null });
             foreach (var companyType in companyTypes)
@@ -75,9 +76,9 @@ namespace VerzovaciSystem.Models
                 Companies.Add(new SelectListItem { Text = company.Name, Value = company.Id.ToString() });
             }
 
-            GlobalStatusChoice.Add(new SelectListItem { Text = "options", Value = null });
-            GlobalStatusChoice.Add(new SelectListItem { Text = "Silver", Value = "Silver" });
-            GlobalStatusChoice.Add(new SelectListItem { Text = "Gold", Value = "Gold" });
+            //GlobalStatusChoice.Add(new SelectListItem { Text = "options", Value = null });
+            //GlobalStatusChoice.Add(new SelectListItem { Text = "Silver", Value = "Silver" });
+            //GlobalStatusChoice.Add(new SelectListItem { Text = "Gold", Value = "Gold" });
         }
 
         private int GetCompanyId (int? companyId)

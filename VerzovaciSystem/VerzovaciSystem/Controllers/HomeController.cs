@@ -15,11 +15,10 @@ namespace VerzovaciSystem.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult TableList() // zde budou číselníky
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            TableListViewModel tableListViewModel = new TableListViewModel();
+            return View(tableListViewModel);
         }
 
         public ActionResult SelectionMask()

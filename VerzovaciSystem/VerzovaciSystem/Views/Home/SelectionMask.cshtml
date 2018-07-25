@@ -1,6 +1,6 @@
 ﻿@model VerzovaciSystem.Models.SelectionMaskViewModel
 @{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Vyhledávací maska";
 }
 <div class="row">
     <div class="col-md-4">
@@ -12,11 +12,94 @@
     </div>
 </div>
 
+<script src="~/Scripts/MyScripts/SelectionMask.js"></script>
+
+ <input type="text" id="cislo1" size="5" /> +
+<input type="text" id="cislo2" size="5" />
+<button id="tlacitko">Sečti</button>
+
+<form method="post">
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyTyp, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="CompanyType">
+                    @foreach (var item in Model.CompanyTypes)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </div>
+            <br /><br />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Company, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select name="Company">
+                    @foreach (var item in Model.Companies)
+                    {
+                        <option value="@item.Value">@item.Text</option>
+                    }
+                </select>
+            </div>
+            <br /><br />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VersionDateFrom, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" id="VersionDateFrom" placeholder="@DateTime.Today" value="@Model.VersionDateFrom" class="form-control"/>
+            </div>
+            <br /><br />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VersionDateTo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" id="VersionDateTo" value="@Model.VersionDateTo" class="form-control" />
+            </div>
+            <br /><br />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreationDateFrom, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" id="CreationDateFrom" value="@Model.CreationDateFrom" class="form-control" />
+            </div>
+            <br /><br />
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CreationDateTo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="date" id="CreationDateTo" value="@Model.CreationDateTo" class="form-control" />
+            </div>
+            <br /><br />
+        </div>
+
+    </div>
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            <div id="Find" class="col-md-offset-2 col-md-10">
+                @*<input type="submit" value="Vyhledat" class="btn btn-default" />*@
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+-----------------------------------------------------------------------------------------------------
 @using (Html.BeginForm())
 {
     Html.AntiForgeryToken();
     Html.ValidationSummary(true);
-
+    
+    
     <div class="form-horizontal">
 
         <div class="form-group">
@@ -36,11 +119,10 @@
             </div>
             <br /><br />
         </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.VersionDateFrom,  new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.VersionDateFrom, @"dd/MM/yyyy", new { @class = "form-control" })
+                    @Html.EditorFor(model => model.VersionDateFrom, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.VersionDateFrom, "", new { @class = "text-danger" })
                 </div>
             </div><br />
@@ -52,7 +134,7 @@
                     @Html.ValidationMessageFor(model => model.VersionDateTo, "", new { @class = "text-danger" })
                 </div>
             </div><br />
-      
+
             <div class="form-group">
                 @Html.LabelFor(model => model.CreationDateFrom, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -60,6 +142,7 @@
                     @Html.ValidationMessageFor(model => model.CreationDateFrom, "", new { @class = "text-danger" })
                 </div>
             </div><br />
+            
 
             <div class="form-group">
                 @Html.LabelFor(model => model.CreationDateTo, new { @class = "control-label col-md-2" })
@@ -69,14 +152,14 @@
                 </div>
             </div><br />
 
-            <div class="form-group">
+            @*<div class="form-group">
                 @Html.LabelFor(model => model.GlobalStatus, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.DropDownListFor(model => model.GlobalStatus, new SelectList(Model.GlobalStatusChoice, "Value", "Text"))
                     @Html.ValidationMessageFor(model => model.GlobalStatus, "", new { @class = "text-danger" })
                 </div>
                 <br /><br />
-            </div>
+            </div>*@
         </div>
 
     <div class="form-horizontal">
@@ -86,6 +169,7 @@
                 <input type="submit" value="Vyhledat" class="btn btn-default" />
             </div>
         </div>
+
     </div>
 
 
