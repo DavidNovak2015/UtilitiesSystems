@@ -178,6 +178,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SelectionMaskController.cs" />
+    <Compile Include="Controllers\TableListController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -185,6 +187,7 @@
     <Compile Include="Models\Entities\CompanyEntity.cs" />
     <Compile Include="Models\Entities\CompanyTypeEntity.cs" />
     <Compile Include="Models\Entities\TableListEntity.cs" />
+    <Compile Include="Models\HelpsMethods.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SelectionMaskViewModel.cs" />
@@ -243,8 +246,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\TableList.cshtml" />
-    <Content Include="Views\Home\SelectionMask.cshtml" />
+    <Content Include="Views\TableList\TableList.cshtml" />
+    <Content Include="Views\SelectionMask\SelectionMask.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -266,6 +269,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\TableList\TableView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

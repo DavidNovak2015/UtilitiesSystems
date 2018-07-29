@@ -58,7 +58,7 @@ namespace VerzovaciSystem.Models
             List<VERSION_COMPANY> companiesFromDB = dbRepository.GetCompanies();
 
             List<CompanyTypeEntity> companyTypes = companyTypesFromDB.Select(x => new CompanyTypeEntity(x.EX_COMPANY_TYPE1, x.EX_DESC)).ToList();
-            List<CompanyEntity> companies = companiesFromDB.Select(x => new CompanyEntity(GetCompanyId(x.VER_COMPANY_ID), x.VER_COMPANY)).ToList();
+            List<CompanyEntity> companies = companiesFromDB.Select(x => new CompanyEntity(HelpsMethods.GetIntValue(x.VER_COMPANY_ID), x.VER_COMPANY)).ToList();
             
             CompanyTypes = new List<SelectListItem>();
             Companies = new List<SelectListItem>();
@@ -81,12 +81,12 @@ namespace VerzovaciSystem.Models
             //GlobalStatusChoice.Add(new SelectListItem { Text = "Gold", Value = "Gold" });
         }
 
-        private int GetCompanyId (int? companyId)
-        {
-            if (!companyId.HasValue)
-                throw new InvalidOperationException($"{nameof(companyId)} is empty");
+        //public static int GetCompanyId (int? companyId)
+        //{
+        //    if (!companyId.HasValue)
+        //        throw new InvalidOperationException($"{nameof(companyId)} is empty");
 
-            return companyId.Value;
-        }
+        //    return companyId.Value;
+        //}
     }
 }

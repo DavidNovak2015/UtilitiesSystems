@@ -16,6 +16,7 @@ namespace VerzovaciSystemDB
 {
     public class DbRepository
     {
+        // Vyhledávací maska
         public List<EX_COMPANY_TYPE> GetCompanyTypes()
         {
             try
@@ -33,6 +34,7 @@ namespace VerzovaciSystemDB
             }
         }
 
+        // Vyhledávací maska a Číselníky
         public List<VERSION_COMPANY> GetCompanies()
         {
             try

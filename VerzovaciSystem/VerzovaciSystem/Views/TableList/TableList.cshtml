@@ -15,14 +15,14 @@
         @foreach (var item in Model.TableList)
         {
         <tbody>
-            <tr>
-                <td>
-                    @item.TableName
-                </td>
-                <td>
-                    @item.TableDescription
-                </td>
-            </tr>
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.TableName,"TableView",new { tableName=item.TableName})
+                    </td>
+                    <td>
+                        @item.TableDescription
+                    </td>
+                </tr>
         </tbody>
         }
     </table>

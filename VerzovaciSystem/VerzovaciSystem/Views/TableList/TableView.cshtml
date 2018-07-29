@@ -1,0 +1,70 @@
+﻿@model VerzovaciSystem.Models.TableListViewModel
+@{
+    ViewBag.Title = "Data tabulky";
+}
+
+<h2>Tabulka: @ViewBag.TableName</h2>
+
+<form method="post"><br/><br/>
+    <table border="1">
+        
+        <thead>
+            <tr>
+                        <th>
+                            @Html.LabelFor(model => model.CompanyEntity.Id, new { @class = "control-label col-md-2" })
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.CompanyEntity.Name, new { @class = "control-label col-md-2" })
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.CompanyEntity.Active, new { @class = "control-label col-md-2" })
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.CompanyEntity.Description, new { @class = "control-label col-md-2" })
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.CompanyEntity.Interface, new { @class = "control-label col-md-2" })
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.CompanyEntity.Type, new { @class = "control-label col-md-2" })
+                        </th>
+                        <th>
+                            @Html.LabelFor(model => model.CompanyEntity.Language, new { @class = "control-label col-md-2" })
+                        </th>
+            </tr>
+        </thead>
+        
+        @foreach (var item in Model.TableData)
+        {
+        <tbody>
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Active
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    @item.Interface
+                </td>
+                <td>
+                    @item.Type
+                </td>
+                <td>
+                    @item.Language
+                </td>
+            </tr>
+        </tbody>
+
+        }
+
+    </table>
+
+</form>
+

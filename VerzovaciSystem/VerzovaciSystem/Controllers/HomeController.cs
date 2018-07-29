@@ -14,28 +14,5 @@ namespace VerzovaciSystem.Controllers
         {
             return View();
         }
-
-        public ActionResult TableList() // zde budou číselníky
-        {
-            TableListViewModel tableListViewModel = new TableListViewModel();
-            return View(tableListViewModel);
-        }
-
-        public ActionResult SelectionMask()
-        {
-            SelectionMaskViewModel selectionMaskViewModel = new SelectionMaskViewModel();
-            return View(selectionMaskViewModel);
-        }
-
-        [HttpPost]
-        public ActionResult SelectionMask(SelectionMaskViewModel selectionMaskViewModel)
-        {
-            if (!ModelState.IsValid)
-                return View(selectionMaskViewModel);
-
-            
-
-            return View();
-        }
     }
 }
