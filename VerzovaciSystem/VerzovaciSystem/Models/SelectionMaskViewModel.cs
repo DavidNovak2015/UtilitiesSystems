@@ -23,7 +23,7 @@ namespace VerzovaciSystem.Models
 
         [Display(Name = "Datum verze od")]
         [Required(ErrorMessage ="Vyberte prosím datum")]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         public DateTime VersionDateFrom { get; set; }
 
         [Display(Name = "Datum verze do")]

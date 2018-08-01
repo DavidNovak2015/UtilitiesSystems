@@ -5,7 +5,7 @@
 
 <h2>Tabulka: @ViewBag.TableName</h2>
 
-<form method="post"><br/><br/>
+
     <table border="1">
         
         <thead>
@@ -31,40 +31,48 @@
                         <th>
                             @Html.LabelFor(model => model.CompanyEntity.Language, new { @class = "control-label col-md-2" })
                         </th>
+                        <th>
+                            Ulož změny
+                        </th>
             </tr>
         </thead>
         
+   
+
         @foreach (var item in Model.TableData)
         {
         <tbody>
             <tr>
                 <td>
-                    @item.Id
+                    <input type="number" value="@item.Id"/> 
                 </td>
                 <td>
-                    @item.Name
+                    <input type="text" value="@item.Name" /> 
                 </td>
                 <td>
-                    @item.Active
+                    <input type="text" value="@item.Active" /> 
                 </td>
                 <td>
-                    @item.Description
+                    <input type="text" value="@item.Description" /> 
                 </td>
                 <td>
-                    @item.Interface
+                    <input type="text" value="@item.Interface" /> 
                 </td>
                 <td>
-                    @item.Type
+                    <input type="text" value="@item.Type" /> 
                 </td>
                 <td>
-                    @item.Language
+                    <input type="text" value="@item.Language" />
+                </td>
+                <td>
+                    @Html.ActionLink("Ulož změny", "SaveTableRow", new { iD=item.Id, name=item.Name, active=item.Active, description=item.Description, rozhrani=item.Interface, type=item.Type, language=item.Language })
                 </td>
             </tr>
         </tbody>
-
-        }
+            }
+        
 
     </table>
 
-</form>
+
 

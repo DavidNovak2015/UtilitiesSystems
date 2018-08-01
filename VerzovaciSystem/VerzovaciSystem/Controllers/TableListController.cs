@@ -23,9 +23,14 @@ namespace VerzovaciSystem.Controllers
         {
             switch (tableName)
             {
-                case "VERSION_COMPANY":TableName=Tables.VERSION_COMPANY; tableListViewModel.GetTableData(TableName);ViewBag.TableName=tableName ; break;
+                case "VERSION_COMPANY":TableName=Tables.VERSION_COMPANY; tableListViewModel.GetTableData(TableName);ViewBag.TableName=tableName ; return View("TableViewVersionCompany", tableListViewModel);
             }
-            return View(tableListViewModel);
+            return View("TableViewVersionCompany",tableListViewModel);
+        }
+
+        public ActionResult SaveTableRow(int iD, string name, string active, string description, string rozhrani, string type, string language)
+        {
+            return View();
         }
     }
 }
