@@ -1,9 +1,11 @@
-﻿@model VerzovaciSystem.Models.TableListViewModel
+﻿@model VerzovaciSystem.Models.TablesViewModel
 @{
     ViewBag.Title = "Data tabulky";
 }
 
-<h2>Tabulka: @ViewBag.TableName</h2>
+<h2>Tabulka: @ViewBag.TableName</h2><br/><br/>
+
+<h4> @Html.ActionLink("Přidat záznam", "AddTableRow", new { tableName=ViewBag.TableName}, htmlAttributes: new { @class = "btn btn-default" })</h4>
 
 
     <table border="1">
@@ -32,7 +34,7 @@
                             @Html.LabelFor(model => model.CompanyEntity.Language, new { @class = "control-label col-md-2" })
                         </th>
                         <th>
-                            Ulož změny
+                            Aktualizace
                         </th>
             </tr>
         </thead>
@@ -44,28 +46,28 @@
         <tbody>
             <tr>
                 <td>
-                    <input type="number" value="@item.Id"/> 
+                    @item.Id 
                 </td>
                 <td>
-                    <input type="text" value="@item.Name" /> 
+                    @item.Name 
                 </td>
                 <td>
-                    <input type="text" value="@item.Active" /> 
+                    @item.Active  
                 </td>
                 <td>
-                    <input type="text" value="@item.Description" /> 
+                    @item.Description
                 </td>
                 <td>
-                    <input type="text" value="@item.Interface" /> 
+                    @item.Interface
                 </td>
                 <td>
-                    <input type="text" value="@item.Type" /> 
+                    @item.Type
                 </td>
                 <td>
-                    <input type="text" value="@item.Language" />
+                    @item.Language 
                 </td>
                 <td>
-                    @Html.ActionLink("Ulož změny", "SaveTableRow", new { iD=item.Id, name=item.Name, active=item.Active, description=item.Description, rozhrani=item.Interface, type=item.Type, language=item.Language })
+                    @Html.ActionLink("Aktualizuj", "ChangeTableRow", new { iD=item.Id, tableName=ViewBag.TableName })
                 </td>
             </tr>
         </tbody>

@@ -1,4 +1,4 @@
-﻿@model VerzovaciSystem.Models.TableListViewModel
+﻿@model VerzovaciSystem.Models.TablesViewModel
 
 @{
     ViewBag.Title = "Číselníky";
@@ -12,7 +12,7 @@
                 <th class="control-label col-md-2">Popis</th>
             </tr>
         </thead>
-        @foreach (var item in Model.TableList)
+        @foreach (var item in Model.TablesList)
         {
         <tbody>
                 <tr>

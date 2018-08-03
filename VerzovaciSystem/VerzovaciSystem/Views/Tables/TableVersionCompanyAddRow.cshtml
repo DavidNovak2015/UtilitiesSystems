@@ -1,0 +1,74 @@
+﻿@model VerzovaciSystem.Models.TablesViewModel
+@{
+    ViewBag.Title = "Číselníky";
+}
+
+<h2>Přidání záznamu do tabulky:  @ViewBag.TableName</h2><br />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyEntity.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CompanyEntity.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CompanyEntity.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyEntity.Active, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CompanyEntity.Active, new SelectList(Model.CompanyEntity.Actives, "Value", "Text"))
+                @Html.ValidationMessageFor(model => model.CompanyEntity.Active, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyEntity.Description, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CompanyEntity.Description, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CompanyEntity.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyEntity.Interface, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CompanyEntity.Interface, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CompanyEntity.Interface, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyEntity.Type, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CompanyEntity.Type, new SelectList(Model.CompanyEntity.Types, "Value", "Text"))
+                @Html.ValidationMessageFor(model => model.CompanyEntity.Type, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CompanyEntity.Language, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CompanyEntity.Language, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.CompanyEntity.Language, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="uložit" class="btn btn-default" />
+            </div>
+        </div>
+
+     </div>
+
+}
+
