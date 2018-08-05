@@ -16,6 +16,29 @@ namespace VerzovaciSystemDB
 {
     public class DbRepository
     {
+        private const string oracleConnectionString= "metadata=res://*/Database.csdl|res://*/Database.ssdl|res://*/Database.msl;provider=Oracle.ManagedDataAccess.Client;provider connection string=&quot;DATA SOURCE=localhost:1521/XE;PASSWORD=verze;USER ID=USYSVER&quot";
+        // pro výsledek metod
+        private string result = "";
+
+        // pro AddCompany VERSION_COMPANY
+        private int GetLastIdNumberFromVersionCompany()
+        {
+            try
+            {
+                using (OracleConnection accessToDB = new OracleConnection(oracleConnectionString))
+                {
+                    accessToDB.Open();
+                    using (OracleCommand command = new OracleCommand("select max(ver_company_id) from version_company"))
+                    {
+                        return (int)command.ExecuteScalar();
+                    }
+                }
+            }
+            catch
+            {
+                return 5555;
+            }
+        }
         // Vyhledávací maska
         public List<EX_COMPANY_TYPE> GetCompanyTypes()
         {
@@ -34,7 +57,8 @@ namespace VerzovaciSystemDB
             }
         }
 
-        // Vyhledávací maska a Číselníky
+        // ČÍSELNÍKY: VERSION_COMPANY
+        // také pro Vyhledávací maska
         public List<VERSION_COMPANY> GetCompanies()
         {
             try
@@ -52,6 +76,23 @@ namespace VerzovaciSystemDB
             }
         }
 
+        public string AddCompany(VERSION_COMPANY companyToDB)
+        {
+            companyToDB.VER_COMPANY_ID = GetLastIdNumberFromVersionCompany();
+            try
+            {
+                using (EntityFramework accessToDB = new EntityFramework())
+                    {
+                    accessToDB.VERSION_COMPANY.Add(companyToDB);
+                    accessToDB.SaveChanges();
+                    return result = "Požadavek byl proveden";
+                    }
+            }
+            catch (Exception ex)
+            {
+                return result = $"Požadavek NEBYL proveden. Popis chyby:\n {ex.Message.ToString()}";
+            }
+        }
         
     }
 }

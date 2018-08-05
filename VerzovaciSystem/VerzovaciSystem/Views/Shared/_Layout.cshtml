@@ -22,7 +22,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Distribuce verzí", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Číselníky", "TablesList", "Tables")</li>
+                    <li>@Html.ActionLink("Číselníky", "TablesList", "TablesList")</li>
                     <li>@Html.ActionLink("Vyhledávací maska", "SelectionMask", "SelectionMask")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -30,6 +30,10 @@
         </div>
     </div>
     <div class="container body-content">
+        @if (TempData.ContainsKey("result"))
+        {
+            @TempData["result"]
+        }
         @RenderBody()
         <hr />
         <footer>
