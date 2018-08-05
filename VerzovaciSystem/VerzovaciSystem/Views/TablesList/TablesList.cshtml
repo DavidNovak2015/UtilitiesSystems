@@ -1,0 +1,30 @@
+﻿@model VerzovaciSystem.Models.TablesListViewModel
+
+@{
+    ViewBag.Title = "Číselníky";
+}
+
+<form method="post"><br/><br/>
+    <table border="1">
+        <thead>
+            <tr>
+                <th class="control-label col-md-2">Název tabulky</th>
+                <th class="control-label col-md-2">Popis</th>
+            </tr>
+        </thead>
+        @foreach (var item in Model.TablesList)
+        {
+        <tbody>
+                <tr>
+                    <td>
+                        @Html.ActionLink(item.TableName,"TableView", "Companies")
+                    </td>
+                    <td>
+                        @item.TableDescription
+                    </td>
+                </tr>
+        </tbody>
+        }
+    </table>
+</form>
+
