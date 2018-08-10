@@ -16,25 +16,30 @@ namespace VerzovaciSystemDB
 {
     public class DbRepository
     {
-        private const string oracleConnectionString= "metadata=res://*/Database.csdl|res://*/Database.ssdl|res://*/Database.msl;provider=Oracle.ManagedDataAccess.Client;provider connection string=&quot;DATA SOURCE=localhost:1521/XE;PASSWORD=verze;USER ID=USYSVER&quot";
+        private const string oracleConnectionString= "User Id=USYSVER;Password=verze;Data Source=localhost:1521/XE";
         // pro výsledek metod
         private string result = "";
 
         // pro AddCompany VERSION_COMPANY
-        private int GetLastIdNumberFromVersionCompany()
+        private int GetNextIdNumberFromVersionCompany()
         {
             try
             {
                 using (OracleConnection accessToDB = new OracleConnection(oracleConnectionString))
                 {
                     accessToDB.Open();
-                    using (OracleCommand command = new OracleCommand("select max(ver_company_id) from version_company"))
+                    using (OracleCommand command = new OracleCommand("SELECT MAX(VER_COMPANY_ID)+1 FROM VERSION_COMPANY", accessToDB))
                     {
-                        return (int)command.ExecuteScalar();
+                        string maxIdFromDB = command.ExecuteScalar().ToString();
+                        int maxId = 0;
+                        if (!(Int32.TryParse(maxIdFromDB, out maxId)))
+                            return 5555;
+
+                        else return maxId;
                     }
                 }
             }
-            catch
+            catch 
             {
                 return 5555;
             }
@@ -75,10 +80,13 @@ namespace VerzovaciSystemDB
                 return error;
             }
         }
-
+        // Přidání záznamu
         public string AddCompany(VERSION_COMPANY companyToDB)
         {
-            companyToDB.VER_COMPANY_ID = GetLastIdNumberFromVersionCompany();
+            companyToDB.VER_COMPANY_ID = GetNextIdNumberFromVersionCompany();
+            if (companyToDB.VER_COMPANY_ID == 5555)
+                return result = "Metoda \"GetLastIdNumberFromVersionCompany\" vrátila chybu";
+
             try
             {
                 using (EntityFramework accessToDB = new EntityFramework())
@@ -90,7 +98,7 @@ namespace VerzovaciSystemDB
             }
             catch (Exception ex)
             {
-                return result = $"Požadavek NEBYL proveden. Popis chyby:\n {ex.Message.ToString()}";
+                return result = $"Požadavek NEBYL proveden. Popis chyby:\n {ex.Message.ToString()} \n {ex.InnerException.ToString()}";
             }
         }
         

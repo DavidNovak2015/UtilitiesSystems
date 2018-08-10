@@ -30,10 +30,12 @@
         </div>
     </div>
     <div class="container body-content">
-        @if (TempData.ContainsKey("result"))
-        {
-            @TempData["result"]
-        }
+        <h2>
+            @if (TempData.ContainsKey("result"))
+            {
+                @TempData["result"]
+            }
+        </h2>
         @RenderBody()
         <hr />
         <footer>
