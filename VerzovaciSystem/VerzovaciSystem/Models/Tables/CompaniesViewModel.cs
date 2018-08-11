@@ -12,7 +12,7 @@ namespace VerzovaciSystem.Models
     {
         DbRepository dbRepository = new DbRepository();
 
-        // popisky sloupců tabulek
+        // popisky sloupců tabulek + záznam z tabulky VERSION_COMPANY pro změnu a výmaz
         public CompanyEntity CompanyEntity { get; set; }
 
         public List<CompanyEntity> TableData { get; private set; }
@@ -22,14 +22,16 @@ namespace VerzovaciSystem.Models
             CompanyEntity = new CompanyEntity();
         }
 
+        // vrátí všechny záznamy
         public void GetTableView()
         {
             List<VERSION_COMPANY> companiesFromDB = dbRepository.GetCompanies();
             TableData = companiesFromDB.Select(x => new CompanyEntity(HelpsMethods.GetIntValue(x.VER_COMPANY_ID), x.VER_COMPANY, x.VER_COMPANY_ACTIVE, x.VER_COMPANY_DESC, x.VER_COMPANY_INTERFACE, x.VER_COMPANY_TYPE, x.VER_COMPANY_LANGUAGE))
-                                       .OrderBy(a => a.Id)
+                                       .OrderByDescending(a => a.Id)
                                        .ToList();
         }
 
+        // uloží nový záznam
         public string SaveCompany (CompanyEntity newCompany)
         {
             VERSION_COMPANY companyToDB = new VERSION_COMPANY();
@@ -41,6 +43,35 @@ namespace VerzovaciSystem.Models
             companyToDB.VER_COMPANY_LANGUAGE = newCompany.Language;
 
             return dbRepository.AddCompany(companyToDB);
+        }
+
+        // vrátí vybraný záznam pro potvrzení vymazání
+        public void GetCompanyForDeletion (int companyId)
+        {
+            VERSION_COMPANY companyFromDB = dbRepository.GetCompanyForDeletion(companyId);
+
+            CompanyEntity = new CompanyEntity(HelpsMethods.GetIntValue(companyFromDB.VER_COMPANY_ID),
+                                              companyFromDB.VER_COMPANY,
+                                              companyFromDB.VER_COMPANY_ACTIVE,
+                                              companyFromDB.VER_COMPANY_DESC,
+                                              companyFromDB.VER_COMPANY_INTERFACE,
+                                              companyFromDB.VER_COMPANY_TYPE,
+                                              companyFromDB.VER_COMPANY_LANGUAGE
+                                             );
+        }
+
+        public string DeleteCompany(CompanyEntity companyForDeletion)
+        {
+            VERSION_COMPANY companyForDeletionDB = new VERSION_COMPANY();
+            companyForDeletionDB.VER_COMPANY_ID = companyForDeletion.Id;
+            companyForDeletionDB.VER_COMPANY = companyForDeletion.Name;
+            companyForDeletionDB.VER_COMPANY_ACTIVE = companyForDeletion.Active;
+            companyForDeletionDB.VER_COMPANY_DESC = companyForDeletion.Description;
+            companyForDeletionDB.VER_COMPANY_INTERFACE = companyForDeletion.Interface;
+            companyForDeletionDB.VER_COMPANY_TYPE = companyForDeletion.Type;
+            companyForDeletionDB.VER_COMPANY_LANGUAGE = companyForDeletion.Language;
+
+            return dbRepository.DeleteCompany(companyForDeletionDB);
         }
     }
 }

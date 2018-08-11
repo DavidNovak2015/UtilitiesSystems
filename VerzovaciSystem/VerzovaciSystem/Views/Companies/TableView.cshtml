@@ -36,6 +36,9 @@
                         <th>
                             Aktualizace
                         </th>
+                        <th>
+                            Odstranění
+                        </th>
             </tr>
         </thead>
         
@@ -67,7 +70,10 @@
                     @item.Language 
                 </td>
                 <td>
-                    @Html.ActionLink("Aktualizuj", "ChangeTableRow", new { iD=item.Id, tableName=ViewBag.TableName })
+                    @Html.ActionLink("Aktualizovat", "ChangeTableRow", new { iD=item.Id })
+                </td>
+                <td>
+                    @Html.ActionLink("Odstranit", "DeleteTableRow", new { iD = item.Id })
                 </td>
             </tr>
         </tbody>

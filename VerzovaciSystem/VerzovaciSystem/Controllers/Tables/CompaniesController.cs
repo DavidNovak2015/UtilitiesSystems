@@ -36,6 +36,22 @@ namespace VerzovaciSystem.Controllers
             TempData["result"] = companiesViewModel.SaveCompany(companiesViewModel.CompanyEntity);
             return RedirectToAction("TableView");
         }
+
+        // vrátí vybraný záznam pro výmaz
+        public ActionResult DeleteTableRow(int iD)
+        {
+            companiesViewModel.GetCompanyForDeletion(iD);
+            return View(companiesViewModel);
+        }
+
+        // Vymaže potvrzený vybraný záznam
+        [HttpPost]
+        public ActionResult DeleteTableRow(CompaniesViewModel companiesViewModel)
+        {
+            TempData["result"] = companiesViewModel.DeleteCompany(companiesViewModel.CompanyEntity);
+            return RedirectToAction("TableView");
+        }
+
         //public ActionResult ChangeTableRow(int iD, string tableName)
         //{
         //    return View();

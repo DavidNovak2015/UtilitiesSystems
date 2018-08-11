@@ -273,6 +273,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Companies\TableView.cshtml" />
     <Content Include="Views\Companies\AddTableRow.cshtml" />
+    <Content Include="Views\Companies\DeleteTableRow.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -80,7 +80,7 @@ namespace VerzovaciSystemDB
                 return error;
             }
         }
-        // Přidání záznamu
+        // Přidání záznamu do VERSION_COMPANY
         public string AddCompany(VERSION_COMPANY companyToDB)
         {
             companyToDB.VER_COMPANY_ID = GetNextIdNumberFromVersionCompany();
@@ -101,7 +101,40 @@ namespace VerzovaciSystemDB
                 return result = $"Požadavek NEBYL proveden. Popis chyby:\n {ex.Message.ToString()} \n {ex.InnerException.ToString()}";
             }
         }
-        
+        // Nalezení záznamu pro výmaz nebo změnu z VERSION_COMPANY
+        public VERSION_COMPANY GetCompanyForDeletion (int idCompany)
+        {
+            try
+            {
+                using (EntityFramework accessToDB = new EntityFramework())
+                {
+                    return accessToDB.VERSION_COMPANY.Where(x => x.VER_COMPANY_ID == idCompany).SingleOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                VERSION_COMPANY error = new VERSION_COMPANY();
+                error.VER_COMPANY_DESC = ex.Message.ToString();
+                return error;
+            } 
+        }
+        // Vymazání záznamu z VERSION_COMPANY
+        public string DeleteCompany(VERSION_COMPANY companyForDeletion)
+        {
+            try
+            {
+                using (EntityFramework accessToDB = new EntityFramework())
+                {
+                    accessToDB.Entry(companyForDeletion).State = System.Data.Entity.EntityState.Deleted;
+                    accessToDB.SaveChanges();
+                    return result = "Požadavek byl proveden";
+                }
+            }
+            catch (Exception ex)
+            {
+                return result = $"Požadavek NEBYL proveden.Popis chyby:\n { ex.Message.ToString()} \n { ex.InnerException.ToString()}";
+            }
+        } 
     }
 }
 
