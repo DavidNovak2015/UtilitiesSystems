@@ -46,9 +46,11 @@ namespace VerzovaciSystem.Models
         }
 
         // vrátí vybraný záznam pro potvrzení vymazání
-        public void GetCompanyForDeletion (int companyId)
+        public void GetCompanyForDeletionAndUpdate (int companyId)
         {
             VERSION_COMPANY companyFromDB = dbRepository.GetCompanyForDeletion(companyId);
+
+            CompanyEntity.Actives = new List<System.Web.Mvc.SelectListItem>();
 
             CompanyEntity = new CompanyEntity(HelpsMethods.GetIntValue(companyFromDB.VER_COMPANY_ID),
                                               companyFromDB.VER_COMPANY,
@@ -60,6 +62,7 @@ namespace VerzovaciSystem.Models
                                              );
         }
 
+        // odstraní záznam
         public string DeleteCompany(CompanyEntity companyForDeletion)
         {
             VERSION_COMPANY companyForDeletionDB = new VERSION_COMPANY();
@@ -72,6 +75,21 @@ namespace VerzovaciSystem.Models
             companyForDeletionDB.VER_COMPANY_LANGUAGE = companyForDeletion.Language;
 
             return dbRepository.DeleteCompany(companyForDeletionDB);
+        }
+
+        // aktualizuje záznam
+        public string ChangeCompany(CompanyEntity companyForChange)
+        {
+            VERSION_COMPANY companyForChangeDB = new VERSION_COMPANY();
+            companyForChangeDB.VER_COMPANY_ID = companyForChange.Id;
+            companyForChangeDB.VER_COMPANY = companyForChange.Name;
+            companyForChangeDB.VER_COMPANY_ACTIVE = companyForChange.Active;
+            companyForChangeDB.VER_COMPANY_DESC = companyForChange.Description;
+            companyForChangeDB.VER_COMPANY_INTERFACE = companyForChange.Interface;
+            companyForChangeDB.VER_COMPANY_TYPE = companyForChange.Type;
+            companyForChangeDB.VER_COMPANY_LANGUAGE = companyForChange.Language;
+
+            return dbRepository.ChangeCompany(companyForChangeDB);
         }
     }
 }

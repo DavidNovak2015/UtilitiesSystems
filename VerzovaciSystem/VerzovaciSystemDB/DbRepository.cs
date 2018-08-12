@@ -134,7 +134,24 @@ namespace VerzovaciSystemDB
             {
                 return result = $"Požadavek NEBYL proveden.Popis chyby:\n { ex.Message.ToString()} \n { ex.InnerException.ToString()}";
             }
-        } 
+        }
+        // Aktualizace záznamu z VERSION_COMPANY
+        public string ChangeCompany(VERSION_COMPANY companyForChange)
+        {
+            try
+            {
+                using (EntityFramework accessToDB = new EntityFramework())
+                {
+                    accessToDB.Entry(companyForChange).State = System.Data.Entity.EntityState.Modified;
+                    accessToDB.SaveChanges();
+                    return result = "Požadavek byl proveden";
+                }
+            }
+            catch (Exception ex)
+            {
+                return result = $"Požadavek NEBYL proveden.Popis chyby:\n { ex.Message.ToString()} \n { ex.InnerException.ToString()}";
+            }
+        }
     }
 }
 

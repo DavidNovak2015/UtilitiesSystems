@@ -40,7 +40,7 @@ namespace VerzovaciSystem.Controllers
         // vrátí vybraný záznam pro výmaz
         public ActionResult DeleteTableRow(int iD)
         {
-            companiesViewModel.GetCompanyForDeletion(iD);
+            companiesViewModel.GetCompanyForDeletionAndUpdate(iD);
             return View(companiesViewModel);
         }
 
@@ -52,10 +52,19 @@ namespace VerzovaciSystem.Controllers
             return RedirectToAction("TableView");
         }
 
-        //public ActionResult ChangeTableRow(int iD, string tableName)
-        //{
-        //    return View();
+        // vrátí vybraný záznam pro aktualizaci
+        public ActionResult ChangeTableRow(int iD)
+        {
+            companiesViewModel.GetCompanyForDeletionAndUpdate(iD);
+            return View(companiesViewModel);
+        }
 
-        //}
+        // Vymaže potvrzený vybraný záznam
+        [HttpPost]
+        public ActionResult ChangeTableRow(CompaniesViewModel companiesViewModel)
+        {
+            companiesViewModel.ChangeCompany(companiesViewModel.CompanyEntity);
+            return RedirectToAction("TableView");
+        }
     }
 }
