@@ -63,7 +63,10 @@ namespace VerzovaciSystem.Controllers
         [HttpPost]
         public ActionResult ChangeTableRow(CompaniesViewModel companiesViewModel)
         {
-            companiesViewModel.ChangeCompany(companiesViewModel.CompanyEntity);
+            if (!ModelState.IsValid)
+                return View(companiesViewModel);
+
+            TempData["result"]=companiesViewModel.ChangeCompany(companiesViewModel.CompanyEntity);
             return RedirectToAction("TableView");
         }
     }

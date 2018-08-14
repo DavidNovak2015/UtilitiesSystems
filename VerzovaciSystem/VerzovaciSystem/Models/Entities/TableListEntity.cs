@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace VerzovaciSystem.Models.Entities
+﻿namespace VerzovaciSystem.Models.Entities
 {
+    // pro Číselníky - seznam tabulek
     public class TableListEntity
     {
         public string TableName { get; private set; }

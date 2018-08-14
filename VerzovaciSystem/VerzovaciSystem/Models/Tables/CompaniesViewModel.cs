@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using VerzovaciSystemDB;
 using VerzovaciSystem.Models.Entities;
 
@@ -58,7 +56,8 @@ namespace VerzovaciSystem.Models
                                               companyFromDB.VER_COMPANY_DESC,
                                               companyFromDB.VER_COMPANY_INTERFACE,
                                               companyFromDB.VER_COMPANY_TYPE,
-                                              companyFromDB.VER_COMPANY_LANGUAGE
+                                              companyFromDB.VER_COMPANY_LANGUAGE,
+                                              "not used"
                                              );
         }
 

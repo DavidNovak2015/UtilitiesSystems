@@ -132,7 +132,7 @@ namespace VerzovaciSystemDB
             }
             catch (Exception ex)
             {
-                return result = $"Požadavek NEBYL proveden.Popis chyby:\n { ex.Message.ToString()} \n { ex.InnerException.ToString()}";
+                return result = $"Požadavek NEBYL proveden.Popis chyby:\n\n { ex.Message.ToString()} \n\n { ex.InnerException.ToString()}";
             }
         }
         // Aktualizace záznamu z VERSION_COMPANY
@@ -149,7 +149,7 @@ namespace VerzovaciSystemDB
             }
             catch (Exception ex)
             {
-                return result = $"Požadavek NEBYL proveden.Popis chyby:\n { ex.Message.ToString()} \n { ex.InnerException.ToString()}";
+                return result = $"Požadavek NEBYL proveden.Popis chyby:\n\n { ex.Message.ToString()} \n\n { ex.InnerException.ToString()}";
             }
         }
     }

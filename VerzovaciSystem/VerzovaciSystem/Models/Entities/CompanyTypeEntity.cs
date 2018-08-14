@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace VerzovaciSystem.Models.Entities
+﻿namespace VerzovaciSystem.Models.Entities
 {
+    // pro vyhledávací masku
     public class CompanyTypeEntity
     {
         public string Type { get; private set; }
