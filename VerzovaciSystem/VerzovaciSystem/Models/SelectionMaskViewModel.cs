@@ -13,37 +13,8 @@ namespace VerzovaciSystem.Models
     {
         DbRepository dbRepository = new DbRepository();
 
-        [Display(Name ="Typ společnosti")]
-        [Required(ErrorMessage ="Vyberte prosím typ společnosti")]
-        public string CompanyTyp { get; set; }
-
-        [Display(Name = "Společnost")]
-        [Required(ErrorMessage = "Vyberte prosím společnost")]
-        public string Company { get; set; }
-
-        [Display(Name = "Datum verze od")]
-        [Required(ErrorMessage ="Vyberte prosím datum")]
-        //[DataType(DataType.Date)]
-        public DateTime VersionDateFrom { get; set; }
-
-        [Display(Name = "Datum verze do")]
-        [Required(ErrorMessage = "Vyberte prosím datum")]
-        [DataType(DataType.Date)]
-        public DateTime VersionDateTo { get; set; }
-
-        [Display(Name = "Datum vytvoření od")]
-        [Required(ErrorMessage = "Vyberte prosím datum")]
-        [DataType(DataType.Date)]
-        public DateTime CreationDateFrom { get; set; }
-
-        [Display(Name = "Datum vytvoření do")]
-        [Required(ErrorMessage = "Vyberte prosím datum")]
-        [DataType(DataType.Date)]
-        public DateTime CreationDateTo { get; set; }
-
-        //[Display(Name = "Global status")]
-        //[Required(ErrorMessage = "Vyberte prosím global status")]
-        //public string GlobalStatus { get; set; }
+        // popisky polí a uchování vybraných hodnot ve vyhledávací masce
+        public SelectionMaskEntity SelectionMaskEntity { get; set; }
 
         public List<SelectListItem> CompanyTypes { get; private set; }
 
@@ -53,7 +24,9 @@ namespace VerzovaciSystem.Models
 
         public SelectionMaskViewModel()
         {
-            VersionDateFrom = DateTime.Now.Date;
+            SelectionMaskEntity = new SelectionMaskEntity();
+
+            SelectionMaskEntity.VersionDateFrom = DateTime.Now.Date;
             List<EX_COMPANY_TYPE> companyTypesFromDB = dbRepository.GetCompanyTypes();
             List<VERSION_COMPANY> companiesFromDB = dbRepository.GetCompanies();
 
@@ -81,12 +54,7 @@ namespace VerzovaciSystem.Models
             //GlobalStatusChoice.Add(new SelectListItem { Text = "Gold", Value = "Gold" });
         }
 
-        //public static int GetCompanyId (int? companyId)
-        //{
-        //    if (!companyId.HasValue)
-        //        throw new InvalidOperationException($"{nameof(companyId)} is empty");
-
-        //    return companyId.Value;
-        //}
+        // Vrátí odpovídající záznamy dle vyhledávací masky vybrané z DB View V_VERSION_LIST1
+        
     }
 }

@@ -22,7 +22,7 @@
     <div class="form-horizontal">
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CompanyTyp, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SelectionMaskEntity.CompanyTyp, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <select name="CompanyType">
                     @foreach (var item in Model.CompanyTypes)
@@ -35,7 +35,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Company, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SelectionMaskEntity.Company, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <select name="Company">
                     @foreach (var item in Model.Companies)
@@ -48,33 +48,33 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.VersionDateFrom, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateFrom, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="datetime" id="VersionDateFrom"  value="@Model.VersionDateFrom" class="form-control"/>
+                <input type="datetime" id="VersionDateFrom"  value="@Model.SelectionMaskEntity.VersionDateFrom" class="form-control"/>
             </div>
             <br /><br />
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.VersionDateTo, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateTo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="date" id="VersionDateTo" value="@Model.VersionDateTo" class="form-control" />
+                <input type="date" id="VersionDateTo" value="@Model.SelectionMaskEntity.VersionDateTo" class="form-control" />
             </div>
             <br /><br />
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CreationDateFrom, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SelectionMaskEntity.CreationDateFrom, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="date" id="CreationDateFrom" value="@Model.CreationDateFrom" class="form-control" />
+                <input type="date" id="CreationDateFrom" value="@Model.SelectionMaskEntity.CreationDateFrom" class="form-control" />
             </div>
             <br /><br />
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CreationDateTo, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SelectionMaskEntity.CreationDateTo, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <input type="date" id="CreationDateTo" value="@Model.CreationDateTo" class="form-control" />
+                <input type="date" id="CreationDateTo" value="@Model.SelectionMaskEntity.CreationDateTo" class="form-control" />
             </div>
             <br /><br />
         </div>
@@ -96,59 +96,59 @@
 -----------------------------------------------------------------------------------------------------
 @using (Html.BeginForm())
 {
-    Html.AntiForgeryToken();
-    Html.ValidationSummary(true);
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary(true);
     
     
     <div class="form-horizontal">
 
         <div class="form-group">
-            @Html.LabelFor(model => model.CompanyTyp, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SelectionMaskEntity.CompanyTyp, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CompanyTyp, new SelectList(Model.CompanyTypes, "Value", "Text"))
-                @Html.ValidationMessageFor(model => model.CompanyTyp, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.SelectionMaskEntity.CompanyTyp, new SelectList(Model.CompanyTypes, "Value", "Text"))
+                @Html.ValidationMessageFor(model => model.SelectionMaskEntity.CompanyTyp, "", new { @class = "text-danger" })
             </div>
             <br /><br />
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Company, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SelectionMaskEntity.Company, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.Company, new SelectList(Model.Companies, "Value", "Text"))
-                @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.SelectionMaskEntity.Company, new SelectList(Model.Companies, "Value", "Text"))
+                @Html.ValidationMessageFor(model => model.SelectionMaskEntity.Company, "", new { @class = "text-danger" })
             </div>
             <br /><br />
         </div>
             <div class="form-group">
-                @Html.LabelFor(model => model.VersionDateFrom,  new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateFrom,  new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.VersionDateFrom, @"{0:dd.MM.yyyy}",new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.VersionDateFrom, "", new { @class = "text-danger" })
+                    @Html.TextBoxFor(model => model.SelectionMaskEntity.VersionDateFrom, @"{0:dd.MM.yyyy}",new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SelectionMaskEntity.VersionDateFrom, "Pokud je zadáno, musí být ve formátu dd.mm.rrrr", new { @class = "text-danger" })
                 </div>
             </div><br />
 
             <div class="form-group">
-                @Html.LabelFor(model => model.VersionDateTo, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateTo, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.VersionDateTo, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.VersionDateTo, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.SelectionMaskEntity.VersionDateTo, new { @class = "form-control" })
+                    @*@Html.ValidationMessageFor(model => model.SelectionMaskEntity.VersionDateTo, "", new { @class = "text-danger" })*@
                 </div>
             </div><br />
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CreationDateFrom, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.SelectionMaskEntity.CreationDateFrom, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.CreationDateFrom, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CreationDateFrom, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.SelectionMaskEntity.CreationDateFrom, new { @class = "form-control" })
+                    @*@Html.ValidationMessageFor(model => model.SelectionMaskEntity.CreationDateFrom, "", new { @class = "text-danger" })*@
                 </div>
             </div><br />
             
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CreationDateTo, new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.SelectionMaskEntity.CreationDateTo, new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.CreationDateTo, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CreationDateTo, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.SelectionMaskEntity.CreationDateTo, new { @class = "form-control" })
+                    @*@Html.ValidationMessageFor(model => model.SelectionMaskEntity.CreationDateTo, "", new { @class = "text-danger" })*@
                 </div>
             </div><br />
 

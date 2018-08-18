@@ -13,6 +13,7 @@ namespace VerzovaciSystem.Models
         // popisky sloupců tabulek + záznam z tabulky VERSION_COMPANY pro změnu a výmaz
         public CompanyEntity CompanyEntity { get; set; }
 
+        // pro hodnoty z db tabulky
         public List<CompanyEntity> TableData { get; private set; }
 
         public CompaniesViewModel()

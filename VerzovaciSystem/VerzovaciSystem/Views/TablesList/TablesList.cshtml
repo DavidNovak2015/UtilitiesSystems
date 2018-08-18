@@ -14,16 +14,16 @@
         </thead>
         @foreach (var item in Model.TablesList)
         {
-        <tbody>
+            <tbody>
                 <tr>
                     <td>
-                        @Html.ActionLink(item.TableName,"TableView", "Companies")
+                        @Html.ActionLink(item.TableName, "TableView", item.ControllerName);
                     </td>
                     <td>
                         @item.TableDescription
                     </td>
                 </tr>
-        </tbody>
+            </tbody>
         }
     </table>
 </form>

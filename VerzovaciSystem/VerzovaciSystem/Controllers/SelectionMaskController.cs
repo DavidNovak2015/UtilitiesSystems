@@ -18,12 +18,20 @@ namespace VerzovaciSystem.Controllers
         [HttpPost]
         public ActionResult SelectionMask(SelectionMaskViewModel selectionMaskViewModel)
         {
-            if (!ModelState.IsValid)
+            if ((selectionMaskViewModel.SelectionMaskEntity.CompanyTyp == null) &&
+                (selectionMaskViewModel.SelectionMaskEntity.Company == null) &&
+                (selectionMaskViewModel.SelectionMaskEntity.VersionDateFrom == null) &&
+                (selectionMaskViewModel.SelectionMaskEntity.VersionDateTo == DateTime.MinValue) &&
+                (selectionMaskViewModel.SelectionMaskEntity.CreationDateFrom == DateTime.MinValue) &&
+                (selectionMaskViewModel.SelectionMaskEntity.CreationDateTo == DateTime.MinValue) 
+               ) 
+                {
+                TempData["result"] = "Musí být vyplněno aspoň jedno pole";
                 return View(selectionMaskViewModel);
+                }
 
 
-
-            return View();
+            return View(selectionMaskViewModel);
         }
     }
 }

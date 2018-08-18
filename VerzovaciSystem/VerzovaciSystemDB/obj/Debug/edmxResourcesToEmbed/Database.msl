@@ -22,5 +22,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="V_VERSION_LIST1">
+      <EntityTypeMapping TypeName="DatabseDB.V_VERSION_LIST1">
+        <MappingFragment StoreEntitySet="V_VERSION_LIST1">
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+          <ScalarProperty Name="VER_CREATED_USER" ColumnName="VER_CREATED_USER" />
+          <ScalarProperty Name="VER_CREATED_DATE" ColumnName="VER_CREATED_DATE" />
+          <ScalarProperty Name="VER_DATETIME" ColumnName="VER_DATETIME" />
+          <ScalarProperty Name="VER_GROUP" ColumnName="VER_GROUP" />
+          <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
+          <ScalarProperty Name="VER_ID" ColumnName="VER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

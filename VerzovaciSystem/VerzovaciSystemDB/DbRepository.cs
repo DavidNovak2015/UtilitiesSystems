@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
@@ -135,7 +135,7 @@ namespace VerzovaciSystemDB
                 return result = $"Požadavek NEBYL proveden.Popis chyby:\n\n { ex.Message.ToString()} \n\n { ex.InnerException.ToString()}";
             }
         }
-        // Aktualizace záznamu z VERSION_COMPANY
+        // Aktualizace záznamu z VERSION_COMPANY přes EntityFramework - padá na db sloupci VER_COMPANY
         public string ChangeCompany(VERSION_COMPANY companyForChange)
         {
             try
