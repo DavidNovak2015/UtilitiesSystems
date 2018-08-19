@@ -22,6 +22,12 @@ namespace VerzovaciSystem.Models
 
         //public List<SelectListItem> GlobalStatusChoice { get; private set; }
 
+        // výsledek výběru z vyhledávací masky
+        public List<SelectionMaskOutputEntity> SelectionResult { get; private set; }
+        
+        // popisky polí pro výsledek výběru z vyhledávací masky
+        public SelectionMaskOutputEntity SelectionMaskOutputEntity { get; private set; }
+
         public SelectionMaskViewModel()
         {
             SelectionMaskEntity = new SelectionMaskEntity();
@@ -55,6 +61,64 @@ namespace VerzovaciSystem.Models
         }
 
         // Vrátí odpovídající záznamy dle vyhledávací masky vybrané z DB View V_VERSION_LIST1
-        
+        public void GetSelectedRecords(SelectionMaskEntity selectionsparameters)
+        {
+            SelectionMaskOutputEntity = new SelectionMaskOutputEntity();
+
+            if (SelectionResult == null)
+                SelectionResult = new List<SelectionMaskOutputEntity>();
+
+            SelectionResult.Clear();
+
+            List<V_VERSION_LIST1> recordsFromDB = dbRepository.GetAllRecordsFromV_VERSION_LIST1();
+
+            IEnumerable<V_VERSION_LIST1> temporaryRecords = recordsFromDB.OrderBy(x => x.VER_CREATED_DATE);
+
+            // Company
+            if (selectionsparameters.Company != null)
+            {
+                 temporaryRecords = recordsFromDB.Where(company => company.VER_COMPANY == selectionsparameters.Company);
+            }
+
+            // VersionDateFrom a VersionDateTo
+            if ( (selectionsparameters.VersionDateFrom != DateTime.MinValue) && (selectionsparameters.VersionDateTo != DateTime.MinValue) )
+            {
+                temporaryRecords = recordsFromDB.Where(versionDateFrom => versionDateFrom.VER_DATETIME >= selectionsparameters.VersionDateFrom)
+                                              .Where(versionDateTo => versionDateTo.VER_DATETIME <= selectionsparameters.VersionDateTo);
+            }
+            if (selectionsparameters.VersionDateFrom != null)
+            {
+                temporaryRecords = recordsFromDB.Where(versiondateFrom => versiondateFrom.VER_DATETIME >= selectionsparameters.VersionDateFrom);
+            }
+            if (selectionsparameters.VersionDateTo !=null)
+            {
+                temporaryRecords = recordsFromDB.Where(versiondateTo => versiondateTo.VER_DATETIME <= selectionsparameters.VersionDateTo);
+            }
+
+            // CreationDateFrom a CreationDateTo
+            if ((selectionsparameters.CreationDateFrom != DateTime.MinValue) && (selectionsparameters.CreationDateTo != DateTime.MinValue))
+            {
+                temporaryRecords = recordsFromDB.Where(creationDateFrom => creationDateFrom.VER_CREATED_DATE >= selectionsparameters.CreationDateFrom)
+                                                .Where(creationDateTo => creationDateTo.VER_DATETIME <= selectionsparameters.CreationDateTo);
+            }
+            if (selectionsparameters.CreationDateFrom != null)
+            {
+                temporaryRecords = recordsFromDB.Where(creationDateFrom => creationDateFrom.VER_CREATED_DATE >= selectionsparameters.CreationDateFrom);
+            }
+            if (selectionsparameters.CreationDateTo != null)
+            {
+                temporaryRecords = recordsFromDB.Where(creationDateTo => creationDateTo.VER_CREATED_DATE <= selectionsparameters.CreationDateTo);
+            }
+
+            SelectionResult = temporaryRecords.Select(x => new SelectionMaskOutputEntity(x.VER_ID,
+                                                                                         x.VER_COMPANY,
+                                                                                         x.VER_GROUP,
+                                                                                         x.VER_DATETIME,
+                                                                                         x.VER_CREATED_DATE,
+                                                                                         x.VER_CREATED_USER,
+                                                                                         x.STATUS
+                                                                                        )
+                                                     ).ToList();
+        }
     }
 }

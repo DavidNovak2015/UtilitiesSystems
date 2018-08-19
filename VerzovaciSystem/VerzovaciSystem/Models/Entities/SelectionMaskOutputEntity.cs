@@ -25,5 +25,10 @@ namespace VerzovaciSystem.Models.Entities
             User = user;
             Status = status;
         }
+
+        // pro popisky View SelectionMaskOutput
+        public SelectionMaskOutputEntity()
+        { }
+        
     }
 }

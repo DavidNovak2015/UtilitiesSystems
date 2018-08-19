@@ -30,8 +30,9 @@ namespace VerzovaciSystem.Controllers
                 return View(selectionMaskViewModel);
                 }
 
+            selectionMaskViewModel.GetSelectedRecords(selectionMaskViewModel.SelectionMaskEntity);
 
-            return View(selectionMaskViewModel);
+            return View("SelectionMaskOutput",selectionMaskViewModel);
         }
     }
 }

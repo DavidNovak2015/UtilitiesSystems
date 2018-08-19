@@ -19,6 +19,7 @@ namespace VerzovaciSystemDB
         private const string oracleConnectionString= "User Id=USYSVER;Password=verze;Data Source=localhost:1521/XE";
         // pro výsledek metod
         private string result = "";
+        private bool replaceDbViewV_VERSION_LIST1 = false;
 
         // pro AddCompany VERSION_COMPANY
         private int GetNextIdNumberFromVersionCompany()
@@ -44,7 +45,32 @@ namespace VerzovaciSystemDB
                 return 5555;
             }
         }
-        // Vyhledávací maska
+
+        // před vyhledáním dle parametrů Vyhledávací masky
+        private string ReplaceDbViewV_VERSION_LIST1 ()
+        {
+            string cmdText = "CREATE OR REPLACE VIEW V_VERSION_LIST1 AS SELECT VER_ID, VER_COMPANY, VER_GROUP, VER_DATETIME, VER_CREATED_DATE, VER_CREATED_USER, CASE WHEN ver_deleted = 'A' THEN 'ZRUŠENO' WHEN VER_DATETIME < SYSDATE AND(0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID)) THEN 'ČEKÁ' WHEN VER_DATETIME < SYSDATE AND(0 < (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID)) THEN 'PROBÍHÁ PŘÍPRAVA' WHEN VER_DATETIME > SYSDATE AND(0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'PROBÍHÁ' WHEN VER_DATETIME > SYSDATE AND(0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'HOTOVO' ELSE  '?' END AS STATUS FROM VERSION_LOG;";
+            try
+            {
+                using (OracleConnection accessToDB = new OracleConnection(oracleConnectionString))
+                {
+                    accessToDB.Open();
+                    using (OracleCommand command = new OracleCommand(cmdText, accessToDB))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                    return result = String.Empty;
+                }
+            }
+            catch (Exception ex)
+            {
+                return result = $"Metoda \"GetLastIdNumberFromVersionCompany\" vrátila chybu. Popis chyby: \n\n {ex.Message.ToString()}\n\n {ex.InnerException.ToString()}";
+            }
+        }
+
+        // VYHLEDÁVACÍ MASKA
+
+        // Pro zobrazení Vyhledávací masky
         public List<EX_COMPANY_TYPE> GetCompanyTypes()
         {
             try
@@ -62,7 +88,35 @@ namespace VerzovaciSystemDB
             }
         }
 
+        public List<V_VERSION_LIST1> GetAllRecordsFromV_VERSION_LIST1()
+        {
+            result = ReplaceDbViewV_VERSION_LIST1();
+            List<V_VERSION_LIST1> error = new List<V_VERSION_LIST1>(); V_VERSION_LIST1 descriptionError = new V_VERSION_LIST1();
+
+            if (result !=String.Empty)
+            {
+                descriptionError.VER_COMPANY = result;
+                error.Add(descriptionError);
+                return error;
+            }
+            try
+            {
+                using (EntityFramework accessToDB = new EntityFramework())
+                {
+                    return accessToDB.V_VERSION_LIST1.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                error.Clear();
+                descriptionError.VER_COMPANY = $"Požadavek NEBYL proveden. Popis chyby:\n\n {ex.Message.ToString()} \n {ex.InnerException.ToString()}";
+                error.Add(descriptionError);
+                return error;
+            }
+        }
+
         // ČÍSELNÍKY: VERSION_COMPANY
+
         // také pro Vyhledávací maska
         public List<VERSION_COMPANY> GetCompanies()
         {
@@ -80,6 +134,7 @@ namespace VerzovaciSystemDB
                 return error;
             }
         }
+
         // Přidání záznamu do VERSION_COMPANY
         public string AddCompany(VERSION_COMPANY companyToDB)
         {
@@ -101,6 +156,7 @@ namespace VerzovaciSystemDB
                 return result = $"Požadavek NEBYL proveden. Popis chyby:\n {ex.Message.ToString()} \n {ex.InnerException.ToString()}";
             }
         }
+
         // Nalezení záznamu pro výmaz nebo změnu z VERSION_COMPANY
         public VERSION_COMPANY GetCompanyForDeletion (int idCompany)
         {
@@ -118,6 +174,7 @@ namespace VerzovaciSystemDB
                 return error;
             } 
         }
+
         // Vymazání záznamu z VERSION_COMPANY
         public string DeleteCompany(VERSION_COMPANY companyForDeletion)
         {
@@ -135,6 +192,7 @@ namespace VerzovaciSystemDB
                 return result = $"Požadavek NEBYL proveden.Popis chyby:\n\n { ex.Message.ToString()} \n\n { ex.InnerException.ToString()}";
             }
         }
+
         // Aktualizace záznamu z VERSION_COMPANY přes EntityFramework - padá na db sloupci VER_COMPANY
         public string ChangeCompany(VERSION_COMPANY companyForChange)
         {

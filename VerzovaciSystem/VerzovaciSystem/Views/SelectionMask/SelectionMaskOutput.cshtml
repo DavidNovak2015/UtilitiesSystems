@@ -1,0 +1,65 @@
+﻿@model VerzovaciSystem.Models.SelectionMaskViewModel
+@{
+    ViewBag.Title = "Vyber";
+}
+
+<h2>Výběr:</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.SelectionMaskOutputEntity.Id, new { @class = "control-label col-md-2" })
+            </th>
+            <th>
+                @Html.LabelFor(model => model.SelectionMaskOutputEntity.Company, new { @class = "control-label col-md-2" })
+            </th>
+            <th>
+                @Html.LabelFor(model => model.SelectionMaskOutputEntity.Group, new { @class = "control-label col-md-2" })
+            </th>
+            <th>
+                @Html.LabelFor(model => model.SelectionMaskOutputEntity.Date, new { @class = "control-label col-md-2" })
+            </th>
+            <th>
+                @Html.LabelFor(model => model.SelectionMaskOutputEntity.Created, new { @class = "control-label col-md-2" })
+            </th>
+            <th>
+                @Html.LabelFor(model => model.SelectionMaskOutputEntity.User, new { @class = "control-label col-md-2" })
+            </th>
+            <th>
+                @Html.LabelFor(model => model.SelectionMaskOutputEntity.Status, new { @class = "control-label col-md-2" })
+            </th>
+        </tr>
+    </thead>
+    
+    @foreach (var item in Model.SelectionResult)
+    {
+        <tbody>
+            <tr>
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Company
+                </td>
+                <td>
+                    @item.Group
+                </td>
+                <td>
+                    @item.Date
+                </td>
+                <td>
+                    @item.Created
+                </td>
+                <td>
+                    @item.User
+                </td>
+                <td>
+                    @item.Status
+                </td>
+            </tr>
+        </tbody>
+    }
+
+</table>
+
