@@ -9,3 +9,4 @@ C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB
 C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.dll
 C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.pdb
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.csprojResolveAssemblyReference.cache

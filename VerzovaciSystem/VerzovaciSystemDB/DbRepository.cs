@@ -19,7 +19,6 @@ namespace VerzovaciSystemDB
         private const string oracleConnectionString= "User Id=USYSVER;Password=verze;Data Source=localhost:1521/XE";
         // pro výsledek metod
         private string result = "";
-        private bool replaceDbViewV_VERSION_LIST1 = false;
 
         // pro AddCompany VERSION_COMPANY
         private int GetNextIdNumberFromVersionCompany()
@@ -49,7 +48,7 @@ namespace VerzovaciSystemDB
         // před vyhledáním dle parametrů Vyhledávací masky
         private string ReplaceDbViewV_VERSION_LIST1 ()
         {
-            string cmdText = "CREATE OR REPLACE VIEW V_VERSION_LIST1 AS SELECT VER_ID, VER_COMPANY, VER_GROUP, VER_DATETIME, VER_CREATED_DATE, VER_CREATED_USER, CASE WHEN ver_deleted = 'A' THEN 'ZRUŠENO' WHEN VER_DATETIME < SYSDATE AND(0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID)) THEN 'ČEKÁ' WHEN VER_DATETIME < SYSDATE AND(0 < (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID)) THEN 'PROBÍHÁ PŘÍPRAVA' WHEN VER_DATETIME > SYSDATE AND(0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'PROBÍHÁ' WHEN VER_DATETIME > SYSDATE AND(0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'HOTOVO' ELSE  '?' END AS STATUS FROM VERSION_LOG;";
+            string cmdText = "CREATE OR REPLACE VIEW V_VERSION_LIST1 AS SELECT VER_ID, VER_COMPANY, VER_GROUP, VER_DATETIME, VER_CREATED_DATE, VER_CREATED_USER, CASE WHEN ver_deleted = 'A' THEN 'ZRUŠENO' WHEN VER_DATETIME < SYSDATE AND(0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID)) THEN 'ČEKÁ' WHEN VER_DATETIME < SYSDATE AND(0 < (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID)) THEN 'PROBÍHÁ PŘÍPRAVA' WHEN VER_DATETIME > SYSDATE AND(0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'PROBÍHÁ' WHEN VER_DATETIME > SYSDATE AND(0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'HOTOVO' ELSE  '?' END AS STATUS FROM VERSION_LOG";
             try
             {
                 using (OracleConnection accessToDB = new OracleConnection(oracleConnectionString))
@@ -64,7 +63,7 @@ namespace VerzovaciSystemDB
             }
             catch (Exception ex)
             {
-                return result = $"Metoda \"GetLastIdNumberFromVersionCompany\" vrátila chybu. Popis chyby: \n\n {ex.Message.ToString()}\n\n {ex.InnerException.ToString()}";
+                return result = $"Metoda \"GetLastIdNumberFromVersionCompany\" vrátila chybu. Popis chyby: \n\n {ex.Message.ToString()}";
             }
         }
 
@@ -88,6 +87,7 @@ namespace VerzovaciSystemDB
             }
         }
 
+        // pro výsledky hledání dle parametrů vyhledávací masky
         public List<V_VERSION_LIST1> GetAllRecordsFromV_VERSION_LIST1()
         {
             result = ReplaceDbViewV_VERSION_LIST1();
@@ -109,7 +109,7 @@ namespace VerzovaciSystemDB
             catch (Exception ex)
             {
                 error.Clear();
-                descriptionError.VER_COMPANY = $"Požadavek NEBYL proveden. Popis chyby:\n\n {ex.Message.ToString()} \n {ex.InnerException.ToString()}";
+                descriptionError.VER_COMPANY = $"Požadavek NEBYL proveden. Popis chyby:\n\n {ex.Message.ToString()} ";
                 error.Add(descriptionError);
                 return error;
             }
@@ -153,7 +153,7 @@ namespace VerzovaciSystemDB
             }
             catch (Exception ex)
             {
-                return result = $"Požadavek NEBYL proveden. Popis chyby:\n {ex.Message.ToString()} \n {ex.InnerException.ToString()}";
+                return result = $"Požadavek NEBYL proveden. Popis chyby:\n {ex.Message.ToString()}";
             }
         }
 
@@ -189,7 +189,7 @@ namespace VerzovaciSystemDB
             }
             catch (Exception ex)
             {
-                return result = $"Požadavek NEBYL proveden.Popis chyby:\n\n { ex.Message.ToString()} \n\n { ex.InnerException.ToString()}";
+                return result = $"Požadavek NEBYL proveden.Popis chyby:\n\n { ex.Message.ToString()} ";
             }
         }
 
@@ -207,7 +207,7 @@ namespace VerzovaciSystemDB
             }
             catch (Exception ex)
             {
-                return result = $"Požadavek NEBYL proveden.Popis chyby:\n\n { ex.Message.ToString()} \n\n { ex.InnerException.ToString()}";
+                return result = $"Požadavek NEBYL proveden.Popis chyby:\n\n { ex.Message.ToString()} ";
             }
         }
     }

@@ -52,7 +52,7 @@ namespace VerzovaciSystem.Models
             Companies.Add(new SelectListItem { Text = "option", Value = null });
             foreach (var company in companies)
             {
-                Companies.Add(new SelectListItem { Text = company.Name, Value = company.Id.ToString() });
+                Companies.Add(new SelectListItem { Text = company.Name, Value = company.Name });
             }
 
             //GlobalStatusChoice.Add(new SelectListItem { Text = "options", Value = null });
@@ -81,7 +81,7 @@ namespace VerzovaciSystem.Models
             }
 
             // VersionDateFrom a VersionDateTo
-            if ( (selectionsparameters.VersionDateFrom != DateTime.MinValue) && (selectionsparameters.VersionDateTo != DateTime.MinValue) )
+            if ( (selectionsparameters.VersionDateFrom != null) && (selectionsparameters.VersionDateTo != DateTime.MinValue) )
             {
                 temporaryRecords = recordsFromDB.Where(versionDateFrom => versionDateFrom.VER_DATETIME >= selectionsparameters.VersionDateFrom)
                                               .Where(versionDateTo => versionDateTo.VER_DATETIME <= selectionsparameters.VersionDateTo);
@@ -90,7 +90,7 @@ namespace VerzovaciSystem.Models
             {
                 temporaryRecords = recordsFromDB.Where(versiondateFrom => versiondateFrom.VER_DATETIME >= selectionsparameters.VersionDateFrom);
             }
-            if (selectionsparameters.VersionDateTo !=null)
+            if (selectionsparameters.VersionDateTo !=DateTime.MinValue)
             {
                 temporaryRecords = recordsFromDB.Where(versiondateTo => versiondateTo.VER_DATETIME <= selectionsparameters.VersionDateTo);
             }
@@ -101,11 +101,11 @@ namespace VerzovaciSystem.Models
                 temporaryRecords = recordsFromDB.Where(creationDateFrom => creationDateFrom.VER_CREATED_DATE >= selectionsparameters.CreationDateFrom)
                                                 .Where(creationDateTo => creationDateTo.VER_DATETIME <= selectionsparameters.CreationDateTo);
             }
-            if (selectionsparameters.CreationDateFrom != null)
+            if (selectionsparameters.CreationDateFrom != DateTime.MinValue)
             {
                 temporaryRecords = recordsFromDB.Where(creationDateFrom => creationDateFrom.VER_CREATED_DATE >= selectionsparameters.CreationDateFrom);
             }
-            if (selectionsparameters.CreationDateTo != null)
+            if (selectionsparameters.CreationDateTo != DateTime.MinValue)
             {
                 temporaryRecords = recordsFromDB.Where(creationDateTo => creationDateTo.VER_CREATED_DATE <= selectionsparameters.CreationDateTo);
             }
