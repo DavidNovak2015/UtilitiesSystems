@@ -75,37 +75,37 @@ namespace VerzovaciSystem.Models
             IEnumerable<V_VERSION_LIST1> temporaryRecords = recordsFromDB.OrderBy(x => x.VER_CREATED_DATE);
 
             // Company
-            if (selectionsparameters.Company != null)
+            if (selectionsparameters.Company != null) // otestováno
             {
                  temporaryRecords = recordsFromDB.Where(company => company.VER_COMPANY == selectionsparameters.Company);
             }
 
             // VersionDateFrom a VersionDateTo
-            if ( (selectionsparameters.VersionDateFrom != null) && (selectionsparameters.VersionDateTo != DateTime.MinValue) )
+            if ( (selectionsparameters.VersionDateFrom != null) && (selectionsparameters.VersionDateTo != DateTime.MinValue)) // otestováno
             {
                 temporaryRecords = recordsFromDB.Where(versionDateFrom => versionDateFrom.VER_DATETIME >= selectionsparameters.VersionDateFrom)
                                               .Where(versionDateTo => versionDateTo.VER_DATETIME <= selectionsparameters.VersionDateTo);
             }
-            if (selectionsparameters.VersionDateFrom != null)
+            if ( (selectionsparameters.VersionDateFrom != null) && (selectionsparameters.VersionDateTo == DateTime.MinValue) )// otestováno
             {
                 temporaryRecords = recordsFromDB.Where(versiondateFrom => versiondateFrom.VER_DATETIME >= selectionsparameters.VersionDateFrom);
             }
-            if (selectionsparameters.VersionDateTo !=DateTime.MinValue)
+            if ( (selectionsparameters.VersionDateTo !=DateTime.MinValue) && (selectionsparameters.VersionDateFrom==null) ) // otestováno
             {
                 temporaryRecords = recordsFromDB.Where(versiondateTo => versiondateTo.VER_DATETIME <= selectionsparameters.VersionDateTo);
             }
 
             // CreationDateFrom a CreationDateTo
-            if ((selectionsparameters.CreationDateFrom != DateTime.MinValue) && (selectionsparameters.CreationDateTo != DateTime.MinValue))
+            if ((selectionsparameters.CreationDateFrom != DateTime.MinValue) && (selectionsparameters.CreationDateTo != DateTime.MinValue)) // otestováno
             {
                 temporaryRecords = recordsFromDB.Where(creationDateFrom => creationDateFrom.VER_CREATED_DATE >= selectionsparameters.CreationDateFrom)
-                                                .Where(creationDateTo => creationDateTo.VER_DATETIME <= selectionsparameters.CreationDateTo);
+                                                .Where(creationDateTo => creationDateTo.VER_CREATED_DATE <= selectionsparameters.CreationDateTo);
             }
-            if (selectionsparameters.CreationDateFrom != DateTime.MinValue)
+            if ( (selectionsparameters.CreationDateFrom != DateTime.MinValue) && (selectionsparameters.CreationDateTo == DateTime.MinValue) )// otestováno
             {
                 temporaryRecords = recordsFromDB.Where(creationDateFrom => creationDateFrom.VER_CREATED_DATE >= selectionsparameters.CreationDateFrom);
             }
-            if (selectionsparameters.CreationDateTo != DateTime.MinValue)
+            if ( (selectionsparameters.CreationDateTo != DateTime.MinValue) && (selectionsparameters.CreationDateFrom == null) )// otestováno
             {
                 temporaryRecords = recordsFromDB.Where(creationDateTo => creationDateTo.VER_CREATED_DATE <= selectionsparameters.CreationDateTo);
             }

@@ -46,10 +46,10 @@
                     @item.Group
                 </td>
                 <td>
-                    @item.Date
+                    @Html.TextBoxFor(a => item.Date, @"{0:dd.MM.yyyy}", new { @class = "form-control" })
                 </td>
                 <td>
-                    @item.Created
+                    @Html.TextBoxFor(a => item.Created, @"{0:dd.MM.yyyy}", new { @class = "form-control" }) 
                 </td>
                 <td>
                     @item.User
