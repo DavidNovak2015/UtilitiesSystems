@@ -16,7 +16,7 @@
           <Key>
             <PropertyRef Name="VER_COMPANY" />
           </Key>
-          <Property Name="VER_COMPANY_ID" Type="number" Precision="10" Scale="0" />
+          <Property Name="VER_COMPANY_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
           <Property Name="VER_COMPANY" Type="varchar2" MaxLength="100" Nullable="false" />
           <Property Name="VER_COMPANY_ACTIVE" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="VER_COMPANY_DESC" Type="varchar2" MaxLength="4000" />
@@ -70,21 +70,9 @@ FROM "USYSVER"."V_VERSION_LIST1" "V_VERSION_LIST1"</DefiningQuery>
         </EntityType>
         <EntityContainer Name="OracleConnectionString" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="EX_COMPANY_TYPE" EntityType="Self.EX_COMPANY_TYPE" />
-          <EntitySet Name="VERSION_COMPANY" EntityType="DatabseDB.VERSION_COMPANY" />
           <EntitySet Name="V_VERSION_LIST1" EntityType="DatabseDB.V_VERSION_LIST1" />
+          <EntitySet Name="VERSION_COMPANY" EntityType="DatabseDB.VERSION_COMPANY" />
         </EntityContainer>
-        <EntityType Name="VERSION_COMPANY">
-          <Key>
-            <PropertyRef Name="VER_COMPANY" />
-          </Key>
-          <Property Name="VER_COMPANY_ID" Type="Int32" />
-          <Property Name="VER_COMPANY" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="VER_COMPANY_ACTIVE" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="VER_COMPANY_DESC" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="VER_COMPANY_INTERFACE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
-          <Property Name="VER_COMPANY_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="VER_COMPANY_LANGUAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="V_VERSION_LIST1">
           <Key>
             <PropertyRef Name="VER_ID" />
@@ -101,6 +89,18 @@ FROM "USYSVER"."V_VERSION_LIST1" "V_VERSION_LIST1"</DefiningQuery>
           <Property Name="VER_CREATED_USER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="VERSION_COMPANY">
+          <Key>
+            <PropertyRef Name="VER_COMPANY" />
+          </Key>
+          <Property Name="VER_COMPANY_ID" Type="Decimal" Nullable="false" Precision="38" Scale="0" />
+          <Property Name="VER_COMPANY" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VER_COMPANY_ACTIVE" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VER_COMPANY_DESC" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="VER_COMPANY_INTERFACE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="VER_COMPANY_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VER_COMPANY_LANGUAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -115,19 +115,6 @@ FROM "USYSVER"."V_VERSION_LIST1" "V_VERSION_LIST1"</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="VERSION_COMPANY">
-            <EntityTypeMapping TypeName="DatabseDB.VERSION_COMPANY">
-              <MappingFragment StoreEntitySet="VERSION_COMPANY">
-                <ScalarProperty Name="VER_COMPANY_LANGUAGE" ColumnName="VER_COMPANY_LANGUAGE" />
-                <ScalarProperty Name="VER_COMPANY_TYPE" ColumnName="VER_COMPANY_TYPE" />
-                <ScalarProperty Name="VER_COMPANY_INTERFACE" ColumnName="VER_COMPANY_INTERFACE" />
-                <ScalarProperty Name="VER_COMPANY_DESC" ColumnName="VER_COMPANY_DESC" />
-                <ScalarProperty Name="VER_COMPANY_ACTIVE" ColumnName="VER_COMPANY_ACTIVE" />
-                <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
-                <ScalarProperty Name="VER_COMPANY_ID" ColumnName="VER_COMPANY_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="V_VERSION_LIST1">
             <EntityTypeMapping TypeName="DatabseDB.V_VERSION_LIST1">
               <MappingFragment StoreEntitySet="V_VERSION_LIST1">
@@ -138,6 +125,19 @@ FROM "USYSVER"."V_VERSION_LIST1" "V_VERSION_LIST1"</DefiningQuery>
                 <ScalarProperty Name="VER_GROUP" ColumnName="VER_GROUP" />
                 <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
                 <ScalarProperty Name="VER_ID" ColumnName="VER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VERSION_COMPANY">
+            <EntityTypeMapping TypeName="DatabseDB.VERSION_COMPANY">
+              <MappingFragment StoreEntitySet="VERSION_COMPANY">
+                <ScalarProperty Name="VER_COMPANY_LANGUAGE" ColumnName="VER_COMPANY_LANGUAGE" />
+                <ScalarProperty Name="VER_COMPANY_TYPE" ColumnName="VER_COMPANY_TYPE" />
+                <ScalarProperty Name="VER_COMPANY_INTERFACE" ColumnName="VER_COMPANY_INTERFACE" />
+                <ScalarProperty Name="VER_COMPANY_DESC" ColumnName="VER_COMPANY_DESC" />
+                <ScalarProperty Name="VER_COMPANY_ACTIVE" ColumnName="VER_COMPANY_ACTIVE" />
+                <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
+                <ScalarProperty Name="VER_COMPANY_ID" ColumnName="VER_COMPANY_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -14,7 +14,7 @@ namespace VerzovaciSystemDB
     
     public partial class VERSION_COMPANY
     {
-        public Nullable<int> VER_COMPANY_ID { get; set; }
+        public decimal VER_COMPANY_ID { get; set; }
         public string VER_COMPANY { get; set; }
         public string VER_COMPANY_ACTIVE { get; set; }
         public string VER_COMPANY_DESC { get; set; }

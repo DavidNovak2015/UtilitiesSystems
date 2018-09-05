@@ -130,7 +130,7 @@ namespace VerzovaciSystemDB
             catch(Exception ex)
             {
                 List<VERSION_COMPANY> error = new List<VERSION_COMPANY>();
-                error.Add(new VERSION_COMPANY { VER_COMPANY_DESC = ex.Message.ToString() });
+                error.Add(new VERSION_COMPANY { VER_COMPANY_DESC = ex.InnerException.Message.ToString() });
                 return error;
             }
         }

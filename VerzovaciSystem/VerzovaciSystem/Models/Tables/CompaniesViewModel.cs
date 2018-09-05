@@ -25,7 +25,7 @@ namespace VerzovaciSystem.Models
         public void GetTableView()
         {
             List<VERSION_COMPANY> companiesFromDB = dbRepository.GetCompanies();
-            TableData = companiesFromDB.Select(x => new CompanyEntity(HelpsMethods.GetIntValue(x.VER_COMPANY_ID), x.VER_COMPANY, x.VER_COMPANY_ACTIVE, x.VER_COMPANY_DESC, x.VER_COMPANY_INTERFACE, x.VER_COMPANY_TYPE, x.VER_COMPANY_LANGUAGE))
+            TableData = companiesFromDB.Select(x => new CompanyEntity(HelpsMethods.GetIntFromDecimal(x.VER_COMPANY_ID), x.VER_COMPANY, x.VER_COMPANY_ACTIVE, x.VER_COMPANY_DESC, x.VER_COMPANY_INTERFACE, x.VER_COMPANY_TYPE, x.VER_COMPANY_LANGUAGE))
                                        .OrderByDescending(a => a.Id)
                                        .ToList();
         }
@@ -51,7 +51,7 @@ namespace VerzovaciSystem.Models
 
             CompanyEntity.Actives = new List<System.Web.Mvc.SelectListItem>();
 
-            CompanyEntity = new CompanyEntity(HelpsMethods.GetIntValue(companyFromDB.VER_COMPANY_ID),
+            CompanyEntity = new CompanyEntity(HelpsMethods.GetIntFromDecimal(companyFromDB.VER_COMPANY_ID),
                                               companyFromDB.VER_COMPANY,
                                               companyFromDB.VER_COMPANY_ACTIVE,
                                               companyFromDB.VER_COMPANY_DESC,

@@ -37,7 +37,7 @@ namespace VerzovaciSystem.Models
             List<VERSION_COMPANY> companiesFromDB = dbRepository.GetCompanies();
 
             List<CompanyTypeEntity> companyTypes = companyTypesFromDB.Select(x => new CompanyTypeEntity(x.EX_COMPANY_TYPE1, x.EX_DESC)).ToList();
-            List<CompanyEntity> companies = companiesFromDB.Select(x => new CompanyEntity(HelpsMethods.GetIntValue(x.VER_COMPANY_ID), x.VER_COMPANY)).ToList();
+            List<CompanyEntity> companies = companiesFromDB.Select(x => new CompanyEntity(HelpsMethods.GetIntFromDecimal(x.VER_COMPANY_ID), x.VER_COMPANY)).ToList();
             
             CompanyTypes = new List<SelectListItem>();
             Companies = new List<SelectListItem>();

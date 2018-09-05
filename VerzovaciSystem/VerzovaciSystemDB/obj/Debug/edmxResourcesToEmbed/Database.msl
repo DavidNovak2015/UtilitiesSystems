@@ -9,19 +9,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="VERSION_COMPANY">
-      <EntityTypeMapping TypeName="DatabseDB.VERSION_COMPANY">
-        <MappingFragment StoreEntitySet="VERSION_COMPANY">
-          <ScalarProperty Name="VER_COMPANY_LANGUAGE" ColumnName="VER_COMPANY_LANGUAGE" />
-          <ScalarProperty Name="VER_COMPANY_TYPE" ColumnName="VER_COMPANY_TYPE" />
-          <ScalarProperty Name="VER_COMPANY_INTERFACE" ColumnName="VER_COMPANY_INTERFACE" />
-          <ScalarProperty Name="VER_COMPANY_DESC" ColumnName="VER_COMPANY_DESC" />
-          <ScalarProperty Name="VER_COMPANY_ACTIVE" ColumnName="VER_COMPANY_ACTIVE" />
-          <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
-          <ScalarProperty Name="VER_COMPANY_ID" ColumnName="VER_COMPANY_ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="V_VERSION_LIST1">
       <EntityTypeMapping TypeName="DatabseDB.V_VERSION_LIST1">
         <MappingFragment StoreEntitySet="V_VERSION_LIST1">
@@ -32,6 +19,19 @@
           <ScalarProperty Name="VER_GROUP" ColumnName="VER_GROUP" />
           <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
           <ScalarProperty Name="VER_ID" ColumnName="VER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VERSION_COMPANY">
+      <EntityTypeMapping TypeName="DatabseDB.VERSION_COMPANY">
+        <MappingFragment StoreEntitySet="VERSION_COMPANY">
+          <ScalarProperty Name="VER_COMPANY_LANGUAGE" ColumnName="VER_COMPANY_LANGUAGE" />
+          <ScalarProperty Name="VER_COMPANY_TYPE" ColumnName="VER_COMPANY_TYPE" />
+          <ScalarProperty Name="VER_COMPANY_INTERFACE" ColumnName="VER_COMPANY_INTERFACE" />
+          <ScalarProperty Name="VER_COMPANY_DESC" ColumnName="VER_COMPANY_DESC" />
+          <ScalarProperty Name="VER_COMPANY_ACTIVE" ColumnName="VER_COMPANY_ACTIVE" />
+          <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
+          <ScalarProperty Name="VER_COMPANY_ID" ColumnName="VER_COMPANY_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

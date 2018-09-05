@@ -110,7 +110,6 @@ C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystem\b
 C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystem\bin\System.Web.WebPages.Razor.dll
 C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystem\bin\VerzovaciSystemDB.dll
 C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystem\bin\WebGrease.dll
-C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystem\bin\VerzovaciSystemDB.pdb
 C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystem\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystem\bin\System.Web.Helpers.xml
 C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystem\bin\System.Web.Mvc.xml
@@ -213,3 +212,4 @@ C:\Users\david\OneDrive\Plocha\Dovolena_Verzovaci_System\VerzovaciSystem\Verzova
 C:\Users\david\OneDrive\Plocha\Dovolena_Verzovaci_System\VerzovaciSystem\VerzovaciSystem\obj\Debug\VerzovaciSystem.csprojResolveAssemblyReference.cache
 C:\Users\david\OneDrive\Plocha\Dovolena_Verzovaci_System\VerzovaciSystem\VerzovaciSystem\obj\Debug\VerzovaciSystem.dll
 C:\Users\david\OneDrive\Plocha\Dovolena_Verzovaci_System\VerzovaciSystem\VerzovaciSystem\obj\Debug\VerzovaciSystem.pdb
+C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystem\bin\VerzovaciSystemDB.pdb

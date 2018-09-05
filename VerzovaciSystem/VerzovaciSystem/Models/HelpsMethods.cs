@@ -7,12 +7,18 @@ namespace VerzovaciSystem.Models
 {
     public static class HelpsMethods
     {
-        public static int GetIntValue(int? nullableInt)
+        public static int GetIntFromDecimal(decimal number)
         {
-            if (!nullableInt.HasValue)
-                throw new InvalidOperationException($"{nameof(nullableInt)} is empty");
-
-            return nullableInt.Value;
+            try
+            {
+                return Convert.ToInt32(number);
+            }
+            catch (Exception ex)
+            {
+                string error = ex.Message.ToString();
+                return 0;
+            }
+            
         }
     }
 }

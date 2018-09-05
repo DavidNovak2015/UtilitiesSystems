@@ -11,7 +11,7 @@
     <Key>
       <PropertyRef Name="VER_COMPANY" />
     </Key>
-    <Property Name="VER_COMPANY_ID" Type="number" Precision="10" Scale="0" />
+    <Property Name="VER_COMPANY_ID" Type="number" Precision="38" Scale="0" Nullable="false" />
     <Property Name="VER_COMPANY" Type="varchar2" MaxLength="100" Nullable="false" />
     <Property Name="VER_COMPANY_ACTIVE" Type="char" MaxLength="1" Nullable="false" />
     <Property Name="VER_COMPANY_DESC" Type="varchar2" MaxLength="4000" />
