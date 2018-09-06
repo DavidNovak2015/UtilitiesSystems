@@ -48,7 +48,7 @@ namespace VerzovaciSystemDB
         // před vyhledáním dle parametrů Vyhledávací masky
         private string ReplaceDbViewV_VERSION_LIST1 ()
         {
-            string cmdText = "CREATE OR REPLACE VIEW V_VERSION_LIST1 AS SELECT VER_ID, VER_COMPANY, VER_GROUP, VER_DATETIME, VER_CREATED_DATE, VER_CREATED_USER, CASE WHEN ver_deleted = 'A' THEN 'ZRUŠENO' WHEN VER_DATETIME < SYSDATE AND(0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID)) THEN 'ČEKÁ' WHEN VER_DATETIME < SYSDATE AND(0 < (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID)) THEN 'PROBÍHÁ PŘÍPRAVA' WHEN VER_DATETIME > SYSDATE AND(0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'PROBÍHÁ' WHEN VER_DATETIME > SYSDATE AND(0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID = VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'HOTOVO' ELSE  '?' END AS STATUS FROM VERSION_LOG";
+            string cmdText = "CREATE OR REPLACE VIEW V_VERSION_LIST1 AS SELECT VER_ID, VERSION_LOG.VER_COMPANY, VERSION_COMPANY.VER_COMPANY_TYPE, VER_GROUP, VER_DATETIME, VER_CREATED_DATE, VER_CREATED_USER, CASE WHEN ver_deleted = 'A' THEN 'ZRUŠENO' WHEN VER_DATETIME < SYSDATE AND  (0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID=VER_ID)) THEN 'ČEKÁ' WHEN VER_DATETIME < SYSDATE AND  (0 < (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID=VER_ID)) THEN 'PROBÍHÁ PŘÍPRAVA' WHEN VER_DATETIME > SYSDATE AND  (0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID=VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'PROBÍHÁ' WHEN VER_DATETIME > SYSDATE AND  (0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID=VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'HOTOVO' ELSE  '?' END AS STATUS FROM VERSION_LOG LEFT JOIN VERSION_COMPANY ON VERSION_COMPANY.VER_COMPANY=VERSION_LOG.VER_COMPANY";
             try
             {
                 using (OracleConnection accessToDB = new OracleConnection(oracleConnectionString))
@@ -74,7 +74,7 @@ namespace VerzovaciSystemDB
         {
             try
             {
-                using (EntityFramework accessToDB = new EntityFramework())
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
                 {
                     return accessToDB.EX_COMPANY_TYPE.ToList();
                 }
@@ -101,7 +101,7 @@ namespace VerzovaciSystemDB
             }
             try
             {
-                using (EntityFramework accessToDB = new EntityFramework())
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
                 {
                     return accessToDB.V_VERSION_LIST1.ToList();
                 }
@@ -122,7 +122,7 @@ namespace VerzovaciSystemDB
         {
             try
             {
-                using (EntityFramework accessToDB = new EntityFramework())
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
                 {
                     return accessToDB.VERSION_COMPANY.ToList();
                 }
@@ -144,7 +144,7 @@ namespace VerzovaciSystemDB
 
             try
             {
-                using (EntityFramework accessToDB = new EntityFramework())
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
                     {
                     accessToDB.VERSION_COMPANY.Add(companyToDB);
                     accessToDB.SaveChanges();
@@ -162,7 +162,7 @@ namespace VerzovaciSystemDB
         {
             try
             {
-                using (EntityFramework accessToDB = new EntityFramework())
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
                 {
                     return accessToDB.VERSION_COMPANY.Where(x => x.VER_COMPANY_ID == idCompany).SingleOrDefault();
                 }
@@ -180,7 +180,7 @@ namespace VerzovaciSystemDB
         {
             try
             {
-                using (EntityFramework accessToDB = new EntityFramework())
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
                 {
                     accessToDB.Entry(companyForDeletion).State = System.Data.Entity.EntityState.Deleted;
                     accessToDB.SaveChanges();
@@ -198,7 +198,7 @@ namespace VerzovaciSystemDB
         {
             try
             {
-                using (EntityFramework accessToDB = new EntityFramework())
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
                 {
                     accessToDB.Entry(companyForChange).State = System.Data.Entity.EntityState.Modified;
                     accessToDB.SaveChanges();

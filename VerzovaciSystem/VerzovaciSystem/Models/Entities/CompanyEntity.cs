@@ -10,7 +10,7 @@ namespace VerzovaciSystem.Models.Entities
         DbRepository dbRepository = new DbRepository();
 
         // pro Vyhledávací masku
-        public int Id { get;  set; }
+        public int Id { get; set; }
 
         [Required (ErrorMessage ="Vyplňte prosím")]
         [MaxLength(100, ErrorMessage ="Příliš dlouhé. Zkraťte prosím na max. 99 znaků")]

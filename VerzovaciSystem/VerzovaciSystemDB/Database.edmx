@@ -36,6 +36,7 @@ warning 6002: The table/view 'USYSVER.V_VERSION_LIST1' does not have a primary k
           </Key>
           <Property Name="VER_ID" Type="number" Precision="18" Scale="0" Nullable="false" />
           <Property Name="VER_COMPANY" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="VER_COMPANY_TYPE" Type="char" MaxLength="1" />
           <Property Name="VER_GROUP" Type="varchar2" MaxLength="10" />
           <Property Name="VER_DATETIME" Type="date" Nullable="false" />
           <Property Name="VER_CREATED_DATE" Type="date" Nullable="false" />
@@ -49,6 +50,7 @@ warning 6002: The table/view 'USYSVER.V_VERSION_LIST1' does not have a primary k
             <DefiningQuery>SELECT 
 "V_VERSION_LIST1"."VER_ID" AS "VER_ID", 
 "V_VERSION_LIST1"."VER_COMPANY" AS "VER_COMPANY", 
+"V_VERSION_LIST1"."VER_COMPANY_TYPE" AS "VER_COMPANY_TYPE", 
 "V_VERSION_LIST1"."VER_GROUP" AS "VER_GROUP", 
 "V_VERSION_LIST1"."VER_DATETIME" AS "VER_DATETIME", 
 "V_VERSION_LIST1"."VER_CREATED_DATE" AS "VER_CREATED_DATE", 
@@ -88,6 +90,7 @@ FROM "USYSVER"."V_VERSION_LIST1" "V_VERSION_LIST1"</DefiningQuery>
           <Property Name="VER_CREATED_DATE" Type="DateTime" Nullable="false" />
           <Property Name="VER_CREATED_USER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VER_COMPANY_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="VERSION_COMPANY">
           <Key>
@@ -118,6 +121,7 @@ FROM "USYSVER"."V_VERSION_LIST1" "V_VERSION_LIST1"</DefiningQuery>
           <EntitySetMapping Name="V_VERSION_LIST1">
             <EntityTypeMapping TypeName="DatabseDB.V_VERSION_LIST1">
               <MappingFragment StoreEntitySet="V_VERSION_LIST1">
+                <ScalarProperty Name="VER_COMPANY_TYPE" ColumnName="VER_COMPANY_TYPE" />
                 <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                 <ScalarProperty Name="VER_CREATED_USER" ColumnName="VER_CREATED_USER" />
                 <ScalarProperty Name="VER_CREATED_DATE" ColumnName="VER_CREATED_DATE" />

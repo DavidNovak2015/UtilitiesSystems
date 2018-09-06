@@ -20,15 +20,18 @@ namespace VerzovaciSystem.Models.Entities
         [Display(Name = "Čas aktualizace")]
         public DateTime Date { get; private set; }
 
-        [Display(Name = "VER_CREATED_DATE")]
+        [Display(Name = "Datum vytvoření")]
         public DateTime Created { get; private set; }
 
-        [Display(Name = "VER_CREATED_USER")]
+        [Display(Name = "Vytvořil")]
         public string User { get; private set; }
 
         public string Status { get; private set; }
 
-        public SelectionMaskOutputEntity(long iD, string company, string group, DateTime date, DateTime created, string user, string status)
+        [Display(Name ="Typ společnosti")]
+        public string CompanyType { get; private set; }
+
+        public SelectionMaskOutputEntity(long iD, string company, string group, DateTime date, DateTime created, string user, string status, string companyType)
         {
             Id = iD;
             Company = company;
@@ -37,6 +40,7 @@ namespace VerzovaciSystem.Models.Entities
             Created = created;
             User = user;
             Status = status;
+            CompanyType = companyType;
         }
 
         // pro popisky View SelectionMaskOutput

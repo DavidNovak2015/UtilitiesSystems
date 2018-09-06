@@ -13,9 +13,9 @@ namespace VerzovaciSystemDB
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class EntityFramework : DbContext
+    public partial class OracleConnectionString : DbContext
     {
-        public EntityFramework()
+        public OracleConnectionString()
             : base("name=OracleConnectionString")
         {
         }

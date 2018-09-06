@@ -21,5 +21,6 @@ namespace VerzovaciSystemDB
         public System.DateTime VER_CREATED_DATE { get; set; }
         public string VER_CREATED_USER { get; set; }
         public string STATUS { get; set; }
+        public string VER_COMPANY_TYPE { get; set; }
     }
 }

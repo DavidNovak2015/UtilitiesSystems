@@ -27,6 +27,7 @@
     <Property Name="VER_CREATED_DATE" Type="DateTime" Nullable="false" />
     <Property Name="VER_CREATED_USER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="VER_COMPANY_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
   </EntityType>
   <EntityType Name="VERSION_COMPANY">
     <Key>

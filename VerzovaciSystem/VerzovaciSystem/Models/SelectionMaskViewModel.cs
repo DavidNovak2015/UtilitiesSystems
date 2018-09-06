@@ -74,6 +74,12 @@ namespace VerzovaciSystem.Models
 
             IEnumerable<V_VERSION_LIST1> temporaryRecords = recordsFromDB.OrderBy(x => x.VER_CREATED_DATE);
 
+            // Company type
+            if (selectionsparameters.CompanyTyp != null)
+            {
+                temporaryRecords = recordsFromDB.Where(companyType => companyType.VER_COMPANY_TYPE == selectionsparameters.CompanyTyp);
+            }
+
             // Company
             if (selectionsparameters.Company != null) // otestováno
             {
@@ -116,7 +122,8 @@ namespace VerzovaciSystem.Models
                                                                                          x.VER_DATETIME,
                                                                                          x.VER_CREATED_DATE,
                                                                                          x.VER_CREATED_USER,
-                                                                                         x.STATUS
+                                                                                         x.STATUS,
+                                                                                         x.VER_COMPANY_TYPE
                                                                                         )
                                                      ).ToList();
         }

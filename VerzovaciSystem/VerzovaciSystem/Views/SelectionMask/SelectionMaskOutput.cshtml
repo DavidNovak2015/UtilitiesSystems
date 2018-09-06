@@ -29,6 +29,9 @@
             <th>
                 @Html.LabelFor(model => model.SelectionMaskOutputEntity.Status, new { @class = "control-label col-md-2" })
             </th>
+            <th>
+                @Html.LabelFor(model => model.SelectionMaskOutputEntity.CompanyType, new {@class = "control-label col-md-2" })
+            </th>
         </tr>
     </thead>
     
@@ -46,16 +49,19 @@
                     @item.Group
                 </td>
                 <td>
-                    @Html.TextBoxFor(a => item.Date, @"{0:dd.MM.yyyy}", new { @class = "form-control" })
+                    @item.Date.ToShortDateString()
                 </td>
                 <td>
-                    @Html.TextBoxFor(a => item.Created, @"{0:dd.MM.yyyy}", new { @class = "form-control" }) 
+                    @item.Created.ToShortDateString()
                 </td>
                 <td>
                     @item.User
                 </td>
                 <td>
                     @item.Status
+                </td>
+                <td>
+                    @item.CompanyType
                 </td>
             </tr>
         </tbody>
