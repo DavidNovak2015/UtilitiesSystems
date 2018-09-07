@@ -11,6 +11,7 @@
     <EntitySet Name="EX_COMPANY_TYPE" EntityType="Self.EX_COMPANY_TYPE" />
     <EntitySet Name="V_VERSION_LIST1" EntityType="DatabseDB.V_VERSION_LIST1" />
     <EntitySet Name="VERSION_COMPANY" EntityType="DatabseDB.VERSION_COMPANY" />
+    <EntitySet Name="V_VERSION_LIST2" EntityType="DatabseDB.V_VERSION_LIST2" />
   </EntityContainer>
   <EntityType Name="V_VERSION_LIST1">
     <Key>
@@ -40,5 +41,22 @@
     <Property Name="VER_COMPANY_INTERFACE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
     <Property Name="VER_COMPANY_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="VER_COMPANY_LANGUAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_VERSION_LIST2">
+    <Key>
+      <PropertyRef Name="VER_ID" />
+      <PropertyRef Name="VER_COMPANY" />
+      <PropertyRef Name="VER_DATETIME" />
+      <PropertyRef Name="VER_CREATED_DATE" />
+      <PropertyRef Name="VER_CREATED_USER" />
+    </Key>
+    <Property Name="VER_ID" Type="Int64" Nullable="false" />
+    <Property Name="VER_COMPANY" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VER_GROUP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="VER_DATETIME" Type="DateTime" Nullable="false" />
+    <Property Name="VER_CREATED_DATE" Type="DateTime" Nullable="false" />
+    <Property Name="VER_CREATED_USER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="VER_COMPANY_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
   </EntityType>
 </Schema>

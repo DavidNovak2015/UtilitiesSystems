@@ -45,16 +45,15 @@ namespace VerzovaciSystemDB
             }
         }
 
-        // před vyhledáním dle parametrů Vyhledávací masky
-        private string ReplaceDbViewV_VERSION_LIST1 ()
+        // Nahradí příslušný DB View novým výběrem
+        private string ReplaceDbView(string cmdCommand)
         {
-            string cmdText = "CREATE OR REPLACE VIEW V_VERSION_LIST1 AS SELECT VER_ID, VERSION_LOG.VER_COMPANY, VERSION_COMPANY.VER_COMPANY_TYPE, VER_GROUP, VER_DATETIME, VER_CREATED_DATE, VER_CREATED_USER, CASE WHEN ver_deleted = 'A' THEN 'ZRUŠENO' WHEN VER_DATETIME < SYSDATE AND  (0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID=VER_ID)) THEN 'ČEKÁ' WHEN VER_DATETIME < SYSDATE AND  (0 < (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID=VER_ID)) THEN 'PROBÍHÁ PŘÍPRAVA' WHEN VER_DATETIME > SYSDATE AND  (0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID=VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'PROBÍHÁ' WHEN VER_DATETIME > SYSDATE AND  (0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID=VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'HOTOVO' ELSE  '?' END AS STATUS FROM VERSION_LOG LEFT JOIN VERSION_COMPANY ON VERSION_COMPANY.VER_COMPANY=VERSION_LOG.VER_COMPANY";
             try
             {
                 using (OracleConnection accessToDB = new OracleConnection(oracleConnectionString))
                 {
                     accessToDB.Open();
-                    using (OracleCommand command = new OracleCommand(cmdText, accessToDB))
+                    using (OracleCommand command = new OracleCommand(cmdCommand, accessToDB))
                     {
                         command.ExecuteNonQuery();
                     }
@@ -63,10 +62,24 @@ namespace VerzovaciSystemDB
             }
             catch (Exception ex)
             {
-                return result = $"Metoda \"GetLastIdNumberFromVersionCompany\" vrátila chybu. Popis chyby: \n\n {ex.Message.ToString()}";
+                return result = $"Chyba. Popis chyby: \n\n {ex.Message.ToString()}";
             }
         }
+        // před vyhledáním dle parametrů Vyhledávací masky
+        private string ReplaceDbViewV_VERSION_LIST1 ()
+        {
+            string cmdCommand = "CREATE OR REPLACE VIEW V_VERSION_LIST1 AS SELECT VER_ID, VERSION_LOG.VER_COMPANY, VERSION_COMPANY.VER_COMPANY_TYPE, VER_GROUP, VER_DATETIME, VER_CREATED_DATE, VER_CREATED_USER, CASE WHEN ver_deleted = 'A' THEN 'ZRUŠENO' WHEN VER_DATETIME < SYSDATE AND  (0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID=VER_ID)) THEN 'ČEKÁ' WHEN VER_DATETIME < SYSDATE AND  (0 < (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID=VER_ID)) THEN 'PROBÍHÁ PŘÍPRAVA' WHEN VER_DATETIME > SYSDATE AND  (0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID=VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'PROBÍHÁ' WHEN VER_DATETIME > SYSDATE AND  (0 = (SELECT COUNT(*) FROM VERSION_FLAG WHERE VERF_VER_ID=VER_ID AND VERF_desc LIKE '%Spusteni serveru a poolu OK%')) THEN 'HOTOVO' ELSE  '?' END AS STATUS FROM VERSION_LOG LEFT JOIN VERSION_COMPANY ON VERSION_COMPANY.VER_COMPANY=VERSION_LOG.VER_COMPANY";
+            result = ReplaceDbView(cmdCommand);
+            return result;
+        }
 
+        // před načtením Distribuce verzí - verze  po půlnoci aktuálního dne
+        public string ReplaceDbViewV_VERSION_LIST2()
+        {
+            string cmdCommand = "CREATE OR REPLACE VIEW V_VERSION_LIST2 AS SELECT VER_ID,VER_COMPANY,VER_GROUP,VER_DATETIME,VER_CREATED_DATE,VER_CREATED_USER,STATUS,VER_COMPANY_TYPE  FROM V_VERSION_LIST1 WHERE TRUNC(VER_DATETIME) >= '30.05.2018'";
+            result = ReplaceDbView(cmdCommand);
+            return result;
+        }
         // VYHLEDÁVACÍ MASKA
 
         // Pro zobrazení Vyhledávací masky
@@ -87,6 +100,33 @@ namespace VerzovaciSystemDB
             }
         }
 
+        // pro načtení seznamu verzí po zapnutí aplikace
+        public List<V_VERSION_LIST2>GetAllRecordsFromV_VERSION_LIST2()
+        {
+            result = ReplaceDbViewV_VERSION_LIST2();
+            List<V_VERSION_LIST2> error = new List<V_VERSION_LIST2>(); V_VERSION_LIST2 descriptionError = new V_VERSION_LIST2();
+
+            if (result != String.Empty)
+            {
+                descriptionError.VER_COMPANY = result;
+                error.Add(descriptionError);
+                return error;
+            }
+            try
+            {
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
+                {
+                    return accessToDB.V_VERSION_LIST2.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                error.Clear();
+                descriptionError.VER_COMPANY = $"Požadavek NEBYL proveden. Popis chyby:\n\n {ex.Message.ToString()} ";
+                error.Add(descriptionError);
+                return error;
+            }
+        }
         // pro výsledky hledání dle parametrů vyhledávací masky
         public List<V_VERSION_LIST1> GetAllRecordsFromV_VERSION_LIST1()
         {

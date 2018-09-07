@@ -7,9 +7,9 @@ using VerzovaciSystem.Models;
 
 namespace VerzovaciSystem.Controllers
 {
-    public class HomeController : Controller
+    public class VersionsDistributionController : Controller
     {
-        public ActionResult Index()
+        public ActionResult VersionsDistributionList()
         {
             return View();
         }

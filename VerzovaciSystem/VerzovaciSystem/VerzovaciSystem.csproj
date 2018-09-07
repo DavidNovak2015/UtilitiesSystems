@@ -177,7 +177,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Tables\CompaniesController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\VersionsDistributionController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SelectionMaskController.cs" />
     <Compile Include="Controllers\TablesListController.cs" />
@@ -252,7 +252,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\TablesList\TablesList.cshtml" />
     <Content Include="Views\SelectionMask\SelectionMask.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\VersionsDistribution\VersionsDistributionList.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />

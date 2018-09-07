@@ -91,6 +91,9 @@
     <Compile Include="V_VERSION_LIST1.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="V_VERSION_LIST2.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

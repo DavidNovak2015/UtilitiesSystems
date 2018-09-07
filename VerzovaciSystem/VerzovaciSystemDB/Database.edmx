@@ -43,6 +43,25 @@ warning 6002: The table/view 'USYSVER.V_VERSION_LIST1' does not have a primary k
           <Property Name="VER_CREATED_USER" Type="varchar2" MaxLength="100" Nullable="false" />
           <Property Name="STATUS" Type="varchar2" MaxLength="20" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'USYSVER.V_VERSION_LIST2' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_VERSION_LIST2">
+          <Key>
+            <PropertyRef Name="VER_ID" />
+            <PropertyRef Name="VER_COMPANY" />
+            <PropertyRef Name="VER_DATETIME" />
+            <PropertyRef Name="VER_CREATED_DATE" />
+            <PropertyRef Name="VER_CREATED_USER" />
+          </Key>
+          <Property Name="VER_ID" Type="number" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="VER_COMPANY" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="VER_GROUP" Type="varchar2" MaxLength="10" />
+          <Property Name="VER_DATETIME" Type="date" Nullable="false" />
+          <Property Name="VER_CREATED_DATE" Type="date" Nullable="false" />
+          <Property Name="VER_CREATED_USER" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="STATUS" Type="varchar2" MaxLength="20" />
+          <Property Name="VER_COMPANY_TYPE" Type="char" MaxLength="1" />
+        </EntityType>
         <EntityContainer Name="DatabseDBStoreContainer">
           <EntitySet Name="EX_COMPANY_TYPE" EntityType="Self.EX_COMPANY_TYPE" Schema="USYSVER" store:Type="Tables" />
           <EntitySet Name="VERSION_COMPANY" EntityType="Self.VERSION_COMPANY" Schema="USYSVER" store:Type="Tables" />
@@ -57,6 +76,18 @@ warning 6002: The table/view 'USYSVER.V_VERSION_LIST1' does not have a primary k
 "V_VERSION_LIST1"."VER_CREATED_USER" AS "VER_CREATED_USER", 
 "V_VERSION_LIST1"."STATUS" AS "STATUS"
 FROM "USYSVER"."V_VERSION_LIST1" "V_VERSION_LIST1"</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_VERSION_LIST2" EntityType="Self.V_VERSION_LIST2" store:Type="Views" store:Schema="USYSVER">
+            <DefiningQuery>SELECT 
+"V_VERSION_LIST2"."VER_ID" AS "VER_ID", 
+"V_VERSION_LIST2"."VER_COMPANY" AS "VER_COMPANY", 
+"V_VERSION_LIST2"."VER_GROUP" AS "VER_GROUP", 
+"V_VERSION_LIST2"."VER_DATETIME" AS "VER_DATETIME", 
+"V_VERSION_LIST2"."VER_CREATED_DATE" AS "VER_CREATED_DATE", 
+"V_VERSION_LIST2"."VER_CREATED_USER" AS "VER_CREATED_USER", 
+"V_VERSION_LIST2"."STATUS" AS "STATUS", 
+"V_VERSION_LIST2"."VER_COMPANY_TYPE" AS "VER_COMPANY_TYPE"
+FROM "USYSVER"."V_VERSION_LIST2" "V_VERSION_LIST2"</DefiningQuery>
           </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -74,6 +105,7 @@ FROM "USYSVER"."V_VERSION_LIST1" "V_VERSION_LIST1"</DefiningQuery>
           <EntitySet Name="EX_COMPANY_TYPE" EntityType="Self.EX_COMPANY_TYPE" />
           <EntitySet Name="V_VERSION_LIST1" EntityType="DatabseDB.V_VERSION_LIST1" />
           <EntitySet Name="VERSION_COMPANY" EntityType="DatabseDB.VERSION_COMPANY" />
+          <EntitySet Name="V_VERSION_LIST2" EntityType="DatabseDB.V_VERSION_LIST2" />
         </EntityContainer>
         <EntityType Name="V_VERSION_LIST1">
           <Key>
@@ -103,6 +135,23 @@ FROM "USYSVER"."V_VERSION_LIST1" "V_VERSION_LIST1"</DefiningQuery>
           <Property Name="VER_COMPANY_INTERFACE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
           <Property Name="VER_COMPANY_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="VER_COMPANY_LANGUAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="V_VERSION_LIST2">
+          <Key>
+            <PropertyRef Name="VER_ID" />
+            <PropertyRef Name="VER_COMPANY" />
+            <PropertyRef Name="VER_DATETIME" />
+            <PropertyRef Name="VER_CREATED_DATE" />
+            <PropertyRef Name="VER_CREATED_USER" />
+          </Key>
+          <Property Name="VER_ID" Type="Int64" Nullable="false" />
+          <Property Name="VER_COMPANY" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VER_GROUP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VER_DATETIME" Type="DateTime" Nullable="false" />
+          <Property Name="VER_CREATED_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="VER_CREATED_USER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="VER_COMPANY_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -142,6 +191,20 @@ FROM "USYSVER"."V_VERSION_LIST1" "V_VERSION_LIST1"</DefiningQuery>
                 <ScalarProperty Name="VER_COMPANY_ACTIVE" ColumnName="VER_COMPANY_ACTIVE" />
                 <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
                 <ScalarProperty Name="VER_COMPANY_ID" ColumnName="VER_COMPANY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_VERSION_LIST2">
+            <EntityTypeMapping TypeName="DatabseDB.V_VERSION_LIST2">
+              <MappingFragment StoreEntitySet="V_VERSION_LIST2">
+                <ScalarProperty Name="VER_COMPANY_TYPE" ColumnName="VER_COMPANY_TYPE" />
+                <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+                <ScalarProperty Name="VER_CREATED_USER" ColumnName="VER_CREATED_USER" />
+                <ScalarProperty Name="VER_CREATED_DATE" ColumnName="VER_CREATED_DATE" />
+                <ScalarProperty Name="VER_DATETIME" ColumnName="VER_DATETIME" />
+                <ScalarProperty Name="VER_GROUP" ColumnName="VER_GROUP" />
+                <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
+                <ScalarProperty Name="VER_ID" ColumnName="VER_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

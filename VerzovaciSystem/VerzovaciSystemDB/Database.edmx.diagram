@@ -8,6 +8,7 @@
         <EntityTypeShape EntityType="DatabseDB.EX_COMPANY_TYPE" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabseDB.V_VERSION_LIST1" Width="1.875" PointX="0.75" PointY="3.75" />
         <EntityTypeShape EntityType="DatabseDB.VERSION_COMPANY" Width="2.125" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DatabseDB.V_VERSION_LIST2" Width="2.25" PointX="3.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
