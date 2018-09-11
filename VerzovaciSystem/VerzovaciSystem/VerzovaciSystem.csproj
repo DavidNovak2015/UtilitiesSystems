@@ -177,7 +177,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Tables\CompaniesController.cs" />
-    <Compile Include="Controllers\VersionsDistributionController.cs" />
+    <Compile Include="Controllers\VersionsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SelectionMaskController.cs" />
     <Compile Include="Controllers\TablesListController.cs" />
@@ -196,6 +196,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SelectionMaskViewModel.cs" />
     <Compile Include="Models\TablesListViewModel.cs" />
+    <Compile Include="Models\VersionsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -252,7 +253,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\TablesList\TablesList.cshtml" />
     <Content Include="Views\SelectionMask\SelectionMask.cshtml" />
-    <Content Include="Views\VersionsDistribution\VersionsDistributionList.cshtml" />
+    <Content Include="Views\Versions\GetTodayVersions.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />

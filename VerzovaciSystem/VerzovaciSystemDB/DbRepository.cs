@@ -18,7 +18,7 @@ namespace VerzovaciSystemDB
     {
         private const string oracleConnectionString= "User Id=USYSVER;Password=verze;Data Source=localhost:1521/XE";
         // pro výsledek metod
-        private string result = "";
+        private string result= ""; 
 
         // pro AddCompany VERSION_COMPANY
         private int GetNextIdNumberFromVersionCompany()
@@ -103,10 +103,11 @@ namespace VerzovaciSystemDB
         // pro načtení seznamu verzí po zapnutí aplikace
         public List<V_VERSION_LIST2>GetAllRecordsFromV_VERSION_LIST2()
         {
-            result = ReplaceDbViewV_VERSION_LIST2();
+            result = ReplaceDbViewV_VERSION_LIST1();
+            string result2 = ReplaceDbViewV_VERSION_LIST2();
             List<V_VERSION_LIST2> error = new List<V_VERSION_LIST2>(); V_VERSION_LIST2 descriptionError = new V_VERSION_LIST2();
 
-            if (result != String.Empty)
+            if ( (result != String.Empty) || (result2 != String.Empty) )
             {
                 descriptionError.VER_COMPANY = result;
                 error.Add(descriptionError);

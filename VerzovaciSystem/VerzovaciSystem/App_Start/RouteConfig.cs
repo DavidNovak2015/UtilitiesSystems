@@ -16,7 +16,7 @@ namespace VerzovaciSystem
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "VersionsDistribution", action = "VersionsDistributionList", id = UrlParameter.Optional }
+                defaults: new { controller = "Versions", action = "GetTodayVersions", id = UrlParameter.Optional }
             );
         }
     }

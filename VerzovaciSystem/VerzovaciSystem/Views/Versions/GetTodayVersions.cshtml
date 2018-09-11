@@ -1,9 +1,10 @@
-﻿@model VerzovaciSystem.Models.SelectionMaskViewModel
-@{
-    ViewBag.Title = "Výběr";
-}
+﻿@model VerzovaciSystem.Models.VersionsViewModel
 
-<h2>Nalezené verze :</h2>
+@{
+    ViewBag.Title = "Seznam verzí";
+}
+<h2>Seznam dnešních verzí</h2>
+<p>opravit v DbRepository.ReplaceDbViewV_VERSION_LIST2 v cmdCommand 30.05.2018 za TRUNC(SYSDATE)</p>
 
 <table border="1">
     <thead>
@@ -30,11 +31,11 @@
                 @Html.LabelFor(model => model.SelectionMaskOutputEntity.Status, new { @class = "control-label col-md-2" })
             </th>
             <th>
-                @Html.LabelFor(model => model.SelectionMaskOutputEntity.CompanyType, new {@class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.SelectionMaskOutputEntity.CompanyType, new { @class = "control-label col-md-2" })
             </th>
         </tr>
     </thead>
-    
+
     @foreach (var item in Model.SelectionResult)
     {
         <tbody>
@@ -68,4 +69,8 @@
     }
 
 </table>
+
+
+    
+
 
