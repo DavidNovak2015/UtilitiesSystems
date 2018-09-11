@@ -12,6 +12,11 @@
     <EntitySet Name="V_VERSION_LIST1" EntityType="DatabseDB.V_VERSION_LIST1" />
     <EntitySet Name="VERSION_COMPANY" EntityType="DatabseDB.VERSION_COMPANY" />
     <EntitySet Name="V_VERSION_LIST2" EntityType="DatabseDB.V_VERSION_LIST2" />
+    <EntitySet Name="VERSION_LOG" EntityType="DatabseDB.VERSION_LOG" />
+    <AssociationSet Name="FK_VER_COMP" Association="DatabseDB.FK_VER_COMP">
+      <End Role="VERSION_COMPANY" EntitySet="VERSION_COMPANY" />
+      <End Role="VERSION_LOG" EntitySet="VERSION_LOG" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="V_VERSION_LIST1">
     <Key>
@@ -41,6 +46,7 @@
     <Property Name="VER_COMPANY_INTERFACE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
     <Property Name="VER_COMPANY_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
     <Property Name="VER_COMPANY_LANGUAGE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="VERSION_LOG" Relationship="DatabseDB.FK_VER_COMP" FromRole="VERSION_COMPANY" ToRole="VERSION_LOG" />
   </EntityType>
   <EntityType Name="V_VERSION_LIST2">
     <Key>
@@ -59,4 +65,45 @@
     <Property Name="STATUS" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="VER_COMPANY_TYPE" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
   </EntityType>
+  <EntityType Name="VERSION_LOG">
+    <Key>
+      <PropertyRef Name="VER_ID" />
+    </Key>
+    <Property Name="VER_ID" Type="Int64" Nullable="false" />
+    <Property Name="VER_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VER_COMPANY" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VER_SOURCE_PATH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VER_SQL_DATA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VER_CONFIG" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VER_DATETIME" Type="DateTime" Nullable="false" />
+    <Property Name="VER_LOG_USER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VER_LOG_DATE" Type="DateTime" />
+    <Property Name="VER_CREATED_DATE" Type="DateTime" Nullable="false" />
+    <Property Name="VER_CREATED_USER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VER_LOCK_FLAG" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="VER_DELAY" Type="Byte" Nullable="false" />
+    <Property Name="VER_SQL_DATA_CHECK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VER_DELETED" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="VER_MAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VER_MESSAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VER_MODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="VER_GROUP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="VER_S_VER_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="VER_FILE_FOLDER_TO_DELETE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="VER_MAIL_MESSAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="VER_MAIL_FLAG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="VERSION_COMPANY" Relationship="DatabseDB.FK_VER_COMP" FromRole="VERSION_LOG" ToRole="VERSION_COMPANY" />
+  </EntityType>
+  <Association Name="FK_VER_COMP">
+    <End Type="DatabseDB.VERSION_COMPANY" Role="VERSION_COMPANY" Multiplicity="1" />
+    <End Type="DatabseDB.VERSION_LOG" Role="VERSION_LOG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VERSION_COMPANY">
+        <PropertyRef Name="VER_COMPANY" />
+      </Principal>
+      <Dependent Role="VERSION_LOG">
+        <PropertyRef Name="VER_COMPANY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

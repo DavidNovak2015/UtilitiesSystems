@@ -14,6 +14,12 @@ namespace VerzovaciSystemDB
     
     public partial class VERSION_COMPANY
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public VERSION_COMPANY()
+        {
+            this.VERSION_LOG = new HashSet<VERSION_LOG>();
+        }
+    
         public decimal VER_COMPANY_ID { get; set; }
         public string VER_COMPANY { get; set; }
         public string VER_COMPANY_ACTIVE { get; set; }
@@ -21,5 +27,8 @@ namespace VerzovaciSystemDB
         public string VER_COMPANY_INTERFACE { get; set; }
         public string VER_COMPANY_TYPE { get; set; }
         public string VER_COMPANY_LANGUAGE { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<VERSION_LOG> VERSION_LOG { get; set; }
     }
 }

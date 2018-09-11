@@ -187,6 +187,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\SelectionMaskEntity.cs" />
     <Compile Include="Models\Entities\SelectionMaskOutputEntity.cs" />
+    <Compile Include="Models\Entities\VersionEntity.cs" />
     <Compile Include="Models\Tables\CompaniesViewModel.cs" />
     <Compile Include="Models\Entities\CompanyEntity.cs" />
     <Compile Include="Models\Entities\CompanyTypeEntity.cs" />

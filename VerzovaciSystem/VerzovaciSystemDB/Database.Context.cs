@@ -29,5 +29,6 @@ namespace VerzovaciSystemDB
         public virtual DbSet<V_VERSION_LIST1> V_VERSION_LIST1 { get; set; }
         public virtual DbSet<VERSION_COMPANY> VERSION_COMPANY { get; set; }
         public virtual DbSet<V_VERSION_LIST2> V_VERSION_LIST2 { get; set; }
+        public virtual DbSet<VERSION_LOG> VERSION_LOG { get; set; }
     }
 }

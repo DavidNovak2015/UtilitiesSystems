@@ -14,9 +14,6 @@ namespace VerzovaciSystem.Models.Entities
         [Display(Name = "Jméno společnosti")]
         public string Company { get; private set; }
 
-        [Display(Name = "Skupina serverů")]
-        public string Group { get; private set; }
-
         [Display(Name = "Čas aktualizace")]
         public DateTime Date { get; private set; }
 
@@ -25,6 +22,9 @@ namespace VerzovaciSystem.Models.Entities
 
         [Display(Name = "Vytvořil")]
         public string User { get; private set; }
+
+        [Display(Name = "Skupina serverů")]
+        public string Group { get; private set; }
 
         public string Status { get; private set; }
 
