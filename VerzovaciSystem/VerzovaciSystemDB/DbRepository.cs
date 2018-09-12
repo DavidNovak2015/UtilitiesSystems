@@ -251,6 +251,26 @@ namespace VerzovaciSystemDB
                 return result = $"Požadavek NEBYL proveden.Popis chyby:\n\n { ex.Message.ToString()} ";
             }
         }
+
+        //VERZE:
+
+        // Nalezení verze pro její aktualizaci nebo odstranění z tabulky VERSION_LOG
+        public VERSION_LOG GetVersion (long idVersion)
+        {
+            try
+            {
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
+                {
+                    return accessToDB.VERSION_LOG.Where(x => x.VER_ID == idVersion).SingleOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                VERSION_LOG error = new VERSION_LOG();
+                error.VER_MESSAGE = ex.Message.ToString();
+                return error;
+            }
+        }
     }
 }
 

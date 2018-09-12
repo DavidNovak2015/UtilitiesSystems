@@ -9,22 +9,22 @@ namespace VerzovaciSystem.Models.Entities
     public class SelectionMaskOutputEntity
     {
         [Display(Name ="Označení")]
-        public long Id { get; private set; }
+        public long Id { get; protected set; }
 
         [Display(Name = "Jméno společnosti")]
-        public string Company { get; private set; }
+        public string Company { get; protected set; }
 
         [Display(Name = "Čas aktualizace")]
-        public DateTime Date { get; private set; }
+        public DateTime Date { get; protected set; }
 
         [Display(Name = "Datum vytvoření")]
-        public DateTime Created { get; private set; }
+        public DateTime Created { get; protected set; }
 
         [Display(Name = "Vytvořil")]
-        public string User { get; private set; }
+        public string User { get; protected set; }
 
         [Display(Name = "Skupina serverů")]
-        public string Group { get; private set; }
+        public string Group { get; protected set; }
 
         public string Status { get; private set; }
 
@@ -46,6 +46,17 @@ namespace VerzovaciSystem.Models.Entities
         // pro popisky View SelectionMaskOutput
         public SelectionMaskOutputEntity()
         { }
-        
+
+        // pro potomka - VersionEntity
+        public SelectionMaskOutputEntity(long iD, string company, DateTime date, DateTime created, string user, string group)
+        {
+            Id = iD;
+            Company = company;
+            Group = group;
+            Date = date;
+            Created = created;
+            User = user;
+        }
+
     }
 }

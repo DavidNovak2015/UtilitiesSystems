@@ -280,6 +280,7 @@
     <Content Include="Views\Companies\DeleteTableRow.cshtml" />
     <Content Include="Views\Companies\ChangeTableRow.cshtml" />
     <Content Include="Views\SelectionMask\SelectionMaskOutput.cshtml" />
+    <Content Include="Views\Versions\GetVersion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

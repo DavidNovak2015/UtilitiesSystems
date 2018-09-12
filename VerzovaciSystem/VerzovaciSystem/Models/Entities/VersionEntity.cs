@@ -21,7 +21,7 @@ namespace VerzovaciSystem.Models.Entities
 
         public string LogUser { get; private set; }
 
-        public DateTime LogDate { get; private set; }
+        public DateTime? LogDate { get; private set; }
 
         [Display(Name ="Začalo finální stahování")]
         public string LogFlag { get; private set; }
@@ -45,13 +45,40 @@ namespace VerzovaciSystem.Models.Entities
         [Display(Name = "A-adresář podle ID verze\n X-adresář podle groupy")]
         public string Flag { get; private set; }
 
-        [Display(Name = "Kontrolní SQL")]
+        [DataType(DataType.MultilineText)]
         public string FileFolderToDelete { get; private set; }
 
-        [Display(Name = "")]
         public string MailMessage { get; private set; }
 
         [Display(Name = "P-\n F-\n S-")]
         public string MailFlag { get; private set; }
+
+        public VersionEntity(long iD, string name, string company, string sourcePath, string sqlData, string config, DateTime date, string logUser, DateTime? logDate, DateTime created, string user, string logFlag, byte delay, string sqlDataCheck, string deleted, string mail, string message, string mode, string group, string flag, string fileFolderToDelete, string mailMessage, string mailFlag)
+            :base(iD,company, date, created,user, group)
+        {
+            Id = iD;
+            Name = name;
+            Company = company;
+            SourcePath = sourcePath;
+            SqlData = sqlData;
+            Config = config;
+            Date = date;
+            LogUser = logUser;
+            LogDate = logDate;
+            Created = created;
+            User = user;
+            LogFlag = logFlag;
+            Delay = delay;
+            SqlDataCheck = sqlDataCheck;
+            Deleted = deleted;
+            Mail = mail;
+            Message = message;
+            Mode = mode;
+            Group = group;
+            Flag = flag;
+            FileFolderToDelete = fileFolderToDelete;
+            MailMessage = mailMessage;
+            MailFlag = mailFlag;
+        }
     }
 }

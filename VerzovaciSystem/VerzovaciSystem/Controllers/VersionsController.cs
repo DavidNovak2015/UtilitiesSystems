@@ -17,5 +17,11 @@ namespace VerzovaciSystem.Controllers
 
             return View(versionsViewModel);
         }
+
+        public ActionResult GetVersion(long idVersion)
+        {
+            versionsViewModel.GetVersion(idVersion);
+            return View(versionsViewModel);
+        }
     }
 }
