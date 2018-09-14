@@ -79,5 +79,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="VERSION_FLAG">
+      <EntityTypeMapping TypeName="DatabseDB.VERSION_FLAG">
+        <MappingFragment StoreEntitySet="VERSION_FLAG">
+          <ScalarProperty Name="VERF_CREATED_DATE" ColumnName="VERF_CREATED_DATE" />
+          <ScalarProperty Name="VERF_FILE" ColumnName="VERF_FILE" />
+          <ScalarProperty Name="VERF_DATE" ColumnName="VERF_DATE" />
+          <ScalarProperty Name="VERF_DESC" ColumnName="VERF_DESC" />
+          <ScalarProperty Name="VERF_FLAG" ColumnName="VERF_FLAG" />
+          <ScalarProperty Name="VERF_VER_ID" ColumnName="VERF_VER_ID" />
+          <ScalarProperty Name="VERF_ID" ColumnName="VERF_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

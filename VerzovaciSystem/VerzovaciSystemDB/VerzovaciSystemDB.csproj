@@ -88,6 +88,9 @@
     <Compile Include="VERSION_COMPANY.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="VERSION_FLAG.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
     <Compile Include="VERSION_LOG.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>

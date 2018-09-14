@@ -1,10 +1,12 @@
 ﻿@model VerzovaciSystem.Models.VersionsViewModel
 
 @{
-    ViewBag.Title = "Seznam verzí";
+    ViewBag.Title = "Detail verze";
 }
 
-<h2>Detail verze z VERSION_LOG</h2>
+<h2>Detail verze z VERSION_LOG</h2><br/>
+
+@Html.ActionLink("Události z VERSION_FLAG", "GetFlagVersions", "VersionsFlag", new { versionLogId = Model.Version.Id },new { @class= "btn btn-default" })<br/>
 
 <div class="form-horizontal">
 

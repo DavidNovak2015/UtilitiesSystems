@@ -1,0 +1,67 @@
+﻿@model VerzovaciSystem.Models.VersionsFlagViewModel
+
+@{
+    ViewBag.Title = "Události k verzi";
+}
+
+<h2>Události verze z VERSION_FLAG</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>
+                @Html.LabelFor(model => model.VersionFlagEntity.Id, new { @class = "control-label col-md-2" })
+            </th>
+            <th>
+                @Html.LabelFor(model => model.VersionFlagEntity.VersionLogId, new { @class = "control-label col-md-2" })
+            </th>
+            <th>
+                @Html.LabelFor(model => model.VersionFlagEntity.Flag, new { @class = "control-label col-md-2" })
+            </th>
+            <th>
+                @Html.LabelFor(model => model.VersionFlagEntity.Description, new { @class = "control-label col-md-5" })
+            </th>
+            <th>
+                @Html.LabelFor(model => model.VersionFlagEntity.Date, new { @class = "control-label col-md-2" })
+            </th>
+            <th>
+                @Html.LabelFor(model => model.VersionFlagEntity.File, new { @class = "control-label col-md-2" })
+            </th>
+            <th>
+                @Html.LabelFor(model => model.VersionFlagEntity.Created, new { @class = "control-label col-md-2" })
+            </th>
+        </tr>
+    </thead>
+    @foreach (var flagVersion in Model.SelectionResult)
+    {
+    <tbody>
+        <tr>
+            <td>
+                @flagVersion.Id
+            </td>
+            <td>
+                @flagVersion.VersionLogId
+            </td>
+            <td>
+                @flagVersion.Flag
+            </td>
+            <td>
+                @flagVersion.Description
+            </td>
+            <td>
+                @flagVersion.Date
+            </td>
+            <td>
+                @flagVersion.File
+            </td>
+            <td>
+                @flagVersion.Created
+            </td>
+        </tr>
+    </tbody>
+
+    }
+</table>
+
+    
+

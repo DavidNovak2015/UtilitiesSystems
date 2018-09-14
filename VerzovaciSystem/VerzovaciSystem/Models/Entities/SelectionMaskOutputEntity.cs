@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace VerzovaciSystem.Models.Entities
 {
@@ -11,7 +8,7 @@ namespace VerzovaciSystem.Models.Entities
         [Display(Name ="Označení")]
         public long Id { get; protected set; }
 
-        [Display(Name = "Jméno společnosti")]
+        [Display(Name = "Společnost")]
         public string Company { get; protected set; }
 
         [Display(Name = "Čas aktualizace")]

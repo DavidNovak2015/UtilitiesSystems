@@ -24,6 +24,18 @@
           <Property Name="VER_COMPANY_TYPE" Type="char" MaxLength="1" />
           <Property Name="VER_COMPANY_LANGUAGE" Type="varchar2" MaxLength="50" />
         </EntityType>
+        <EntityType Name="VERSION_FLAG">
+          <Key>
+            <PropertyRef Name="VERF_ID" />
+          </Key>
+          <Property Name="VERF_ID" Type="number" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="VERF_VER_ID" Type="number" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="VERF_FLAG" Type="varchar2" MaxLength="255" />
+          <Property Name="VERF_DESC" Type="clob" />
+          <Property Name="VERF_DATE" Type="date" Nullable="false" />
+          <Property Name="VERF_FILE" Type="clob" />
+          <Property Name="VERF_CREATED_DATE" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="VERSION_LOG">
           <Key>
             <PropertyRef Name="VER_ID" />
@@ -102,9 +114,24 @@ warning 6002: The table/view 'USYSVER.V_VERSION_LIST2' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_VERSION_LOG">
+          <End Role="VERSION_LOG" Type="Self.VERSION_LOG" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="VERSION_FLAG" Type="Self.VERSION_FLAG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VERSION_LOG">
+              <PropertyRef Name="VER_ID" />
+            </Principal>
+            <Dependent Role="VERSION_FLAG">
+              <PropertyRef Name="VERF_VER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="DatabseDBStoreContainer">
           <EntitySet Name="EX_COMPANY_TYPE" EntityType="Self.EX_COMPANY_TYPE" Schema="USYSVER" store:Type="Tables" />
           <EntitySet Name="VERSION_COMPANY" EntityType="Self.VERSION_COMPANY" Schema="USYSVER" store:Type="Tables" />
+          <EntitySet Name="VERSION_FLAG" EntityType="Self.VERSION_FLAG" Schema="USYSVER" store:Type="Tables" />
           <EntitySet Name="VERSION_LOG" EntityType="Self.VERSION_LOG" Schema="USYSVER" store:Type="Tables" />
           <EntitySet Name="V_VERSION_LIST1" EntityType="Self.V_VERSION_LIST1" store:Type="Views" store:Schema="USYSVER">
             <DefiningQuery>SELECT 
@@ -134,6 +161,10 @@ FROM "USYSVER"."V_VERSION_LIST2" "V_VERSION_LIST2"</DefiningQuery>
             <End Role="VERSION_COMPANY" EntitySet="VERSION_COMPANY" />
             <End Role="VERSION_LOG" EntitySet="VERSION_LOG" />
           </AssociationSet>
+          <AssociationSet Name="FK_VERSION_LOG" Association="Self.FK_VERSION_LOG">
+            <End Role="VERSION_LOG" EntitySet="VERSION_LOG" />
+            <End Role="VERSION_FLAG" EntitySet="VERSION_FLAG" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -155,6 +186,11 @@ FROM "USYSVER"."V_VERSION_LIST2" "V_VERSION_LIST2"</DefiningQuery>
           <AssociationSet Name="FK_VER_COMP" Association="DatabseDB.FK_VER_COMP">
             <End Role="VERSION_COMPANY" EntitySet="VERSION_COMPANY" />
             <End Role="VERSION_LOG" EntitySet="VERSION_LOG" />
+          </AssociationSet>
+          <EntitySet Name="VERSION_FLAG" EntityType="DatabseDB.VERSION_FLAG" />
+          <AssociationSet Name="FK_VERSION_LOG" Association="DatabseDB.FK_VERSION_LOG">
+            <End Role="VERSION_LOG" EntitySet="VERSION_LOG" />
+            <End Role="VERSION_FLAG" EntitySet="VERSION_FLAG" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="V_VERSION_LIST1">
@@ -232,6 +268,7 @@ FROM "USYSVER"."V_VERSION_LIST2" "V_VERSION_LIST2"</DefiningQuery>
           <Property Name="VER_MAIL_MESSAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="VER_MAIL_FLAG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="VERSION_COMPANY" Relationship="DatabseDB.FK_VER_COMP" FromRole="VERSION_LOG" ToRole="VERSION_COMPANY" />
+          <NavigationProperty Name="VERSION_FLAG" Relationship="DatabseDB.FK_VERSION_LOG" FromRole="VERSION_LOG" ToRole="VERSION_FLAG" />
         </EntityType>
         <Association Name="FK_VER_COMP">
           <End Type="DatabseDB.VERSION_COMPANY" Role="VERSION_COMPANY" Multiplicity="1" />
@@ -242,6 +279,33 @@ FROM "USYSVER"."V_VERSION_LIST2" "V_VERSION_LIST2"</DefiningQuery>
             </Principal>
             <Dependent Role="VERSION_LOG">
               <PropertyRef Name="VER_COMPANY" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="VERSION_FLAG">
+          <Key>
+            <PropertyRef Name="VERF_ID" />
+          </Key>
+          <Property Name="VERF_ID" Type="Int64" Nullable="false" />
+          <Property Name="VERF_VER_ID" Type="Int64" Nullable="false" />
+          <Property Name="VERF_FLAG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="VERF_DESC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VERF_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="VERF_FILE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VERF_CREATED_DATE" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="VERSION_LOG" Relationship="DatabseDB.FK_VERSION_LOG" FromRole="VERSION_FLAG" ToRole="VERSION_LOG" />
+        </EntityType>
+        <Association Name="FK_VERSION_LOG">
+          <End Type="DatabseDB.VERSION_LOG" Role="VERSION_LOG" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="DatabseDB.VERSION_FLAG" Role="VERSION_FLAG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VERSION_LOG">
+              <PropertyRef Name="VER_ID" />
+            </Principal>
+            <Dependent Role="VERSION_FLAG">
+              <PropertyRef Name="VERF_VER_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -326,6 +390,19 @@ FROM "USYSVER"."V_VERSION_LIST2" "V_VERSION_LIST2"</DefiningQuery>
                 <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
                 <ScalarProperty Name="VER_NAME" ColumnName="VER_NAME" />
                 <ScalarProperty Name="VER_ID" ColumnName="VER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VERSION_FLAG">
+            <EntityTypeMapping TypeName="DatabseDB.VERSION_FLAG">
+              <MappingFragment StoreEntitySet="VERSION_FLAG">
+                <ScalarProperty Name="VERF_CREATED_DATE" ColumnName="VERF_CREATED_DATE" />
+                <ScalarProperty Name="VERF_FILE" ColumnName="VERF_FILE" />
+                <ScalarProperty Name="VERF_DATE" ColumnName="VERF_DATE" />
+                <ScalarProperty Name="VERF_DESC" ColumnName="VERF_DESC" />
+                <ScalarProperty Name="VERF_FLAG" ColumnName="VERF_FLAG" />
+                <ScalarProperty Name="VERF_VER_ID" ColumnName="VERF_VER_ID" />
+                <ScalarProperty Name="VERF_ID" ColumnName="VERF_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

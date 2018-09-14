@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using VerzovaciSystem.Models;
 
 
@@ -59,7 +55,7 @@ namespace VerzovaciSystem.Controllers
             return View(companiesViewModel);
         }
 
-        // Vymaže potvrzený vybraný záznam
+        // Aktualizuje potvrzený vybraný záznam
         [HttpPost]
         public ActionResult ChangeTableRow(CompaniesViewModel companiesViewModel)
         {

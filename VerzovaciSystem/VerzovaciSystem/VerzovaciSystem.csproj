@@ -181,6 +181,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SelectionMaskController.cs" />
     <Compile Include="Controllers\TablesListController.cs" />
+    <Compile Include="Controllers\VersionsFlagController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -188,6 +189,7 @@
     <Compile Include="Models\Entities\SelectionMaskEntity.cs" />
     <Compile Include="Models\Entities\SelectionMaskOutputEntity.cs" />
     <Compile Include="Models\Entities\VersionEntity.cs" />
+    <Compile Include="Models\Entities\VersionFlagEntity.cs" />
     <Compile Include="Models\Tables\CompaniesViewModel.cs" />
     <Compile Include="Models\Entities\CompanyEntity.cs" />
     <Compile Include="Models\Entities\CompanyTypeEntity.cs" />
@@ -197,6 +199,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SelectionMaskViewModel.cs" />
     <Compile Include="Models\TablesListViewModel.cs" />
+    <Compile Include="Models\VersionsFlagViewModel.cs" />
     <Compile Include="Models\VersionsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -281,6 +284,7 @@
     <Content Include="Views\Companies\ChangeTableRow.cshtml" />
     <Content Include="Views\SelectionMask\SelectionMaskOutput.cshtml" />
     <Content Include="Views\Versions\GetVersion.cshtml" />
+    <Content Include="Views\VersionsFlag\GetFlagVersions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,6 +17,11 @@
       <End Role="VERSION_COMPANY" EntitySet="VERSION_COMPANY" />
       <End Role="VERSION_LOG" EntitySet="VERSION_LOG" />
     </AssociationSet>
+    <EntitySet Name="VERSION_FLAG" EntityType="DatabseDB.VERSION_FLAG" />
+    <AssociationSet Name="FK_VERSION_LOG" Association="DatabseDB.FK_VERSION_LOG">
+      <End Role="VERSION_LOG" EntitySet="VERSION_LOG" />
+      <End Role="VERSION_FLAG" EntitySet="VERSION_FLAG" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="V_VERSION_LIST1">
     <Key>
@@ -93,6 +98,7 @@
     <Property Name="VER_MAIL_MESSAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="VER_MAIL_FLAG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="VERSION_COMPANY" Relationship="DatabseDB.FK_VER_COMP" FromRole="VERSION_LOG" ToRole="VERSION_COMPANY" />
+    <NavigationProperty Name="VERSION_FLAG" Relationship="DatabseDB.FK_VERSION_LOG" FromRole="VERSION_LOG" ToRole="VERSION_FLAG" />
   </EntityType>
   <Association Name="FK_VER_COMP">
     <End Type="DatabseDB.VERSION_COMPANY" Role="VERSION_COMPANY" Multiplicity="1" />
@@ -103,6 +109,33 @@
       </Principal>
       <Dependent Role="VERSION_LOG">
         <PropertyRef Name="VER_COMPANY" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="VERSION_FLAG">
+    <Key>
+      <PropertyRef Name="VERF_ID" />
+    </Key>
+    <Property Name="VERF_ID" Type="Int64" Nullable="false" />
+    <Property Name="VERF_VER_ID" Type="Int64" Nullable="false" />
+    <Property Name="VERF_FLAG" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="VERF_DESC" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VERF_DATE" Type="DateTime" Nullable="false" />
+    <Property Name="VERF_FILE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VERF_CREATED_DATE" Type="DateTime" Nullable="false" />
+    <NavigationProperty Name="VERSION_LOG" Relationship="DatabseDB.FK_VERSION_LOG" FromRole="VERSION_FLAG" ToRole="VERSION_LOG" />
+  </EntityType>
+  <Association Name="FK_VERSION_LOG">
+    <End Type="DatabseDB.VERSION_LOG" Role="VERSION_LOG" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DatabseDB.VERSION_FLAG" Role="VERSION_FLAG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VERSION_LOG">
+        <PropertyRef Name="VER_ID" />
+      </Principal>
+      <Dependent Role="VERSION_FLAG">
+        <PropertyRef Name="VERF_VER_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
