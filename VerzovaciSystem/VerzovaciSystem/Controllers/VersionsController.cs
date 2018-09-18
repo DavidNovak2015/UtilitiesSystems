@@ -7,13 +7,7 @@ namespace VerzovaciSystem.Controllers
     {
         VersionsViewModel versionsViewModel = new VersionsViewModel();
 
-        public ActionResult GetTodayVersions()
-        {
-            versionsViewModel.GetTodayVersions();
-
-            return View(versionsViewModel);
-        }
-
+        // vrací jednu verzi z VERSION_LOG se všemi sloupci
         public ActionResult GetVersion(long idVersion)
         {
             versionsViewModel.GetVersion(idVersion);

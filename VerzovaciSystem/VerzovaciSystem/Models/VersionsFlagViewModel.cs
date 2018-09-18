@@ -28,7 +28,8 @@ namespace VerzovaciSystem.Models
                                                                                    x.VERF_FILE,
                                                                                    x.VERF_CREATED_DATE
                                                                                   )
-                                                       ).ToList();
+                                                       ).OrderByDescending(x => x.Id)
+                                                        .ToList();
         }
     }
 }

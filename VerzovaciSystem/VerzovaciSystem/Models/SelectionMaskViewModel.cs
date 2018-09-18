@@ -26,9 +26,11 @@ namespace VerzovaciSystem.Models
         // popisky polí pro výsledek výběru z vyhledávací masky
         public SelectionMaskOutputEntity SelectionMaskOutputEntity { get; private set; }
 
-        public SelectionMaskViewModel()
+        //pro zobrazení vyhledávací masky
+        public void GetSelectionMask()
         {
-            SelectionMaskEntity = new SelectionMaskEntity();
+            if (SelectionMaskEntity == null)
+                SelectionMaskEntity = new SelectionMaskEntity();
 
             SelectionMaskEntity.VersionDateFrom = DateTime.Now.Date;
             List<EX_COMPANY_TYPE> companyTypesFromDB = dbRepository.GetCompanyTypes();
@@ -58,6 +60,29 @@ namespace VerzovaciSystem.Models
             //GlobalStatusChoice.Add(new SelectListItem { Text = "Gold", Value = "Gold" });
         }
 
+        // najde dnešní verze po startu aplikace nebo odkazem v Layotu dle TRUNC(VER_DATETIME) <= TRUNC(SYSDATE)  
+        public void GetTodayVersions()
+        {
+            if (SelectionMaskOutputEntity==null)
+                SelectionMaskOutputEntity = new SelectionMaskOutputEntity();
+
+            List<V_VERSION_LIST2> versionsFromDB = dbRepository.GetAllRecordsFromV_VERSION_LIST2();
+
+            SelectionResult = new List<SelectionMaskOutputEntity>();
+
+            SelectionResult = versionsFromDB.Select(x => new SelectionMaskOutputEntity(x.VER_ID,
+                                                                                       x.VER_COMPANY,
+                                                                                       x.VER_GROUP,
+                                                                                       x.VER_DATETIME,
+                                                                                       x.VER_CREATED_DATE,
+                                                                                       x.VER_CREATED_USER,
+                                                                                       x.STATUS,
+                                                                                       x.VER_COMPANY_TYPE
+                                                                                      )
+                                                   ).OrderByDescending(x => x.Id)
+                                                    .ToList();
+        }
+
         // Vrátí odpovídající záznamy dle vyhledávací masky vybrané z DB View V_VERSION_LIST1
         public void GetSelectedRecords(SelectionMaskEntity selectionsparameters)
         {
@@ -70,7 +95,7 @@ namespace VerzovaciSystem.Models
 
             List<V_VERSION_LIST1> recordsFromDB = dbRepository.GetAllRecordsFromV_VERSION_LIST1();
 
-            IEnumerable<V_VERSION_LIST1> temporaryRecords = recordsFromDB.OrderBy(x => x.VER_CREATED_DATE);
+            IEnumerable<V_VERSION_LIST1> temporaryRecords = recordsFromDB.OrderByDescending(x => x.VER_ID);
 
             // Company type
             if (selectionsparameters.CompanyTyp != null)
@@ -123,7 +148,8 @@ namespace VerzovaciSystem.Models
                                                                                          x.STATUS,
                                                                                          x.VER_COMPANY_TYPE
                                                                                         )
-                                                     ).ToList();
+                                                     ).OrderByDescending(x => x.Id)
+                                                      .ToList();
         }
     }
 }

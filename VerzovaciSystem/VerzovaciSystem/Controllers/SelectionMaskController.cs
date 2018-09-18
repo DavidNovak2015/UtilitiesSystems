@@ -6,9 +6,11 @@ namespace VerzovaciSystem.Controllers
 {
     public class SelectionMaskController : Controller
     {
+        SelectionMaskViewModel selectionMaskViewModel = new SelectionMaskViewModel();
+
         public ActionResult SelectionMask()
         {
-            SelectionMaskViewModel selectionMaskViewModel = new SelectionMaskViewModel();
+            selectionMaskViewModel.GetSelectionMask();
             return View(selectionMaskViewModel);
         }
 
@@ -30,6 +32,14 @@ namespace VerzovaciSystem.Controllers
             selectionMaskViewModel.GetSelectedRecords(selectionMaskViewModel.SelectionMaskEntity);
 
             return View("SelectionMaskOutput",selectionMaskViewModel);
+        }
+
+        // pro odkaz v Layotu - dnešní verze a po startu aplikace
+        public ActionResult GetTodayVersions()
+        {
+            selectionMaskViewModel.GetTodayVersions();
+            TempData["todaysVersions"] = "Seznam dnešních verzí:";
+            return View("SelectionMaskOutput", selectionMaskViewModel);
         }
     }
 }

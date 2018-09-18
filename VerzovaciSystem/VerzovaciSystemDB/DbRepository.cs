@@ -182,9 +182,9 @@ namespace VerzovaciSystemDB
         }
 
 
-        //VERZE z VERSION_FLAG                                                                                   VERZE z VERSION_FLAG
+        //UDÁLOSTI z VERSION_FLAG                                                                                   UDÁLOSTI z VERSION_FLAG
 
-        // Zobrazení záznamu verze z VERSION_FLAG tabulky
+        // Zobrazení událostí verze z VERSION_FLAG tabulky
         public List<VERSION_FLAG> GetAllRecordsFromVERSION_FLAG(long versionLogId)
         {
             try

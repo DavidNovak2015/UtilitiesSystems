@@ -16,7 +16,7 @@ namespace VerzovaciSystem
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Versions", action = "GetTodayVersions", id = UrlParameter.Optional }
+                defaults: new { controller = "SelectionMask", action = "GetTodayVersions", id = UrlParameter.Optional }
             );
         }
     }

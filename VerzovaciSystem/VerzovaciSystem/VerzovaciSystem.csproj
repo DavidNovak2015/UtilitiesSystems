@@ -257,7 +257,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\TablesList\TablesList.cshtml" />
     <Content Include="Views\SelectionMask\SelectionMask.cshtml" />
-    <Content Include="Views\Versions\GetTodayVersions.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
