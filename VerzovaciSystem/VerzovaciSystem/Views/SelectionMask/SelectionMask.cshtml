@@ -93,7 +93,7 @@
 
 </form>*@
 
------------------------------------------------------------------------------------------------------
+@*-----------------------------------------------------------------------------------------------------*@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken();
@@ -101,6 +101,14 @@
     
     
     <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SelectionMaskEntity.Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SelectionMaskEntity.Id, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectionMaskEntity.Id, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
 
         <div class="form-group">
             @Html.LabelFor(model => model.SelectionMaskEntity.CompanyTyp, new { @class = "control-label col-md-2" })
@@ -123,7 +131,7 @@
                 @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateFrom,  new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.TextBoxFor(model => model.SelectionMaskEntity.VersionDateFrom, @"{0:dd.MM.yyyy}",new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.SelectionMaskEntity.VersionDateFrom, "Pokud je zadáno, musí být ve formátu dd.mm.rrrr", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.SelectionMaskEntity.VersionDateFrom, "", new { @class = "text-danger" })
                 </div>
             </div><br />
 

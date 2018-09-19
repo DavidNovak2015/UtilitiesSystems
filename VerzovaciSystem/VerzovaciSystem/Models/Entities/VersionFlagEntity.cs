@@ -18,25 +18,33 @@ namespace VerzovaciSystem.Models.Entities
 
         public DateTime Date { get; private set; }
 
-        [Display(Name ="log soubor")]
+        [Display(Name = "log soubor")]
         public string File { get; private set; }
 
         [Display(Name ="Vytvořeno")]
         public DateTime Created { get; private set; }
 
-        public VersionFlagEntity(long iD, long versionLogId, string flag, string description, DateTime date, string file, DateTime created)
+        // pro zobrazení všech událostí z VERSION_FLAG bez log souboru
+        public VersionFlagEntity(long iD, long versionLogId, string flag, string description, DateTime date, DateTime created)
         {
             Id = iD;
             VersionLogId = versionLogId;
             Flag = flag;
             Description = description;
             Date = date;
-            File = file;
             Created = created;
         }
 
         //Pro labely 
         public VersionFlagEntity()
         { }
+
+        // pro zobrazení obsahu Log souboru patřící k jedné události z VERSION_FLAG.Id
+        public VersionFlagEntity(long id,long versionLogId, string file)
+        {
+            Id = id;
+            VersionLogId = versionLogId;
+            File = file;
+        }
     }
 }

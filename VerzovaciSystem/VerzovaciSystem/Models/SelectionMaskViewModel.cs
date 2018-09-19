@@ -97,6 +97,11 @@ namespace VerzovaciSystem.Models
 
             IEnumerable<V_VERSION_LIST1> temporaryRecords = recordsFromDB.OrderByDescending(x => x.VER_ID);
 
+            // Id version
+            if (selectionsparameters.Id != long.MinValue)
+            {
+                temporaryRecords = recordsFromDB.Where(versionId => versionId.VER_ID == selectionsparameters.Id).ToList();
+            }
             // Company type
             if (selectionsparameters.CompanyTyp != null)
             {

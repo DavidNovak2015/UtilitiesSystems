@@ -8,16 +8,19 @@ namespace VerzovaciSystem.Controllers
     {
         SelectionMaskViewModel selectionMaskViewModel = new SelectionMaskViewModel();
 
+        // zobrazení nabídky vyhledávací masky
         public ActionResult SelectionMask()
         {
             selectionMaskViewModel.GetSelectionMask();
             return View(selectionMaskViewModel);
         }
 
+        // zobrazení výsledku hledání dle zadání ve vyhledávací masce
         [HttpPost]
         public ActionResult SelectionMask(SelectionMaskViewModel selectionMaskViewModel)
         {
-            if ((selectionMaskViewModel.SelectionMaskEntity.CompanyTyp == null) &&
+            if (selectionMaskViewModel.SelectionMaskEntity.Id == null &&
+                (selectionMaskViewModel.SelectionMaskEntity.CompanyTyp == null) &&
                 (selectionMaskViewModel.SelectionMaskEntity.Company == null) &&
                 (selectionMaskViewModel.SelectionMaskEntity.VersionDateFrom == null) &&
                 (selectionMaskViewModel.SelectionMaskEntity.VersionDateTo == DateTime.MinValue) &&
@@ -25,11 +28,13 @@ namespace VerzovaciSystem.Controllers
                 (selectionMaskViewModel.SelectionMaskEntity.CreationDateTo == DateTime.MinValue) 
                ) 
                 {
-                TempData["result"] = "Musí být vyplněno aspoň jedno pole";
-                return View(selectionMaskViewModel);
+                TempData["result"] = "Nebylo vyplněno aspoň jedno pole nebo pole nebyla vyplněna správnými hodnotami";
+
+                return RedirectToAction("SelectionMask");
                 }
 
             selectionMaskViewModel.GetSelectedRecords(selectionMaskViewModel.SelectionMaskEntity);
+            TempData["selectionMaskVersions"] = "Nalezené verze:";
 
             return View("SelectionMaskOutput",selectionMaskViewModel);
         }

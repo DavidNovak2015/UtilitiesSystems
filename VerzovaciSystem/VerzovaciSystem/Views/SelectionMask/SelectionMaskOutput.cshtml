@@ -3,11 +3,14 @@
     ViewBag.Title = "Výběr";
 }
 
-<h2>Nalezené verze :</h2>
 <h2>
     @if (TempData.ContainsKey("todaysVersions"))
-            {
+    {
         @TempData["todaysVersions"]
+    }
+    @if (TempData.ContainsKey("selectionMaskVersions"))
+    {
+        @TempData["selectionMaskVersions"]
     }
 </h2>
 

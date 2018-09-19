@@ -25,11 +25,16 @@ namespace VerzovaciSystem.Models
                                                                                    x.VERF_FLAG,
                                                                                    x.VERF_DESC,
                                                                                    x.VERF_DATE,
-                                                                                   x.VERF_FILE,
                                                                                    x.VERF_CREATED_DATE
                                                                                   )
                                                        ).OrderByDescending(x => x.Id)
                                                         .ToList();
+        }
+
+        // naplní VersionFlagEntity pouze s flagId, versionLogId a log file
+        public void GetLogFile(long versionFlagId)
+        {
+
         }
     }
 }

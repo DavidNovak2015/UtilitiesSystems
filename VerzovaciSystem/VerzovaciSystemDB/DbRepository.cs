@@ -184,7 +184,7 @@ namespace VerzovaciSystemDB
 
         //UDÁLOSTI z VERSION_FLAG                                                                                   UDÁLOSTI z VERSION_FLAG
 
-        // Zobrazení událostí verze z VERSION_FLAG tabulky
+        // Vrátí události verze z VERSION_FLAG tabulky
         public List<VERSION_FLAG> GetAllRecordsFromVERSION_FLAG(long versionLogId)
         {
             try
@@ -199,6 +199,24 @@ namespace VerzovaciSystemDB
                 List<VERSION_FLAG> error = new List<VERSION_FLAG>();VERSION_FLAG descriptionError = new VERSION_FLAG();
                 descriptionError.VERF_DESC = ex.Message.ToString();
                 error.Add(descriptionError);
+                return error;
+            }
+        }
+
+        // Vrátí jednu událost k verzi z VERSION_FLAG tabulky pro zobrazení log soubor
+        public VERSION_FLAG GetFlagEvent(long versionFlagId)
+        {
+            try
+            {
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
+                {
+                    return accessToDB.VERSION_FLAG.Where(dbVersionFlagId => dbVersionFlagId.VERF_ID == versionFlagId).SingleOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                VERSION_FLAG error = new VERSION_FLAG();
+                error.VERF_FILE = ex.Message.ToString();
                 return error;
             }
         }

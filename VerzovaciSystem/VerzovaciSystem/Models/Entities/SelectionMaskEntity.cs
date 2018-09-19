@@ -5,6 +5,9 @@ namespace VerzovaciSystem.Models.Entities
 {
     public class SelectionMaskEntity
     {
+        [Display(Name = "Označení")]
+        public long? Id { get; set; }
+
         [Display(Name = "Typ společnosti")]
         public string CompanyTyp { get; set; }
 

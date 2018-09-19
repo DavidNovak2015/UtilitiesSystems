@@ -25,7 +25,7 @@
                 @Html.LabelFor(model => model.VersionFlagEntity.Date, new { @class = "control-label col-md-2" })
             </th>
             <th>
-                @Html.LabelFor(model => model.VersionFlagEntity.File, new { @class = "control-label col-md-2" })
+                Odkaz na log soubor
             </th>
             <th>
                 @Html.LabelFor(model => model.VersionFlagEntity.Created, new { @class = "control-label col-md-2" })
@@ -52,7 +52,7 @@
                 @flagVersion.Date
             </td>
             <td>
-                @flagVersion.File
+               @Html.ActionLink("log soubor", "GetLogFile", new { versionFlagId=flagVersion.Id})
             </td>
             <td>
                 @flagVersion.Created
