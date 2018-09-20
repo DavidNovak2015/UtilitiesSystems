@@ -15,7 +15,8 @@ namespace VerzovaciSystem.Models
         // pro výběr z VERSION_FLAG podle Id z VERSION_LOG
         public List<VersionFlagEntity> SelectionResult { get; private set; }
 
-        public VersionsFlagViewModel(long versionLogId)
+        // naplní Selectionresult všemi událostmi k předanému číslu verze
+        public void GetEventsToVersion(long versionLogId)
         {
             VersionFlagEntity = new VersionFlagEntity();
 
@@ -34,7 +35,12 @@ namespace VerzovaciSystem.Models
         // naplní VersionFlagEntity pouze s flagId, versionLogId a log file
         public void GetLogFile(long versionFlagId)
         {
+            VERSION_FLAG flagEventFromDb = dbRepository.GetFlagEvent(versionFlagId);
 
+            VersionFlagEntity = new VersionFlagEntity(flagEventFromDb.VERF_ID,
+                                                      flagEventFromDb.VERF_VER_ID,
+                                                      flagEventFromDb.VERF_FILE
+                                                     );
         }
     }
 }

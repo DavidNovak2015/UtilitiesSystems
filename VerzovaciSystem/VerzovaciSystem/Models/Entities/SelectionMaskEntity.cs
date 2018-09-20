@@ -15,8 +15,8 @@ namespace VerzovaciSystem.Models.Entities
         public string Company { get; set; }
 
         [Display(Name = "Datum verze od")]
-        [DataType(DataType.DateTime,ErrorMessage ="Zadejte prosím datum ve formátu dd.mm.rrrr")]
-        public DateTime? VersionDateFrom { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime VersionDateFrom { get; set; }
 
         [Display(Name = "Datum verze do")]
         [DataType(DataType.Date)]

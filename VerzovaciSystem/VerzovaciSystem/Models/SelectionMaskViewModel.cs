@@ -33,6 +33,7 @@ namespace VerzovaciSystem.Models
                 SelectionMaskEntity = new SelectionMaskEntity();
 
             SelectionMaskEntity.VersionDateFrom = DateTime.Now.Date;
+
             List<EX_COMPANY_TYPE> companyTypesFromDB = dbRepository.GetCompanyTypes();
             List<VERSION_COMPANY> companiesFromDB = dbRepository.GetCompanies();
 
@@ -115,16 +116,16 @@ namespace VerzovaciSystem.Models
             }
 
             // VersionDateFrom a VersionDateTo
-            if ( (selectionsparameters.VersionDateFrom != null) && (selectionsparameters.VersionDateTo != DateTime.MinValue)) // otestováno
+            if ( (selectionsparameters.VersionDateFrom != DateTime.MinValue) && (selectionsparameters.VersionDateTo != DateTime.MinValue)) // otestováno
             {
                 temporaryRecords = recordsFromDB.Where(versionDateFrom => versionDateFrom.VER_DATETIME >= selectionsparameters.VersionDateFrom)
                                               .Where(versionDateTo => versionDateTo.VER_DATETIME <= selectionsparameters.VersionDateTo);
             }
-            if ( (selectionsparameters.VersionDateFrom != null) && (selectionsparameters.VersionDateTo == DateTime.MinValue) )// otestováno
+            if ( (selectionsparameters.VersionDateFrom != DateTime.MinValue) && (selectionsparameters.VersionDateTo == DateTime.MinValue) )// otestováno
             {
                 temporaryRecords = recordsFromDB.Where(versiondateFrom => versiondateFrom.VER_DATETIME >= selectionsparameters.VersionDateFrom);
             }
-            if ( (selectionsparameters.VersionDateTo !=DateTime.MinValue) && (selectionsparameters.VersionDateFrom==null) ) // otestováno
+            if ( (selectionsparameters.VersionDateTo !=DateTime.MinValue) && (selectionsparameters.VersionDateFrom==DateTime.MinValue) ) // otestováno
             {
                 temporaryRecords = recordsFromDB.Where(versiondateTo => versiondateTo.VER_DATETIME <= selectionsparameters.VersionDateTo);
             }

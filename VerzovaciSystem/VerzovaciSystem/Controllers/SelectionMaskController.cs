@@ -22,7 +22,7 @@ namespace VerzovaciSystem.Controllers
             if (selectionMaskViewModel.SelectionMaskEntity.Id == null &&
                 (selectionMaskViewModel.SelectionMaskEntity.CompanyTyp == null) &&
                 (selectionMaskViewModel.SelectionMaskEntity.Company == null) &&
-                (selectionMaskViewModel.SelectionMaskEntity.VersionDateFrom == null) &&
+                (selectionMaskViewModel.SelectionMaskEntity.VersionDateFrom == DateTime.MinValue) &&
                 (selectionMaskViewModel.SelectionMaskEntity.VersionDateTo == DateTime.MinValue) &&
                 (selectionMaskViewModel.SelectionMaskEntity.CreationDateFrom == DateTime.MinValue) &&
                 (selectionMaskViewModel.SelectionMaskEntity.CreationDateTo == DateTime.MinValue) 
