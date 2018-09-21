@@ -181,6 +181,43 @@ namespace VerzovaciSystemDB
             }
         }
 
+        // Odstranění verze z tabulky VERSION_LOG
+        public string DeleteVersion (long idVersion)
+        {
+            try
+            {
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
+                {
+                    accessToDB.Entry(new VERSION_LOG { VER_ID=idVersion}).State= System.Data.Entity.EntityState.Deleted;
+                    accessToDB.SaveChanges();
+                    return result = "Požadavek byl proveden";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return result = $"Požadavek NEBYL proveden.Popis chyby:\n\n { ex.Message.ToString()} ";
+            }
+        }
+
+        // aktualizace verze v tabulce VERSION_LOG
+        public string ChangeVersion (VERSION_LOG versionToChange)
+        {
+            try
+            {
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
+                {
+                    accessToDB.Entry(versionToChange).State = System.Data.Entity.EntityState.Modified;
+                    accessToDB.SaveChanges();
+                    return result = "Požadavek byl proveden";
+                }
+            }
+            catch (Exception ex)
+            {
+                return result = $"Požadavek NEBYL proveden.Popis chyby:\n\n { ex.Message.ToString()} ";
+            }
+        }
+
 
         //UDÁLOSTI z VERSION_FLAG                                                                                   UDÁLOSTI z VERSION_FLAG
 

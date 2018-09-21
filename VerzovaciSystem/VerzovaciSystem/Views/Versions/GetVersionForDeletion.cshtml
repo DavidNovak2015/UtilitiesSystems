@@ -1,18 +1,19 @@
 ﻿@model VerzovaciSystem.Models.VersionsViewModel
 
 @{
-    ViewBag.Title = "Detail verze";
+    ViewBag.Title = "Odstranění verze";
 }
 
-<h2>Detail verze z VERSION_LOG</h2><br/>
+<h2>Odstranění verze z tabulky:  VERSION_LOG</h2><br/>
+
+
 
 <div class="form-horizontal">
 
     <div class="row">
         <div class="col-md-1 col-md-10">
-            @Html.ActionLink("Události z VERSION_FLAG", "GetFlagVersions", "VersionsFlag", new { versionLogId = Model.Version.Id }, new { @class = "btn btn-default" })
-            @Html.ActionLink("Odstranit verzi", "GetVersionForDeletion", new { idVersion = Model.Version.Id }, new { @class = "btn btn-default" })
-            @Html.ActionLink("Aktualizovat verzi", "GetVersionForChange", new { idVersion = Model.Version.Id }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Odstranit verzi", "DeleteVersion", new { idVersion=Model.Version.Id}, new { @class = "btn btn-default" })
+            @Html.ActionLink("Zrušit", "GetVersion", new { idVersion = Model.Version.Id }, new { @class = "btn btn-default" })
         </div>
     </div>
 
@@ -178,5 +179,4 @@
     </div>
 
 </div>
-
 

@@ -48,6 +48,43 @@ namespace VerzovaciSystem.Models
                                         versionFromDB.VER_MAIL_MESSAGE,
                                         versionFromDB.VER_MAIL_FLAG
                                        );
-        } 
+        }
+
+        // zašle verzi k odstranění z db
+        public string DeleteVersion(long idVersion)
+        {
+            return dbRepository.DeleteVersion(idVersion);
+        }
+
+        // zašle verzi k aktualizaci
+        public string ChangeVersion(VersionEntity versionToChange)
+        {
+            VERSION_LOG versionToChangeDB = new VERSION_LOG();
+            versionToChangeDB.VER_ID = versionToChange.Id;
+            versionToChangeDB.VER_NAME = versionToChange.Name;
+            versionToChangeDB.VER_COMPANY = versionToChange.Company;
+            versionToChangeDB.VER_SOURCE_PATH = versionToChange.SourcePath;
+            versionToChangeDB.VER_SQL_DATA = versionToChange.SqlData;
+            versionToChangeDB.VER_CONFIG = versionToChange.Config;
+            versionToChangeDB.VER_DATETIME = versionToChange.Date;
+            versionToChangeDB.VER_LOG_USER = versionToChange.LogUser;
+            versionToChangeDB.VER_LOG_DATE = versionToChange.LogDate;
+            versionToChangeDB.VER_CREATED_DATE = versionToChange.Created;
+            versionToChangeDB.VER_CREATED_USER = versionToChange.User;
+            versionToChangeDB.VER_LOCK_FLAG = versionToChange.LogFlag;
+            versionToChangeDB.VER_DELAY = versionToChange.Delay;
+            versionToChangeDB.VER_SQL_DATA_CHECK = versionToChange.SqlDataCheck;
+            versionToChangeDB.VER_DELETED = versionToChange.Deleted;
+            versionToChangeDB.VER_MAIL = versionToChange.Mail;
+            versionToChangeDB.VER_MESSAGE = versionToChange.Message;
+            versionToChangeDB.VER_MODE = versionToChange.Mode;
+            versionToChangeDB.VER_GROUP = versionToChange.Group;
+            versionToChangeDB.VER_S_VER_FLAG = versionToChange.Flag;
+            versionToChangeDB.VER_FILE_FOLDER_TO_DELETE = versionToChange.FileFolderToDelete;
+            versionToChangeDB.VER_MAIL_MESSAGE = versionToChange.MailMessage;
+            versionToChangeDB.VER_MAIL_FLAG = versionToChange.MailFlag;
+
+            return dbRepository.ChangeVersion(versionToChangeDB);
+        }
     }
 }
