@@ -218,6 +218,28 @@ namespace VerzovaciSystemDB
             }
         }
 
+        // Přidání nové verze do VERSION_LOG
+        public string AddVersion(VERSION_LOG versionToDb)
+        {
+            versionToDb.VER_ID = GetNextIdNumberForDbTable("VERSION_LOG", "VER_ID");
+            if (versionToDb.VER_ID == 5555)
+                return result = "Metoda \"GetNextIdNumberForDbTable\" vrátila chybu";
+
+            try
+            {
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
+                {
+                    accessToDB.VERSION_LOG.Add(versionToDb);
+                    accessToDB.SaveChanges();
+                    return result = "Požadavek byl proveden";
+                }
+            }
+            catch (Exception ex)
+            {
+                return result = $"Požadavek NEBYL proveden. Popis chyby:\n {ex.Message.ToString()}";
+            }
+        }
+
 
         //UDÁLOSTI z VERSION_FLAG                                                                                   UDÁLOSTI z VERSION_FLAG
 

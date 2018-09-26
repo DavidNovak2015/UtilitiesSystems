@@ -6,55 +6,72 @@ namespace VerzovaciSystem.Models.Entities
     public class VersionEntity:SelectionMaskOutputEntity
     {
         // VERSION_LOG
-        public string Name { get; private set; }
+        [StringLength(100, ErrorMessage = "Překročen limit 100 znaků")]
+        public string Name { get;  set; }
 
         [Display(Name ="Cesta k souborům bin a client")]
-        public string SourcePath { get; private set; }
+        [DataType(DataType.MultilineText)]
+        [StringLength(100, ErrorMessage = "Překročen limit 100 znaků")]
+        public string SourcePath { get;  set; }
 
-        [Display(Name ="uprava.sql (není SQL file)")]
-        public string SqlData { get; private set; }
+        [Display(Name ="SqlData")]
+        [DataType(DataType.MultilineText)]
+        public string SqlData { get;  set; }
 
         [Display(Name ="Catalogy")]
-        public string Config { get; private set; }
+        public string Config { get;  set; }
 
         [Display(Name = "Změnil")]
-        public string LogUser { get; private set; }
+        [StringLength(100, ErrorMessage = "Překročen limit 100 znaků")]
+        public string LogUser { get;  set; }
 
         [Display(Name = "Datum změny")]
-        public DateTime? LogDate { get; private set; }
+        public DateTime? LogDate { get;  set; }
 
         [Display(Name ="Začalo finální stahování")]
-        public string LogFlag { get; private set; }
+        [StringLength(1, ErrorMessage = "Překročen limit 1 znak")]
+        [Required(ErrorMessage = "Povinné pole")]
+        public string LogFlag { get;  set; }
 
         [Display(Name ="Kolik minut bude trvat aktualizace, ale i jak dlouho se čeká na ukončení procesu ...")]
-        public byte Delay { get; private set; }
+        [Range(1,999,ErrorMessage ="Hodnota musí být mezi 1 a 999")]
+        [Required(ErrorMessage = "Povinné pole")]
+        public byte Delay { get;  set; }
 
         [Display(Name ="Kontrolní SQL")]
-        public string SqlDataCheck { get; private set; }
+        public string SqlDataCheck { get;  set; }
 
         [Display(Name = "Smazáno")]
-        public string Deleted { get; private set; }
+        [StringLength(1, ErrorMessage = "Překročen limit 1 znak")]
+        [Required(ErrorMessage = "Povinné pole")]
+        public string Deleted { get;  set; }
 
         [Display(Name = "Email")]
-        public string Mail { get; private set; }
+        public string Mail { get;  set; }
 
         [Display(Name = "Zpráva uživatele")]
-        public string Message { get; private set; }
+        public string Message { get;  set; }
 
         [Display(Name = "C-kopírovat složku Client\n P-clear conn. pool\n R-refresh catalogs\n T-test\n S-restart serveru")]
-        public string Mode { get; private set; }
+        [StringLength(10, ErrorMessage = "Překročen limit 10 znaků")]
+        public string Mode { get;  set; }
 
         [Display(Name = "A-adresář podle ID verze\n X-adresář podle groupy")]
-        public string Flag { get; private set; }
+        [StringLength(1, ErrorMessage = "Překročen limit 1 znak")]
+        public string Flag { get;  set; }
 
         [Display(Name = "Smazat")]
-        public string FileFolderToDelete { get; private set; }
+        [DataType(DataType.MultilineText)]
+        [StringLength(4000, ErrorMessage = "Překročen limit 4000 znaků")]
+        public string FileFolderToDelete { get;  set; }
 
         [Display(Name = "Zpráva email")]
-        public string MailMessage { get; private set; }
+        [StringLength(200, ErrorMessage = "Překročen limit 200 znaků")]
+        public string MailMessage { get;  set; }
 
         [Display(Name = "Email flag")]
-        public string MailFlag { get; private set; }
+        [StringLength(10, ErrorMessage = "Překročen limit 10 znaků")]
+        public string MailFlag { get;  set; }
 
         public VersionEntity(long iD, string name, string company, string sourcePath, string sqlData, string config, DateTime date, string logUser, DateTime? logDate, DateTime created, string user, string logFlag, byte delay, string sqlDataCheck, string deleted, string mail, string message, string mode, string group, string flag, string fileFolderToDelete, string mailMessage, string mailFlag)
             :base(iD,company, date, created,user, group)
@@ -83,5 +100,7 @@ namespace VerzovaciSystem.Models.Entities
             MailMessage = mailMessage;
             MailFlag = mailFlag;
         }
+        public VersionEntity()
+        { }
     }
 }

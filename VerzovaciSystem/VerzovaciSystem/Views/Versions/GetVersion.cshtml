@@ -12,7 +12,7 @@
         <div class="col-md-1 col-md-10">
             @Html.ActionLink("Události z VERSION_FLAG", "GetFlagVersions", "VersionsFlag", new { versionLogId = Model.Version.Id }, new { @class = "btn btn-default" })
             @Html.ActionLink("Odstranit verzi", "GetVersionForDeletion", new { idVersion = Model.Version.Id }, new { @class = "btn btn-default" })
-            @Html.ActionLink("Aktualizovat verzi", "GetVersionForChange", new { idVersion = Model.Version.Id }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Aktualizovat verzi", "ChangeVersion", new { idVersion = Model.Version.Id }, new { @class = "btn btn-default" })
         </div>
     </div>
 

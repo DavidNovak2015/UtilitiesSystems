@@ -17,7 +17,7 @@ namespace VerzovaciSystem.Models
 
         // SEZNAM VERZÍ
         // Pro labely a verzi s všemi údaji z VERSION_LOG
-        public VersionEntity Version { get; private set; }        
+        public VersionEntity Version { get;  set; }        
 
         //Najde verzi z VERSION_LOG
         public void GetVersion(long idVersion)
@@ -56,35 +56,51 @@ namespace VerzovaciSystem.Models
             return dbRepository.DeleteVersion(idVersion);
         }
 
+        // naplní db model z viewModelu 
+        private VERSION_LOG CompleteDbModel(VersionEntity versionEntity)
+        {
+            VERSION_LOG versionToDb = new VERSION_LOG();
+            versionToDb.VER_ID = versionEntity.Id;
+            versionToDb.VER_NAME = versionEntity.Name;
+            versionToDb.VER_COMPANY = versionEntity.Company;
+            versionToDb.VER_SOURCE_PATH = versionEntity.SourcePath;
+            versionToDb.VER_SQL_DATA = versionEntity.SqlData;
+            versionToDb.VER_CONFIG = versionEntity.Config;
+            versionToDb.VER_DATETIME = versionEntity.Date;
+            versionToDb.VER_LOG_USER = versionEntity.LogUser;
+            versionToDb.VER_LOG_DATE = versionEntity.LogDate;
+            versionToDb.VER_CREATED_DATE = versionEntity.Created;
+            versionToDb.VER_CREATED_USER = versionEntity.User;
+            versionToDb.VER_LOCK_FLAG = versionEntity.LogFlag;
+            versionToDb.VER_DELAY = versionEntity.Delay;
+            versionToDb.VER_SQL_DATA_CHECK = versionEntity.SqlDataCheck;
+            versionToDb.VER_DELETED = versionEntity.Deleted;
+            versionToDb.VER_MAIL = versionEntity.Mail;
+            versionToDb.VER_MESSAGE = versionEntity.Message;
+            versionToDb.VER_MODE = versionEntity.Mode;
+            versionToDb.VER_GROUP = versionEntity.Group;
+            versionToDb.VER_S_VER_FLAG = versionEntity.Flag;
+            versionToDb.VER_FILE_FOLDER_TO_DELETE = versionEntity.FileFolderToDelete;
+            versionToDb.VER_MAIL_MESSAGE = versionEntity.MailMessage;
+            versionToDb.VER_MAIL_FLAG = versionEntity.MailFlag;
+
+            return versionToDb;
+        }
+
         // zašle verzi k aktualizaci
         public string ChangeVersion(VersionEntity versionToChange)
         {
-            VERSION_LOG versionToChangeDB = new VERSION_LOG();
-            versionToChangeDB.VER_ID = versionToChange.Id;
-            versionToChangeDB.VER_NAME = versionToChange.Name;
-            versionToChangeDB.VER_COMPANY = versionToChange.Company;
-            versionToChangeDB.VER_SOURCE_PATH = versionToChange.SourcePath;
-            versionToChangeDB.VER_SQL_DATA = versionToChange.SqlData;
-            versionToChangeDB.VER_CONFIG = versionToChange.Config;
-            versionToChangeDB.VER_DATETIME = versionToChange.Date;
-            versionToChangeDB.VER_LOG_USER = versionToChange.LogUser;
-            versionToChangeDB.VER_LOG_DATE = versionToChange.LogDate;
-            versionToChangeDB.VER_CREATED_DATE = versionToChange.Created;
-            versionToChangeDB.VER_CREATED_USER = versionToChange.User;
-            versionToChangeDB.VER_LOCK_FLAG = versionToChange.LogFlag;
-            versionToChangeDB.VER_DELAY = versionToChange.Delay;
-            versionToChangeDB.VER_SQL_DATA_CHECK = versionToChange.SqlDataCheck;
-            versionToChangeDB.VER_DELETED = versionToChange.Deleted;
-            versionToChangeDB.VER_MAIL = versionToChange.Mail;
-            versionToChangeDB.VER_MESSAGE = versionToChange.Message;
-            versionToChangeDB.VER_MODE = versionToChange.Mode;
-            versionToChangeDB.VER_GROUP = versionToChange.Group;
-            versionToChangeDB.VER_S_VER_FLAG = versionToChange.Flag;
-            versionToChangeDB.VER_FILE_FOLDER_TO_DELETE = versionToChange.FileFolderToDelete;
-            versionToChangeDB.VER_MAIL_MESSAGE = versionToChange.MailMessage;
-            versionToChangeDB.VER_MAIL_FLAG = versionToChange.MailFlag;
+            VERSION_LOG versionToDb = CompleteDbModel(versionToChange);
+            
+            return dbRepository.ChangeVersion(versionToDb);
+        }
 
-            return dbRepository.ChangeVersion(versionToChangeDB);
+        // zašle novou verzi k uložení do db
+        public string AddVersion(VersionEntity versionEntity)
+        {
+            VERSION_LOG versionToDb = CompleteDbModel(versionEntity);
+
+            return dbRepository.AddVersion(versionToDb);
         }
     }
 }

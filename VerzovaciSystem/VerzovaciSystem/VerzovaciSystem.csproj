@@ -286,7 +286,8 @@
     <Content Include="Views\VersionsFlag\GetFlagVersions.cshtml" />
     <Content Include="Views\VersionsFlag\GetLogFile.cshtml" />
     <Content Include="Views\Versions\GetVersionForDeletion.cshtml" />
-    <Content Include="Views\Versions\GetVersionForChange.cshtml" />
+    <Content Include="Views\Versions\ChangeVersion.cshtml" />
+    <Content Include="Views\Versions\AddVersion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
