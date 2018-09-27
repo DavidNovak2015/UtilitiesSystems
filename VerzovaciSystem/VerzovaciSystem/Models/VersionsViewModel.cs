@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using VerzovaciSystem.Models.Entities;
 using VerzovaciSystemDB;
 
@@ -17,7 +18,13 @@ namespace VerzovaciSystem.Models
 
         // SEZNAM VERZÍ
         // Pro labely a verzi s všemi údaji z VERSION_LOG
-        public VersionEntity Version { get;  set; }        
+        public VersionEntity Version { get;  set; }
+
+        // pro DropDownList výběru template pro novou verzi
+        public List<TemplateVersionsSelectListItem> TemplateVersions { get; set; }
+
+        // pro uložení hodnoty z DropDownList výběru template pro novou verzi
+        public long TemplateVersionId { get; set; }
 
         //Najde verzi z VERSION_LOG
         public void GetVersion(long idVersion)
@@ -95,6 +102,57 @@ namespace VerzovaciSystem.Models
             return dbRepository.ChangeVersion(versionToDb);
         }
 
+        // najde všechny template pro nové verze z V_VERSION_LOG_TEMPLATE
+        public void GetTemplateVersions()
+        {
+            List<V_VERSION_LOG_TEMPLATE> templateVersionsFromDb = dbRepository.GetTemplateVersions();
+
+            if (TemplateVersions == null)
+                TemplateVersions = new List<TemplateVersionsSelectListItem>();
+
+            TemplateVersions.Clear();
+
+            TemplateVersions.Add(new TemplateVersionsSelectListItem { Text = "option", Value = 0 });
+
+            foreach (V_VERSION_LOG_TEMPLATE templateVersion in templateVersionsFromDb)
+            {
+                TemplateVersions.Add(new TemplateVersionsSelectListItem { Text = $"{templateVersion.VER_ID.ToString()} {templateVersion.VER_NAME}",
+                                                                          Value =templateVersion.VER_ID
+                                                                        } 
+                                    );
+            }
+        }
+
+        // najde template pro novou verzi z V_VERSION_LOG_TEMPLATE
+        public void GetTemplateVersion (long idVersion)
+        {
+            V_VERSION_LOG_TEMPLATE templateVersionFromDb = dbRepository.GetTemplateVersion(idVersion);
+            Version = new VersionEntity(templateVersionFromDb.VER_ID,
+                                        templateVersionFromDb.VER_NAME,
+                                        templateVersionFromDb.VER_COMPANY,
+                                        templateVersionFromDb.VER_SOURCE_PATH,
+                                        templateVersionFromDb.VER_SQL_DATA,
+                                        templateVersionFromDb.VER_CONFIG,
+                                        templateVersionFromDb.VER_DATETIME,
+                                        templateVersionFromDb.VER_LOG_USER,
+                                        templateVersionFromDb.VER_LOG_DATE,
+                                        templateVersionFromDb.VER_CREATED_DATE,
+                                        templateVersionFromDb.VER_CREATED_USER,
+                                        templateVersionFromDb.VER_LOCK_FLAG,
+                                        templateVersionFromDb.VER_DELAY,
+                                        templateVersionFromDb.VER_SQL_DATA_CHECK,
+                                        templateVersionFromDb.VER_DELETED,
+                                        templateVersionFromDb.VER_MAIL,
+                                        templateVersionFromDb.VER_MAIL_MESSAGE,
+                                        templateVersionFromDb.VER_MODE,
+                                        templateVersionFromDb.VER_GROUP,
+                                        templateVersionFromDb.VER_LOCK_FLAG,
+                                        templateVersionFromDb.VER_FILE_FOLDER_TO_DELETE,
+                                        templateVersionFromDb.VER_MAIL_MESSAGE,
+                                        templateVersionFromDb.VER_MAIL_FLAG
+                                       );
+
+        }
         // zašle novou verzi k uložení do db
         public string AddVersion(VersionEntity versionEntity)
         {

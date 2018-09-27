@@ -92,5 +92,34 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="V_VERSION_LOG_TEMPLATE">
+      <EntityTypeMapping TypeName="DatabseDB.V_VERSION_LOG_TEMPLATE">
+        <MappingFragment StoreEntitySet="V_VERSION_LOG_TEMPLATE">
+          <ScalarProperty Name="VER_MAIL_FLAG" ColumnName="VER_MAIL_FLAG" />
+          <ScalarProperty Name="VER_MAIL_MESSAGE" ColumnName="VER_MAIL_MESSAGE" />
+          <ScalarProperty Name="VER_FILE_FOLDER_TO_DELETE" ColumnName="VER_FILE_FOLDER_TO_DELETE" />
+          <ScalarProperty Name="VER_S_VER_FLAG" ColumnName="VER_S_VER_FLAG" />
+          <ScalarProperty Name="VER_GROUP" ColumnName="VER_GROUP" />
+          <ScalarProperty Name="VER_MODE" ColumnName="VER_MODE" />
+          <ScalarProperty Name="VER_MESSAGE" ColumnName="VER_MESSAGE" />
+          <ScalarProperty Name="VER_MAIL" ColumnName="VER_MAIL" />
+          <ScalarProperty Name="VER_DELETED" ColumnName="VER_DELETED" />
+          <ScalarProperty Name="VER_SQL_DATA_CHECK" ColumnName="VER_SQL_DATA_CHECK" />
+          <ScalarProperty Name="VER_DELAY" ColumnName="VER_DELAY" />
+          <ScalarProperty Name="VER_LOCK_FLAG" ColumnName="VER_LOCK_FLAG" />
+          <ScalarProperty Name="VER_CREATED_USER" ColumnName="VER_CREATED_USER" />
+          <ScalarProperty Name="VER_CREATED_DATE" ColumnName="VER_CREATED_DATE" />
+          <ScalarProperty Name="VER_LOG_DATE" ColumnName="VER_LOG_DATE" />
+          <ScalarProperty Name="VER_LOG_USER" ColumnName="VER_LOG_USER" />
+          <ScalarProperty Name="VER_DATETIME" ColumnName="VER_DATETIME" />
+          <ScalarProperty Name="VER_CONFIG" ColumnName="VER_CONFIG" />
+          <ScalarProperty Name="VER_SQL_DATA" ColumnName="VER_SQL_DATA" />
+          <ScalarProperty Name="VER_SOURCE_PATH" ColumnName="VER_SOURCE_PATH" />
+          <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
+          <ScalarProperty Name="VER_NAME" ColumnName="VER_NAME" />
+          <ScalarProperty Name="VER_ID" ColumnName="VER_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

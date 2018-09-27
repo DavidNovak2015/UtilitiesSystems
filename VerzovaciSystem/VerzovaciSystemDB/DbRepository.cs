@@ -240,6 +240,42 @@ namespace VerzovaciSystemDB
             }
         }
 
+        // Vrátí všechny template z V_VERSION_LOG_TEMPLATE za účelem výběru template pro novou verzi
+        public List<V_VERSION_LOG_TEMPLATE> GetTemplateVersions()
+        {
+            try
+            {
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
+                {
+                    return accessToDB.V_VERSION_LOG_TEMPLATE.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                List<V_VERSION_LOG_TEMPLATE> error = new List<V_VERSION_LOG_TEMPLATE>();
+                error.Add(new V_VERSION_LOG_TEMPLATE { VER_NAME = ex.Message.ToString() });
+                return error;
+            }
+        }
+        
+        // Vrátí template pro novou verzi z V_VERSION_LOG_TEMPLATE
+        public V_VERSION_LOG_TEMPLATE GetTemplateVersion(long idVersion)
+        {
+            try
+            {
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
+                {
+                    return accessToDB.V_VERSION_LOG_TEMPLATE.Where(x => x.VER_ID == idVersion).SingleOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                V_VERSION_LOG_TEMPLATE error = new V_VERSION_LOG_TEMPLATE();
+                error.VER_MESSAGE = ex.Message.ToString();
+                return error;
+            }
+        }
+
 
         //UDÁLOSTI z VERSION_FLAG                                                                                   UDÁLOSTI z VERSION_FLAG
 
@@ -295,7 +331,7 @@ namespace VerzovaciSystemDB
             catch(Exception ex)
             {
                 List<VERSION_COMPANY> error = new List<VERSION_COMPANY>();
-                error.Add(new VERSION_COMPANY { VER_COMPANY_DESC = ex.InnerException.Message.ToString() });
+                error.Add(new VERSION_COMPANY { VER_COMPANY_DESC = ex.Message.ToString() });
                 return error;
             }
         }

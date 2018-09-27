@@ -14,6 +14,7 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="DatabseDB.VERSION_FLAG" Width="1.5" PointX="8.5" PointY="2.5" />
         <AssociationConnector Association="DatabseDB.FK_VERSION_LOG" />
+        <EntityTypeShape EntityType="DatabseDB.V_VERSION_LOG_TEMPLATE" Width="1.5" PointX="11.375" PointY="0.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

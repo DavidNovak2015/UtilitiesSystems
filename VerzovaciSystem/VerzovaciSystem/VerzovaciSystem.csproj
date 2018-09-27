@@ -188,6 +188,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\SelectionMaskEntity.cs" />
     <Compile Include="Models\Entities\SelectionMaskOutputEntity.cs" />
+    <Compile Include="Models\Entities\TemplateVersionsSelectListItem.cs" />
     <Compile Include="Models\Entities\VersionEntity.cs" />
     <Compile Include="Models\Entities\VersionFlagEntity.cs" />
     <Compile Include="Models\Tables\CompaniesViewModel.cs" />

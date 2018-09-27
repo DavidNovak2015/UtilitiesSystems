@@ -102,6 +102,43 @@ warning 6002: The table/view 'USYSVER.V_VERSION_LIST2' does not have a primary k
           <Property Name="STATUS" Type="varchar2" MaxLength="20" />
           <Property Name="VER_COMPANY_TYPE" Type="char" MaxLength="1" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'USYSVER.V_VERSION_LOG_TEMPLATE' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_VERSION_LOG_TEMPLATE">
+          <Key>
+            <PropertyRef Name="VER_ID" />
+            <PropertyRef Name="VER_COMPANY" />
+            <PropertyRef Name="VER_DATETIME" />
+            <PropertyRef Name="VER_CREATED_DATE" />
+            <PropertyRef Name="VER_CREATED_USER" />
+            <PropertyRef Name="VER_LOCK_FLAG" />
+            <PropertyRef Name="VER_DELAY" />
+            <PropertyRef Name="VER_DELETED" />
+          </Key>
+          <Property Name="VER_ID" Type="number" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="VER_NAME" Type="varchar2" MaxLength="100" />
+          <Property Name="VER_COMPANY" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="VER_SOURCE_PATH" Type="varchar2" MaxLength="100" />
+          <Property Name="VER_SQL_DATA" Type="clob" />
+          <Property Name="VER_CONFIG" Type="clob" />
+          <Property Name="VER_DATETIME" Type="date" Nullable="false" />
+          <Property Name="VER_LOG_USER" Type="varchar2" MaxLength="100" />
+          <Property Name="VER_LOG_DATE" Type="date" />
+          <Property Name="VER_CREATED_DATE" Type="date" Nullable="false" />
+          <Property Name="VER_CREATED_USER" Type="varchar2" MaxLength="100" Nullable="false" />
+          <Property Name="VER_LOCK_FLAG" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="VER_DELAY" Type="number" Precision="3" Scale="0" Nullable="false" />
+          <Property Name="VER_SQL_DATA_CHECK" Type="clob" />
+          <Property Name="VER_DELETED" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="VER_MAIL" Type="clob" />
+          <Property Name="VER_MESSAGE" Type="clob" />
+          <Property Name="VER_MODE" Type="varchar2" MaxLength="10" />
+          <Property Name="VER_GROUP" Type="varchar2" MaxLength="10" />
+          <Property Name="VER_S_VER_FLAG" Type="char" MaxLength="1" />
+          <Property Name="VER_FILE_FOLDER_TO_DELETE" Type="varchar2" MaxLength="4000" />
+          <Property Name="VER_MAIL_MESSAGE" Type="varchar2" MaxLength="200" />
+          <Property Name="VER_MAIL_FLAG" Type="varchar2" MaxLength="10" />
+        </EntityType>
         <Association Name="FK_VER_COMP">
           <End Role="VERSION_COMPANY" Type="Self.VERSION_COMPANY" Multiplicity="1" />
           <End Role="VERSION_LOG" Type="Self.VERSION_LOG" Multiplicity="*" />
@@ -157,6 +194,33 @@ FROM "USYSVER"."V_VERSION_LIST1" "V_VERSION_LIST1"</DefiningQuery>
 "V_VERSION_LIST2"."VER_COMPANY_TYPE" AS "VER_COMPANY_TYPE"
 FROM "USYSVER"."V_VERSION_LIST2" "V_VERSION_LIST2"</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="V_VERSION_LOG_TEMPLATE" EntityType="Self.V_VERSION_LOG_TEMPLATE" store:Type="Views" store:Schema="USYSVER">
+            <DefiningQuery>SELECT 
+"V_VERSION_LOG_TEMPLATE"."VER_ID" AS "VER_ID", 
+"V_VERSION_LOG_TEMPLATE"."VER_NAME" AS "VER_NAME", 
+"V_VERSION_LOG_TEMPLATE"."VER_COMPANY" AS "VER_COMPANY", 
+"V_VERSION_LOG_TEMPLATE"."VER_SOURCE_PATH" AS "VER_SOURCE_PATH", 
+"V_VERSION_LOG_TEMPLATE"."VER_SQL_DATA" AS "VER_SQL_DATA", 
+"V_VERSION_LOG_TEMPLATE"."VER_CONFIG" AS "VER_CONFIG", 
+"V_VERSION_LOG_TEMPLATE"."VER_DATETIME" AS "VER_DATETIME", 
+"V_VERSION_LOG_TEMPLATE"."VER_LOG_USER" AS "VER_LOG_USER", 
+"V_VERSION_LOG_TEMPLATE"."VER_LOG_DATE" AS "VER_LOG_DATE", 
+"V_VERSION_LOG_TEMPLATE"."VER_CREATED_DATE" AS "VER_CREATED_DATE", 
+"V_VERSION_LOG_TEMPLATE"."VER_CREATED_USER" AS "VER_CREATED_USER", 
+"V_VERSION_LOG_TEMPLATE"."VER_LOCK_FLAG" AS "VER_LOCK_FLAG", 
+"V_VERSION_LOG_TEMPLATE"."VER_DELAY" AS "VER_DELAY", 
+"V_VERSION_LOG_TEMPLATE"."VER_SQL_DATA_CHECK" AS "VER_SQL_DATA_CHECK", 
+"V_VERSION_LOG_TEMPLATE"."VER_DELETED" AS "VER_DELETED", 
+"V_VERSION_LOG_TEMPLATE"."VER_MAIL" AS "VER_MAIL", 
+"V_VERSION_LOG_TEMPLATE"."VER_MESSAGE" AS "VER_MESSAGE", 
+"V_VERSION_LOG_TEMPLATE"."VER_MODE" AS "VER_MODE", 
+"V_VERSION_LOG_TEMPLATE"."VER_GROUP" AS "VER_GROUP", 
+"V_VERSION_LOG_TEMPLATE"."VER_S_VER_FLAG" AS "VER_S_VER_FLAG", 
+"V_VERSION_LOG_TEMPLATE"."VER_FILE_FOLDER_TO_DELETE" AS "VER_FILE_FOLDER_TO_DELETE", 
+"V_VERSION_LOG_TEMPLATE"."VER_MAIL_MESSAGE" AS "VER_MAIL_MESSAGE", 
+"V_VERSION_LOG_TEMPLATE"."VER_MAIL_FLAG" AS "VER_MAIL_FLAG"
+FROM "USYSVER"."V_VERSION_LOG_TEMPLATE" "V_VERSION_LOG_TEMPLATE"</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_VER_COMP" Association="Self.FK_VER_COMP">
             <End Role="VERSION_COMPANY" EntitySet="VERSION_COMPANY" />
             <End Role="VERSION_LOG" EntitySet="VERSION_LOG" />
@@ -192,6 +256,7 @@ FROM "USYSVER"."V_VERSION_LIST2" "V_VERSION_LIST2"</DefiningQuery>
             <End Role="VERSION_LOG" EntitySet="VERSION_LOG" />
             <End Role="VERSION_FLAG" EntitySet="VERSION_FLAG" />
           </AssociationSet>
+          <EntitySet Name="V_VERSION_LOG_TEMPLATE" EntityType="DatabseDB.V_VERSION_LOG_TEMPLATE" />
         </EntityContainer>
         <EntityType Name="V_VERSION_LIST1">
           <Key>
@@ -309,6 +374,41 @@ FROM "USYSVER"."V_VERSION_LIST2" "V_VERSION_LIST2"</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="V_VERSION_LOG_TEMPLATE">
+          <Key>
+            <PropertyRef Name="VER_ID" />
+            <PropertyRef Name="VER_COMPANY" />
+            <PropertyRef Name="VER_DATETIME" />
+            <PropertyRef Name="VER_CREATED_DATE" />
+            <PropertyRef Name="VER_CREATED_USER" />
+            <PropertyRef Name="VER_LOCK_FLAG" />
+            <PropertyRef Name="VER_DELAY" />
+            <PropertyRef Name="VER_DELETED" />
+          </Key>
+          <Property Name="VER_ID" Type="Int64" Nullable="false" />
+          <Property Name="VER_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VER_COMPANY" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VER_SOURCE_PATH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VER_SQL_DATA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VER_CONFIG" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VER_DATETIME" Type="DateTime" Nullable="false" />
+          <Property Name="VER_LOG_USER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VER_LOG_DATE" Type="DateTime" />
+          <Property Name="VER_CREATED_DATE" Type="DateTime" Nullable="false" />
+          <Property Name="VER_CREATED_USER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="VER_LOCK_FLAG" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VER_DELAY" Type="Byte" Nullable="false" />
+          <Property Name="VER_SQL_DATA_CHECK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VER_DELETED" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VER_MAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VER_MESSAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="VER_MODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VER_GROUP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="VER_S_VER_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="VER_FILE_FOLDER_TO_DELETE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Name="VER_MAIL_MESSAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="VER_MAIL_FLAG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -403,6 +503,35 @@ FROM "USYSVER"."V_VERSION_LIST2" "V_VERSION_LIST2"</DefiningQuery>
                 <ScalarProperty Name="VERF_FLAG" ColumnName="VERF_FLAG" />
                 <ScalarProperty Name="VERF_VER_ID" ColumnName="VERF_VER_ID" />
                 <ScalarProperty Name="VERF_ID" ColumnName="VERF_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_VERSION_LOG_TEMPLATE">
+            <EntityTypeMapping TypeName="DatabseDB.V_VERSION_LOG_TEMPLATE">
+              <MappingFragment StoreEntitySet="V_VERSION_LOG_TEMPLATE">
+                <ScalarProperty Name="VER_MAIL_FLAG" ColumnName="VER_MAIL_FLAG" />
+                <ScalarProperty Name="VER_MAIL_MESSAGE" ColumnName="VER_MAIL_MESSAGE" />
+                <ScalarProperty Name="VER_FILE_FOLDER_TO_DELETE" ColumnName="VER_FILE_FOLDER_TO_DELETE" />
+                <ScalarProperty Name="VER_S_VER_FLAG" ColumnName="VER_S_VER_FLAG" />
+                <ScalarProperty Name="VER_GROUP" ColumnName="VER_GROUP" />
+                <ScalarProperty Name="VER_MODE" ColumnName="VER_MODE" />
+                <ScalarProperty Name="VER_MESSAGE" ColumnName="VER_MESSAGE" />
+                <ScalarProperty Name="VER_MAIL" ColumnName="VER_MAIL" />
+                <ScalarProperty Name="VER_DELETED" ColumnName="VER_DELETED" />
+                <ScalarProperty Name="VER_SQL_DATA_CHECK" ColumnName="VER_SQL_DATA_CHECK" />
+                <ScalarProperty Name="VER_DELAY" ColumnName="VER_DELAY" />
+                <ScalarProperty Name="VER_LOCK_FLAG" ColumnName="VER_LOCK_FLAG" />
+                <ScalarProperty Name="VER_CREATED_USER" ColumnName="VER_CREATED_USER" />
+                <ScalarProperty Name="VER_CREATED_DATE" ColumnName="VER_CREATED_DATE" />
+                <ScalarProperty Name="VER_LOG_DATE" ColumnName="VER_LOG_DATE" />
+                <ScalarProperty Name="VER_LOG_USER" ColumnName="VER_LOG_USER" />
+                <ScalarProperty Name="VER_DATETIME" ColumnName="VER_DATETIME" />
+                <ScalarProperty Name="VER_CONFIG" ColumnName="VER_CONFIG" />
+                <ScalarProperty Name="VER_SQL_DATA" ColumnName="VER_SQL_DATA" />
+                <ScalarProperty Name="VER_SOURCE_PATH" ColumnName="VER_SOURCE_PATH" />
+                <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
+                <ScalarProperty Name="VER_NAME" ColumnName="VER_NAME" />
+                <ScalarProperty Name="VER_ID" ColumnName="VER_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

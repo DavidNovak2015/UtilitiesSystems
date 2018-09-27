@@ -22,6 +22,7 @@
       <End Role="VERSION_LOG" EntitySet="VERSION_LOG" />
       <End Role="VERSION_FLAG" EntitySet="VERSION_FLAG" />
     </AssociationSet>
+    <EntitySet Name="V_VERSION_LOG_TEMPLATE" EntityType="DatabseDB.V_VERSION_LOG_TEMPLATE" />
   </EntityContainer>
   <EntityType Name="V_VERSION_LIST1">
     <Key>
@@ -139,4 +140,39 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="V_VERSION_LOG_TEMPLATE">
+    <Key>
+      <PropertyRef Name="VER_ID" />
+      <PropertyRef Name="VER_COMPANY" />
+      <PropertyRef Name="VER_DATETIME" />
+      <PropertyRef Name="VER_CREATED_DATE" />
+      <PropertyRef Name="VER_CREATED_USER" />
+      <PropertyRef Name="VER_LOCK_FLAG" />
+      <PropertyRef Name="VER_DELAY" />
+      <PropertyRef Name="VER_DELETED" />
+    </Key>
+    <Property Name="VER_ID" Type="Int64" Nullable="false" />
+    <Property Name="VER_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VER_COMPANY" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VER_SOURCE_PATH" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VER_SQL_DATA" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VER_CONFIG" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VER_DATETIME" Type="DateTime" Nullable="false" />
+    <Property Name="VER_LOG_USER" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VER_LOG_DATE" Type="DateTime" />
+    <Property Name="VER_CREATED_DATE" Type="DateTime" Nullable="false" />
+    <Property Name="VER_CREATED_USER" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VER_LOCK_FLAG" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="VER_DELAY" Type="Byte" Nullable="false" />
+    <Property Name="VER_SQL_DATA_CHECK" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VER_DELETED" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="VER_MAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VER_MESSAGE" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VER_MODE" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="VER_GROUP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="VER_S_VER_FLAG" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="VER_FILE_FOLDER_TO_DELETE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
+    <Property Name="VER_MAIL_MESSAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="VER_MAIL_FLAG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

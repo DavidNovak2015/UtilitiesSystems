@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace VerzovaciSystem.Models.Entities
@@ -102,5 +103,6 @@ namespace VerzovaciSystem.Models.Entities
         }
         public VersionEntity()
         { }
+
     }
 }

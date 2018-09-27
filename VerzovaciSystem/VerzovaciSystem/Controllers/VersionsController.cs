@@ -44,21 +44,40 @@ namespace VerzovaciSystem.Controllers
             return RedirectToAction("GetVersion", new { idVersion = versionToChange.Id });
         }
 
-        // zobrazí formulář pro zadání nové verze
+        // NOVÁ VERZE
+        // zobrazí prázdný formulář pro zadání nové verze
         public ActionResult AddVersion()
         {
-            versionsViewModel.Version = new Models.Entities.VersionEntity();
-            return View(versionsViewModel.Version);
+            versionsViewModel.GetTemplateVersions();
+            return View(versionsViewModel);
         }
 
-        // zašle novou verzi k uložení do db
+        // zobrazí předvyplněný formulář z vybraného vzoru pro zadání nové verze
         [HttpPost]
-        public ActionResult AddVersion(VersionEntity newVersion)
+        public ActionResult GetTemplateVersion(VersionsViewModel versionsViewModel)
+        {
+            if (versionsViewModel.TemplateVersionId == 0)
+            {
+                TempData["result"] = "Nebyl vybrán vzor";
+                return RedirectToAction("AddVersion");
+            }
+
+            versionsViewModel.GetTemplateVersion(versionsViewModel.TemplateVersionId);
+            versionsViewModel.GetTemplateVersions();
+            return View("AddVersion", versionsViewModel);
+        }
+
+        // zašle novou verzi z prázdného formuláře k uložení do db
+        [HttpPost]
+        public ActionResult AddVersion(VersionsViewModel versionsViewModel)
         {
             if (!ModelState.IsValid)
-                return View(versionsViewModel.Version);
+            {
+                versionsViewModel.GetTemplateVersions();
+                return View(versionsViewModel);
+            }
 
-            TempData["result"] = versionsViewModel.AddVersion(newVersion);
+            TempData["result"] = versionsViewModel.AddVersion(versionsViewModel.Version);
             return RedirectToAction("GetTodayVersions", "SelectionMask");
         }
     }
