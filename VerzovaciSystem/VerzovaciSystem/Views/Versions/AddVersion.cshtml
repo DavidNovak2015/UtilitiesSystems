@@ -11,7 +11,7 @@
     @Html.ValidationSummary(true)
 
     <p>
-    Načíst vzorovou verzi:
+    Vyber verzi podle šablony:
     @Html.DropDownListFor(model => model.TemplateVersionId, new SelectList(Model.TemplateVersions, "Value", "Text"))
         <input type="submit" value="vybrat vzor" class="btn btn-default" />
         <br />

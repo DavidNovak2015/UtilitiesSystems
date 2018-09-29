@@ -101,8 +101,13 @@ namespace VerzovaciSystem.Models.Entities
             MailMessage = mailMessage;
             MailFlag = mailFlag;
         }
+
+        // pro načtení Environment.MaschineName a UserName do prázdného formuláře nové verze
+        public VersionEntity(string user)
+        {
+            User = user;
+        }
         public VersionEntity()
         { }
-
     }
 }

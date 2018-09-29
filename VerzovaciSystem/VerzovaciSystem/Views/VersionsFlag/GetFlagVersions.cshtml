@@ -4,16 +4,13 @@
     ViewBag.Title = "Události k verzi";
 }
 
-<h2>Události verze z VERSION_FLAG</h2>
+<h2>Události z VERSION_FLAG u verze č.@Model.VersionFlagEntity.VersionLogId </h2>
 
 <table border="1">
     <thead>
         <tr>
             <th>
                 @Html.LabelFor(model => model.VersionFlagEntity.Id, new { @class = "control-label col-md-2" })
-            </th>
-            <th>
-                @Html.LabelFor(model => model.VersionFlagEntity.VersionLogId, new { @class = "control-label col-md-2" })
             </th>
             <th>
                 @Html.LabelFor(model => model.VersionFlagEntity.Flag, new { @class = "control-label col-md-2" })
@@ -38,9 +35,6 @@
         <tr>
             <td>
                 @flagVersion.Id
-            </td>
-            <td>
-                @flagVersion.VersionLogId
             </td>
             <td>
                 @flagVersion.Flag

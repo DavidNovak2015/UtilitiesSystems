@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
+using System;
 using VerzovaciSystem.Models.Entities;
 using VerzovaciSystemDB;
 
@@ -102,9 +101,10 @@ namespace VerzovaciSystem.Models
             return dbRepository.ChangeVersion(versionToDb);
         }
 
-        // najde všechny template pro nové verze z V_VERSION_LOG_TEMPLATE
+        // najde všechny template do DropDownListu pro nové verze z V_VERSION_LOG_TEMPLATE
         public void GetTemplateVersions()
         {
+
             List<V_VERSION_LOG_TEMPLATE> templateVersionsFromDb = dbRepository.GetTemplateVersions();
 
             if (TemplateVersions == null)
@@ -137,7 +137,7 @@ namespace VerzovaciSystem.Models
                                         templateVersionFromDb.VER_LOG_USER,
                                         templateVersionFromDb.VER_LOG_DATE,
                                         templateVersionFromDb.VER_CREATED_DATE,
-                                        templateVersionFromDb.VER_CREATED_USER,
+                                        $"{Environment.MachineName}/{Environment.UserName}",
                                         templateVersionFromDb.VER_LOCK_FLAG,
                                         templateVersionFromDb.VER_DELAY,
                                         templateVersionFromDb.VER_SQL_DATA_CHECK,

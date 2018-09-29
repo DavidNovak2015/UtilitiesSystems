@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using System;
 using VerzovaciSystem.Models;
 using VerzovaciSystem.Models.Entities;
 
@@ -49,6 +50,7 @@ namespace VerzovaciSystem.Controllers
         public ActionResult AddVersion()
         {
             versionsViewModel.GetTemplateVersions();
+            versionsViewModel.Version = new VersionEntity($"{Environment.MachineName}/{Environment.UserName}");
             return View(versionsViewModel);
         }
 

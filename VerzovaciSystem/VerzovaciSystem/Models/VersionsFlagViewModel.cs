@@ -18,11 +18,10 @@ namespace VerzovaciSystem.Models
         // naplní Selectionresult všemi událostmi k předanému číslu verze
         public void GetEventsToVersion(long versionLogId)
         {
-            VersionFlagEntity = new VersionFlagEntity();
+            VersionFlagEntity = new VersionFlagEntity(versionLogId);
 
             List<VERSION_FLAG> versionsFlagFromDB = dbRepository.GetAllRecordsFromVERSION_FLAG(versionLogId);
             SelectionResult = versionsFlagFromDB.Select(x => new VersionFlagEntity(x.VERF_ID,
-                                                                                   x.VERF_VER_ID,
                                                                                    x.VERF_FLAG,
                                                                                    x.VERF_DESC,
                                                                                    x.VERF_DATE,

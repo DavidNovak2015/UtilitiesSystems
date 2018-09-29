@@ -25,19 +25,20 @@ namespace VerzovaciSystem.Models.Entities
         public DateTime Created { get; private set; }
 
         // pro zobrazení všech událostí z VERSION_FLAG bez log souboru
-        public VersionFlagEntity(long iD, long versionLogId, string flag, string description, DateTime date, DateTime created)
+        public VersionFlagEntity(long iD, string flag, string description, DateTime date, DateTime created)
         {
             Id = iD;
-            VersionLogId = versionLogId;
             Flag = flag;
             Description = description;
             Date = date;
             Created = created;
         }
 
-        //Pro labely 
-        public VersionFlagEntity()
-        { }
+        //Pro zobrazení versionLogId v nadpisu GetFlagVersions view 
+        public VersionFlagEntity(long versionLogId)
+        {
+            VersionLogId = versionLogId;
+        }
 
         // pro zobrazení obsahu Log souboru patřící k jedné události z VERSION_FLAG.Id
         public VersionFlagEntity(long id,long versionLogId, string file)
