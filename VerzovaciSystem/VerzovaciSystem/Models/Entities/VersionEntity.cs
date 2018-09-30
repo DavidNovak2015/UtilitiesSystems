@@ -27,6 +27,7 @@ namespace VerzovaciSystem.Models.Entities
         public string LogUser { get;  set; }
 
         [Display(Name = "Datum změny")]
+        [DataType(DataType.Date)]
         public DateTime? LogDate { get;  set; }
 
         [Display(Name ="Začalo finální stahování")]
@@ -102,10 +103,11 @@ namespace VerzovaciSystem.Models.Entities
             MailFlag = mailFlag;
         }
 
-        // pro načtení Environment.MaschineName a UserName do prázdného formuláře nové verze
-        public VersionEntity(string user)
+        // pro předvyplnění některých políček do prázdného formuláře nové verze
+        public VersionEntity(string user, DateTime created)
         {
             User = user;
+            Created = created;
         }
         public VersionEntity()
         { }

@@ -17,7 +17,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyEntity.Name, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyEntity.Name, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.CompanyEntity.Name, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CompanyEntity.Name, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -25,7 +25,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyEntity.Active, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CompanyEntity.Active, new SelectList(Model.CompanyEntity.Actives, "Value", "Text"))
+                @Html.DropDownListFor(model => model.CompanyEntity.Active, new SelectList(Model.CompanyEntity.Actives, "Value", "Text"), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CompanyEntity.Active, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -33,7 +33,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyEntity.Description, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyEntity.Description, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.CompanyEntity.Description, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CompanyEntity.Description, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -41,7 +41,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyEntity.Interface, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyEntity.Interface, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.CompanyEntity.Interface, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CompanyEntity.Interface, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -49,7 +49,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyEntity.Type, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.CompanyEntity.Type, new SelectList(Model.CompanyEntity.Types, "Value", "Text"))
+                @Html.DropDownListFor(model => model.CompanyEntity.Type, new SelectList(Model.CompanyEntity.Types, "Value", "Text"), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CompanyEntity.Type, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -57,7 +57,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.CompanyEntity.Language, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.CompanyEntity.Language, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.CompanyEntity.Language, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CompanyEntity.Language, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -50,7 +50,9 @@ namespace VerzovaciSystem.Controllers
         public ActionResult AddVersion()
         {
             versionsViewModel.GetTemplateVersions();
-            versionsViewModel.Version = new VersionEntity($"{Environment.MachineName}/{Environment.UserName}");
+            versionsViewModel.Version = new VersionEntity($"{Environment.MachineName}/{Environment.UserName}",
+                                                          DateTime.Now
+                                                         );
             return View(versionsViewModel);
         }
 

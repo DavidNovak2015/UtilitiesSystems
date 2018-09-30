@@ -105,7 +105,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SelectionMaskEntity.Id, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SelectionMaskEntity.Id, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.SelectionMaskEntity.Id, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SelectionMaskEntity.Id, "", new { @class = "text-danger" })
             </div>
         </div><br />
@@ -113,7 +113,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SelectionMaskEntity.CompanyTyp, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SelectionMaskEntity.CompanyTyp, new SelectList(Model.CompanyTypes, "Value", "Text"))
+                @Html.DropDownListFor(model => model.SelectionMaskEntity.CompanyTyp, new SelectList(Model.CompanyTypes, "Value", "Text"),new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SelectionMaskEntity.CompanyTyp, "", new { @class = "text-danger" })
             </div>
             <br /><br />
@@ -122,7 +122,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SelectionMaskEntity.Company, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SelectionMaskEntity.Company, new SelectList(Model.Companies, "Value", "Text"))
+                @Html.DropDownListFor(model => model.SelectionMaskEntity.Company, new SelectList(Model.Companies, "Value", "Text"), new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SelectionMaskEntity.Company, "", new { @class = "text-danger" })
             </div>
             <br /><br />

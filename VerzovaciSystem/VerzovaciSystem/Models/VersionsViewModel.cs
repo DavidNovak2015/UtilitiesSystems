@@ -136,7 +136,7 @@ namespace VerzovaciSystem.Models
                                         templateVersionFromDb.VER_DATETIME,
                                         templateVersionFromDb.VER_LOG_USER,
                                         templateVersionFromDb.VER_LOG_DATE,
-                                        templateVersionFromDb.VER_CREATED_DATE,
+                                        DateTime.Now,
                                         $"{Environment.MachineName}/{Environment.UserName}",
                                         templateVersionFromDb.VER_LOCK_FLAG,
                                         templateVersionFromDb.VER_DELAY,
