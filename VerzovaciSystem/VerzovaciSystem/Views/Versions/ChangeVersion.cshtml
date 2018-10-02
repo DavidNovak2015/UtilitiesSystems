@@ -126,10 +126,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Deleted, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.DeletedString, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Deleted, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Deleted, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.DeletedString, new { @class = "form-control", @readonly="readonly" })
+                @Html.ValidationMessageFor(model => model.DeletedString, "", new { @class = "text-danger" })
             </div>
         </div>
 

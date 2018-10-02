@@ -12,88 +12,7 @@
     </div>
 </div>
 
-@*<script src="~/Scripts/MyScripts/SelectionMask.js"></script>
 
- <input type="text" id="cislo1" size="5" /> +
-<input type="text" id="cislo2" size="5" />
-<button id="tlacitko">Sečti</button>
-
-<form method="post">
-    <div class="form-horizontal">
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SelectionMaskEntity.CompanyTyp, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select name="CompanyType">
-                    @foreach (var item in Model.CompanyTypes)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
-                </select>
-            </div>
-            <br /><br />
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SelectionMaskEntity.Company, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <select name="Company">
-                    @foreach (var item in Model.Companies)
-                    {
-                        <option value="@item.Value">@item.Text</option>
-                    }
-                </select>
-            </div>
-            <br /><br />
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateFrom, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="datetime" id="VersionDateFrom"  value="@Model.SelectionMaskEntity.VersionDateFrom" class="form-control"/>
-            </div>
-            <br /><br />
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateTo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="date" id="VersionDateTo" value="@Model.SelectionMaskEntity.VersionDateTo" class="form-control" />
-            </div>
-            <br /><br />
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SelectionMaskEntity.CreationDateFrom, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="date" id="CreationDateFrom" value="@Model.SelectionMaskEntity.CreationDateFrom" class="form-control" />
-            </div>
-            <br /><br />
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.SelectionMaskEntity.CreationDateTo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="date" id="CreationDateTo" value="@Model.SelectionMaskEntity.CreationDateTo" class="form-control" />
-            </div>
-            <br /><br />
-        </div>
-
-    </div>
-
-    <div class="form-horizontal">
-
-        <div class="form-group">
-            <div id="Find" class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Vyhledat" class="btn btn-default" />
-            </div>
-        </div>
-
-    </div>
-
-</form>*@
-
-@*-----------------------------------------------------------------------------------------------------*@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken();
@@ -127,13 +46,22 @@
             </div>
             <br /><br />
         </div>
-            <div class="form-group">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SelectionMaskEntity.Group, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.SelectionMaskEntity.Group, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectionMaskEntity.Group, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+        <div class="form-group">
                 @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateFrom,  new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextBoxFor(model => model.SelectionMaskEntity.VersionDateFrom, @"{0:dd.MM.yyyy}", new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.SelectionMaskEntity.VersionDateFrom, "", new { @class = "text-danger" })
-                </div>
-            </div><br />
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.SelectionMaskEntity.VersionDateFrom, @"{0:dd.MM.yyyy}", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectionMaskEntity.VersionDateFrom, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
 
             <div class="form-group">
                 @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateTo, new { @class = "control-label col-md-2" })
@@ -182,3 +110,86 @@
 
 
 }
+
+@*-----------------------------------------------------------------------------------------------------*@
+
+@*<script src="~/Scripts/MyScripts/SelectionMask.js"></script>
+
+     <input type="text" id="cislo1" size="5" /> +
+    <input type="text" id="cislo2" size="5" />
+    <button id="tlacitko">Sečti</button>
+
+    <form method="post">
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SelectionMaskEntity.CompanyTyp, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select name="CompanyType">
+                        @foreach (var item in Model.CompanyTypes)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+                <br /><br />
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SelectionMaskEntity.Company, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select name="Company">
+                        @foreach (var item in Model.Companies)
+                        {
+                            <option value="@item.Value">@item.Text</option>
+                        }
+                    </select>
+                </div>
+                <br /><br />
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateFrom, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="datetime" id="VersionDateFrom"  value="@Model.SelectionMaskEntity.VersionDateFrom" class="form-control"/>
+                </div>
+                <br /><br />
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateTo, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="date" id="VersionDateTo" value="@Model.SelectionMaskEntity.VersionDateTo" class="form-control" />
+                </div>
+                <br /><br />
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SelectionMaskEntity.CreationDateFrom, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="date" id="CreationDateFrom" value="@Model.SelectionMaskEntity.CreationDateFrom" class="form-control" />
+                </div>
+                <br /><br />
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.SelectionMaskEntity.CreationDateTo, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="date" id="CreationDateTo" value="@Model.SelectionMaskEntity.CreationDateTo" class="form-control" />
+                </div>
+                <br /><br />
+            </div>
+
+        </div>
+
+        <div class="form-horizontal">
+
+            <div class="form-group">
+                <div id="Find" class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Vyhledat" class="btn btn-default" />
+                </div>
+            </div>
+
+        </div>
+
+    </form>*@

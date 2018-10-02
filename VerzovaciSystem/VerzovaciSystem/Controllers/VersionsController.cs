@@ -81,6 +81,11 @@ namespace VerzovaciSystem.Controllers
                 return View(versionsViewModel);
             }
 
+            if (versionsViewModel.Version.DeletedBool)
+                versionsViewModel.Version.DeletedString = "A";
+            else
+                versionsViewModel.Version.DeletedString = "N";
+
             TempData["result"] = versionsViewModel.AddVersion(versionsViewModel.Version);
             return RedirectToAction("GetTodayVersions", "SelectionMask");
         }

@@ -30,6 +30,7 @@ namespace VerzovaciSystem.Models
         {
             VERSION_LOG versionFromDB = new VERSION_LOG();
             versionFromDB = dbRepository.GetVersion(idVersion);
+
             Version = new VersionEntity(versionFromDB.VER_ID,
                                         versionFromDB.VER_NAME,
                                         versionFromDB.VER_COMPANY,
@@ -80,7 +81,7 @@ namespace VerzovaciSystem.Models
             versionToDb.VER_LOCK_FLAG = versionEntity.LogFlag;
             versionToDb.VER_DELAY = versionEntity.Delay;
             versionToDb.VER_SQL_DATA_CHECK = versionEntity.SqlDataCheck;
-            versionToDb.VER_DELETED = versionEntity.Deleted;
+            versionToDb.VER_DELETED = versionEntity.DeletedString;
             versionToDb.VER_MAIL = versionEntity.Mail;
             versionToDb.VER_MESSAGE = versionEntity.Message;
             versionToDb.VER_MODE = versionEntity.Mode;

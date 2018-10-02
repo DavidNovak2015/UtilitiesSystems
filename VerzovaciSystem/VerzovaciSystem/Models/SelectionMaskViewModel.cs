@@ -98,21 +98,34 @@ namespace VerzovaciSystem.Models
 
             IEnumerable<V_VERSION_LIST1> temporaryRecords = recordsFromDB.OrderByDescending(x => x.VER_ID);
 
-            // Id version
-            if (selectionsparameters.Id != long.MinValue)
+            // Company a Group
+            if ((selectionsparameters.Company != null) && (selectionsparameters.Group != null))
             {
-                temporaryRecords = recordsFromDB.Where(versionId => versionId.VER_ID == selectionsparameters.Id).ToList();
+                temporaryRecords = recordsFromDB.Where(company => company.VER_COMPANY== selectionsparameters.Company)
+                                              .Where(group => group.VER_GROUP == selectionsparameters.Group);
             }
-            // Company type
-            if (selectionsparameters.CompanyTyp != null)
+            if ((selectionsparameters.Company != null) && (selectionsparameters.Group == null))
             {
-                temporaryRecords = recordsFromDB.Where(companyType => companyType.VER_COMPANY_TYPE == selectionsparameters.CompanyTyp);
+                temporaryRecords = recordsFromDB.Where(company => company.VER_COMPANY == selectionsparameters.Company);
+            }
+            if ((selectionsparameters.Company == null) && (selectionsparameters.Group != null))
+            {
+                temporaryRecords = recordsFromDB.Where(group => group.VER_GROUP == selectionsparameters.Group);
             }
 
-            // Company
-            if (selectionsparameters.Company != null) // otestováno
+            // Company type a Company
+            if ( (selectionsparameters.CompanyTyp != null) && (selectionsparameters.Company !=null) )
             {
-                 temporaryRecords = recordsFromDB.Where(company => company.VER_COMPANY == selectionsparameters.Company);
+                temporaryRecords = recordsFromDB.Where(companyTyp => companyTyp.VER_COMPANY_TYPE == selectionsparameters.CompanyTyp)
+                                              .Where(company => company.VER_COMPANY == selectionsparameters.Company);
+            }
+            if ( (selectionsparameters.CompanyTyp !=null) && (selectionsparameters.Company == null) )
+            {
+                temporaryRecords = recordsFromDB.Where(companyTyp => companyTyp.VER_COMPANY_TYPE == selectionsparameters.CompanyTyp);
+            }
+            if ( (selectionsparameters.CompanyTyp == null) && (selectionsparameters.Company != null) )
+            {
+                temporaryRecords = temporaryRecords.Where(company => company.VER_COMPANY == selectionsparameters.Company);
             }
 
             // VersionDateFrom a VersionDateTo
@@ -143,6 +156,12 @@ namespace VerzovaciSystem.Models
             if ( (selectionsparameters.CreationDateTo != DateTime.MinValue) && (selectionsparameters.CreationDateFrom == null) )// otestováno
             {
                 temporaryRecords = recordsFromDB.Where(creationDateTo => creationDateTo.VER_CREATED_DATE <= selectionsparameters.CreationDateTo);
+            }
+
+            // Id version
+            if (selectionsparameters.Id != null)
+            {
+                temporaryRecords = recordsFromDB.Where(versionId => versionId.VER_ID == selectionsparameters.Id).ToList();
             }
 
             SelectionResult = temporaryRecords.Select(x => new SelectionMaskOutputEntity(x.VER_ID,
