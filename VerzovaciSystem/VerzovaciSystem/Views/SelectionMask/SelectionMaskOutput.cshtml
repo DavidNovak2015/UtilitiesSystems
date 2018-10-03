@@ -66,10 +66,10 @@
                     @item.Group
                 </td>
                 <td>
-                    @item.Date.ToShortDateString()
+                    @item.Date.ToString(@"dd/MM/yyyy/hh/:mm")
                 </td>
                 <td>
-                    @item.Created.ToShortDateString()
+                    @item.Created.ToString(@"dd/MM/yyyy/hh/:mm")
                 </td>
                 <td>
                     @item.User

@@ -12,7 +12,7 @@
         <div class="col-md-1 col-md-10">
             @Html.ActionLink("Události z VERSION_FLAG", "GetFlagVersions", "VersionsFlag", new { versionLogId = Model.Version.Id }, new { @class = "btn btn-default" })
             @Html.ActionLink("Odstranit verzi", "GetVersionForDeletion", new { idVersion = Model.Version.Id }, new { @class = "btn btn-default" })
-            @Html.ActionLink("Aktualizovat verzi", "ChangeVersion", new { idVersion = Model.Version.Id }, new { @class = "btn btn-default" })
+            @Html.ActionLink("Změnit verzi", "ChangeVersion", new { idVersion = Model.Version.Id }, new { @class = "btn btn-default" })
         </div>
     </div>
 
@@ -61,7 +61,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Version.Date, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <p>@Model.Version.Date</p>
+            <p>@Model.Version.Date.ToString(@"dd/MM/yyyy/hh/:mm")</p>
         </div>
     </div>
 
@@ -82,7 +82,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Version.Created, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <p>@Model.Version.Created</p>
+            <p>@Model.Version.Created.ToString(@"dd/MM/yyyy/hh/:mm")</p>
         </div>
     </div>
 

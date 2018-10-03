@@ -35,7 +35,7 @@ namespace VerzovaciSystem.Models.Entities
         [Required(ErrorMessage = "Povinné pole")]
         public string LogFlag { get;  set; }
 
-        [Display(Name ="Kolik minut bude trvat aktualizace, ale i jak dlouho se čeká na ukončení procesu ...")]
+        [Display(Name ="Délka verze")]
         [Range(1,999,ErrorMessage ="Hodnota musí být mezi 1 a 999")]
         [Required(ErrorMessage = "Povinné pole")]
         public byte Delay { get;  set; }
@@ -140,6 +140,7 @@ namespace VerzovaciSystem.Models.Entities
             MailMessage = mailMessage;
             MailFlag = mailFlag;
         }
+        
         public VersionEntity()
         { }
     }

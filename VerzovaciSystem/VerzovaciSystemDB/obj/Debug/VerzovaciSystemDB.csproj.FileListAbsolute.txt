@@ -22,3 +22,15 @@ C:\Users\david\OneDrive\Plocha\Dovolena_Verzovaci_System\VerzovaciSystem\Verzova
 C:\Users\david\OneDrive\Plocha\Dovolena_Verzovaci_System\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.dll
 C:\Users\david\OneDrive\Plocha\Dovolena_Verzovaci_System\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.pdb
 C:\Users\David\Desktop\UtilitiesSystems-GitHub\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.csprojResolveAssemblyReference.cache
+C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\VerzovaciSystemDB.dll.config
+C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\VerzovaciSystemDB.dll
+C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\VerzovaciSystemDB.pdb
+C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.dll
+C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\Oracle.ManagedDataAccess.EntityFramework.dll
+C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.xml
+C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.csprojResolveAssemblyReference.cache
+C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.dll
+C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.pdb

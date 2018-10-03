@@ -1,16 +1,9 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Text;
 using System.Data;
-using System.Data.Entity;
-using System.Data.EntityClient;
-using System.Data.Objects;
-
 using Oracle.ManagedDataAccess.Client;
-using Oracle.ManagedDataAccess.EntityFramework;
-using System.Data.SqlClient;
+
 
 namespace VerzovaciSystemDB
 {
@@ -219,18 +212,18 @@ namespace VerzovaciSystemDB
         }
 
         // Přidání nové verze do VERSION_LOG
-        public string AddVersion(VERSION_LOG versionToDb)
+        public string AddVersion(VERSION_LOG versionToDb,ref long versionId)
         {
             versionToDb.VER_ID = GetNextIdNumberForDbTable("VERSION_LOG", "VER_ID");
             if (versionToDb.VER_ID == 5555)
                 return result = "Metoda \"GetNextIdNumberForDbTable\" vrátila chybu";
-
             try
             {
                 using (OracleConnectionString accessToDB = new OracleConnectionString())
                 {
                     accessToDB.VERSION_LOG.Add(versionToDb);
                     accessToDB.SaveChanges();
+                    versionId = versionToDb.VER_ID;
                     return result = "Požadavek byl proveden";
                 }
             }

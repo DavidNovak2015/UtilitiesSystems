@@ -15,7 +15,7 @@ namespace VerzovaciSystem.Models.Entities
 
         [Display(Name = "Čas aktualizace")]
         [Required(ErrorMessage = "Povinné pole")]
-        [DataType(DataType.Date)]
+        [DataType(DataType.DateTime)]
         public DateTime Date { get;  set; }
 
         [Display(Name = "Datum vytvoření")]
@@ -34,7 +34,7 @@ namespace VerzovaciSystem.Models.Entities
 
         public string Status { get;  set; }
 
-        [Display(Name ="Typ společnosti")]
+        [Display(Name ="Typ spol.")]
         public string CompanyType { get;  set; }
 
         public SelectionMaskOutputEntity(long iD, string company, string group, DateTime date, DateTime created, string user, string status, string companyType)
@@ -63,6 +63,5 @@ namespace VerzovaciSystem.Models.Entities
             Created = created;
             User = user;
         }
-
     }
 }

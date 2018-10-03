@@ -34,6 +34,7 @@ namespace VerzovaciSystem.Controllers
         public ActionResult ChangeVersion(long idVersion)
         {
             versionsViewModel.GetVersion(idVersion);
+            versionsViewModel.Version.LogUser = $"{Environment.MachineName}/{Environment.UserName}";
             return View(versionsViewModel.Version);
         }
 
@@ -86,8 +87,9 @@ namespace VerzovaciSystem.Controllers
             else
                 versionsViewModel.Version.DeletedString = "N";
 
-            TempData["result"] = versionsViewModel.AddVersion(versionsViewModel.Version);
-            return RedirectToAction("GetTodayVersions", "SelectionMask");
+            long versionId = 0;
+            TempData["result"] = versionsViewModel.AddVersion(versionsViewModel.Version,ref versionId);
+            return RedirectToAction("GetVersion", new { idVersion = versionId});
         }
     }
 }

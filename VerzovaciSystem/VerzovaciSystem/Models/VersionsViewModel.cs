@@ -155,11 +155,11 @@ namespace VerzovaciSystem.Models
 
         }
         // zašle novou verzi k uložení do db
-        public string AddVersion(VersionEntity versionEntity)
+        public string AddVersion(VersionEntity versionEntity, ref long versionId)
         {
             VERSION_LOG versionToDb = CompleteDbModel(versionEntity);
 
-            return dbRepository.AddVersion(versionToDb);
+            return dbRepository.AddVersion(versionToDb,ref versionId);
         }
     }
 }

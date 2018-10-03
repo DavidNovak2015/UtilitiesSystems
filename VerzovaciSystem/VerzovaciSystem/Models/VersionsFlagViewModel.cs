@@ -38,7 +38,7 @@ namespace VerzovaciSystem.Models
 
             VersionFlagEntity = new VersionFlagEntity(flagEventFromDb.VERF_ID,
                                                       flagEventFromDb.VERF_VER_ID,
-                                                      flagEventFromDb.VERF_FILE.Replace("\r\n","<br/>")
+                                                      flagEventFromDb.VERF_FILE.Replace("\n",@"{<br/>}")
                                                      );
         }
     }
