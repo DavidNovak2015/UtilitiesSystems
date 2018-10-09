@@ -102,10 +102,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LogFlag, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.LogFlagBool, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.LogFlag, new { @class = "form-control",@readonly="readonly" })
-                @Html.ValidationMessageFor(model => model.LogFlag, "", new { @class = "text-danger" })
+                @Html.CheckBoxFor(model => model.LogFlagBool, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LogFlagBool, "", new { @class = "text-danger" })
             </div>
         </div>
 

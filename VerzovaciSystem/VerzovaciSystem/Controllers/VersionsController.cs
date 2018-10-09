@@ -38,6 +38,13 @@ namespace VerzovaciSystem.Controllers
         {
             versionsViewModel.GetVersion(idVersion);
             versionsViewModel.Version.LogUser = $"{Environment.MachineName}/{Environment.UserName}";
+
+            if (versionsViewModel.Version.LogFlagString == "A")
+                versionsViewModel.Version.LogFlagBool = true;
+
+            else
+                versionsViewModel.Version.LogFlagBool = false;
+
             return View(versionsViewModel.Version);
         }
 
@@ -49,6 +56,12 @@ namespace VerzovaciSystem.Controllers
             {
                 return View(versionToChange);
             }
+
+            if (versionToChange.LogFlagBool)
+                versionToChange.LogFlagString = "A";
+            else
+                versionToChange.LogFlagString = "N";
+
             TempData["result"] = versionsViewModel.ChangeVersion(versionToChange);
             return RedirectToAction("GetVersion", new { idVersion = versionToChange.Id });
         }
@@ -80,10 +93,13 @@ namespace VerzovaciSystem.Controllers
             return View("AddVersion", versionsViewModel);
         }
 
-        // zašle novou verzi z prázdného formuláře k uložení do db
+        // zašle novou verzi z formuláře k uložení do db
         [HttpPost]
         public ActionResult AddVersion(VersionsViewModel versionsViewModel)
         {
+            versionsViewModel.Version.LogDate = DateTime.Now;
+            versionsViewModel.Version.Created = DateTime.Now;
+
             if (!ModelState.IsValid)
             {
                 versionsViewModel.GetTemplateVersionsAndCompanies();
@@ -94,6 +110,11 @@ namespace VerzovaciSystem.Controllers
                 versionsViewModel.Version.DeletedString = "A";
             else
                 versionsViewModel.Version.DeletedString = "N";
+
+            if (versionsViewModel.Version.LogFlagBool)
+                versionsViewModel.Version.LogFlagString = "A";
+            else
+                versionsViewModel.Version.LogFlagString = "N";
 
             long versionId = 0;
             TempData["result"] = versionsViewModel.AddVersion(versionsViewModel.Version,ref versionId);

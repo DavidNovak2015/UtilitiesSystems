@@ -82,22 +82,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Version.LogDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Version.LogDate, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Version.LogDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Version.Created, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Version.Created, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Version.Created, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.Version.User, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.Version.User, new { @class = "form-control" })
@@ -106,10 +90,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Version.LogFlag, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Version.LogFlagBool, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Version.LogFlag, new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Version.LogFlag, "", new { @class = "text-danger" })
+                @Html.CheckBoxFor(model => model.Version.LogFlagBool, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Version.LogFlagBool, "", new { @class = "text-danger" })
             </div>
         </div>
 

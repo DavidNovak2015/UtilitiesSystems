@@ -27,13 +27,13 @@ namespace VerzovaciSystem.Models.Entities
         public string LogUser { get;  set; }
 
         [Display(Name = "Datum změny")]
-        //[DataType(DataType.Date)]
         public DateTime? LogDate { get;  set; }
 
+        [Display(Name = "Začalo finální stahování")]
+        public bool LogFlagBool { get; set; }
+
         [Display(Name ="Začalo finální stahování")]
-        [StringLength(1, ErrorMessage = "Překročen limit 1 znak")]
-        [Required(ErrorMessage = "Povinné pole")]
-        public string LogFlag { get;  set; }
+        public string LogFlagString { get;  set; }
 
         [Display(Name ="Délka verze")]
         [Range(1,999,ErrorMessage ="Hodnota musí být mezi 1 a 999")]
@@ -91,7 +91,7 @@ namespace VerzovaciSystem.Models.Entities
             LogDate = logDate;
             Created = created;
             User = user;
-            LogFlag = logFlag;
+            LogFlagString = logFlag;
             Delay = delay;
             SqlDataCheck = sqlDataCheck;
             DeletedString = deleted1;
@@ -114,7 +114,7 @@ namespace VerzovaciSystem.Models.Entities
         }
 
         // pro změnu verze
-        public VersionEntity(long iD, string name, string company, string sourcePath, string sqlData, string config, DateTime date, string logUser, DateTime? logDate, DateTime created, string user, string logFlag, byte delay, string sqlDataCheck, bool deletedBool, string mail, string message, string mode, string group, string flag, string fileFolderToDelete, string mailMessage, string mailFlag)
+        public VersionEntity(long iD, string name, string company, string sourcePath, string sqlData, string config, DateTime date, string logUser, DateTime? logDate, DateTime created, string user, bool logFlag, byte delay, string sqlDataCheck, bool deletedBool, string mail, string message, string mode, string group, string flag, string fileFolderToDelete, string mailMessage, string mailFlag)
             : base(iD, company, date, created, user, group)
         {
             Id = iD;
@@ -128,7 +128,7 @@ namespace VerzovaciSystem.Models.Entities
             LogDate = logDate;
             Created = created;
             User = user;
-            LogFlag = logFlag;
+            LogFlagBool = logFlag;
             Delay = delay;
             SqlDataCheck = sqlDataCheck;
             DeletedBool = deletedBool;

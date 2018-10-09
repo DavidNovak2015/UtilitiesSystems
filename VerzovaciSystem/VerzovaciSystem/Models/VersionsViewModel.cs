@@ -83,7 +83,7 @@ namespace VerzovaciSystem.Models
             versionToDb.VER_LOG_DATE = versionEntity.LogDate;
             versionToDb.VER_CREATED_DATE = versionEntity.Created;
             versionToDb.VER_CREATED_USER = versionEntity.User;
-            versionToDb.VER_LOCK_FLAG = versionEntity.LogFlag;
+            versionToDb.VER_LOCK_FLAG = versionEntity.LogFlagString;
             versionToDb.VER_DELAY = versionEntity.Delay;
             versionToDb.VER_SQL_DATA_CHECK = versionEntity.SqlDataCheck;
             versionToDb.VER_DELETED = versionEntity.DeletedString;
