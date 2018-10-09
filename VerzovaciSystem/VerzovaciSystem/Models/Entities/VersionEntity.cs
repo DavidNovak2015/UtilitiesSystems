@@ -27,7 +27,7 @@ namespace VerzovaciSystem.Models.Entities
         public string LogUser { get;  set; }
 
         [Display(Name = "Datum změny")]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         public DateTime? LogDate { get;  set; }
 
         [Display(Name ="Začalo finální stahování")]
@@ -106,10 +106,11 @@ namespace VerzovaciSystem.Models.Entities
         }
 
         // pro předvyplnění některých políček do prázdného formuláře nové verze
-        public VersionEntity(string user, DateTime created)
+        public VersionEntity(string user, DateTime created, DateTime date)
         {
             User = user;
             Created = created;
+            Date = date;
         }
 
         // pro změnu verze

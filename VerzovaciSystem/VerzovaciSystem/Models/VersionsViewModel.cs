@@ -2,6 +2,8 @@
 using System;
 using VerzovaciSystem.Models.Entities;
 using VerzovaciSystemDB;
+using System.Web.Mvc;
+using System.Linq;
 
 namespace VerzovaciSystem.Models
 {
@@ -21,6 +23,9 @@ namespace VerzovaciSystem.Models
 
         // pro DropDownList výběru template pro novou verzi
         public List<TemplateVersionsSelectListItem> TemplateVersions { get; set; }
+
+        // pro DropDownList výběru společnosti pro novou verzi
+        public List<SelectListItem> Companies { get; private set; }
 
         // pro uložení hodnoty z DropDownList výběru template pro novou verzi
         public long TemplateVersionId { get; set; }
@@ -103,9 +108,9 @@ namespace VerzovaciSystem.Models
         }
 
         // najde všechny template do DropDownListu pro nové verze z V_VERSION_LOG_TEMPLATE
-        public void GetTemplateVersions()
+        public void GetTemplateVersionsAndCompanies()
         {
-
+            // Template versions:
             List<V_VERSION_LOG_TEMPLATE> templateVersionsFromDb = dbRepository.GetTemplateVersions();
 
             if (TemplateVersions == null)
@@ -122,6 +127,20 @@ namespace VerzovaciSystem.Models
                                                                         } 
                                     );
             }
+
+            // Companies:
+            if (Companies == null)
+            {
+            List<VERSION_COMPANY> companiesFromDB = dbRepository.GetCompanies();
+            List<CompanyEntity> companies = companiesFromDB.Select(x => new CompanyEntity(HelpsMethods.GetIntFromDecimal(x.VER_COMPANY_ID), x.VER_COMPANY)).OrderBy(company => company.Name).ToList();
+                Companies = new List<SelectListItem>();
+                Companies.Add(new SelectListItem { Text = "option", Value = null });
+                foreach(var company in companies)
+                {
+                    Companies.Add(new SelectListItem { Text = company.Name, Value = company.Name });
+                }
+            }
+            
         }
 
         // najde template pro novou verzi z V_VERSION_LOG_TEMPLATE

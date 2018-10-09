@@ -2,12 +2,15 @@
 using System;
 using VerzovaciSystem.Models;
 using VerzovaciSystem.Models.Entities;
+using System.Collections.Generic;
 
 namespace VerzovaciSystem.Controllers
 {
     public class VersionsController : Controller
     {
         VersionsViewModel versionsViewModel = new VersionsViewModel();
+
+        public List<SelectListItem> Companies { get; private set; }
 
         // vrací jednu verzi z VERSION_LOG se všemi sloupci
         public ActionResult GetVersion(long idVersion)
@@ -42,6 +45,10 @@ namespace VerzovaciSystem.Controllers
         [HttpPost]
         public ActionResult ChangeVersion(VersionEntity versionToChange)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(versionToChange);
+            }
             TempData["result"] = versionsViewModel.ChangeVersion(versionToChange);
             return RedirectToAction("GetVersion", new { idVersion = versionToChange.Id });
         }
@@ -50,9 +57,10 @@ namespace VerzovaciSystem.Controllers
         // zobrazí prázdný formulář pro zadání nové verze
         public ActionResult AddVersion()
         {
-            versionsViewModel.GetTemplateVersions();
+            versionsViewModel.GetTemplateVersionsAndCompanies();
             versionsViewModel.Version = new VersionEntity($"{Environment.MachineName}/{Environment.UserName}",
-                                                          DateTime.Now
+                                                          DateTime.Now,
+                                                          new DateTime(2018, 05, 30)
                                                          );
             return View(versionsViewModel);
         }
@@ -68,7 +76,7 @@ namespace VerzovaciSystem.Controllers
             }
 
             versionsViewModel.GetTemplateVersion(versionsViewModel.TemplateVersionId);
-            versionsViewModel.GetTemplateVersions();
+            versionsViewModel.GetTemplateVersionsAndCompanies();
             return View("AddVersion", versionsViewModel);
         }
 
@@ -78,7 +86,7 @@ namespace VerzovaciSystem.Controllers
         {
             if (!ModelState.IsValid)
             {
-                versionsViewModel.GetTemplateVersions();
+                versionsViewModel.GetTemplateVersionsAndCompanies();
                 return View(versionsViewModel);
             }
 

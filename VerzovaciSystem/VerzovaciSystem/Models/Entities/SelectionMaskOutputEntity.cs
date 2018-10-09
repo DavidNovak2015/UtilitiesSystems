@@ -15,12 +15,12 @@ namespace VerzovaciSystem.Models.Entities
 
         [Display(Name = "Čas aktualizace")]
         [Required(ErrorMessage = "Povinné pole")]
-        [DataType(DataType.DateTime)]
+        //[DataType(DataType.DateTime)]
         public DateTime Date { get;  set; }
 
         [Display(Name = "Datum vytvoření")]
         [Required(ErrorMessage = "Povinné pole")]
-        [DataType(DataType.Date)]
+        //[DataType(DataType.Date)]
         public DateTime Created { get;  set; }
 
         [Display(Name = "Vytvořil")]
