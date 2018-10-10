@@ -19,6 +19,8 @@ namespace VerzovaciSystem.Models.Entities
 
         public DateTime Date { get; private set; }
 
+        public bool IsFile { get; private set; }
+
         [Display(Name = "log soubor")]
         public string File { get; private set; }
 
@@ -26,12 +28,13 @@ namespace VerzovaciSystem.Models.Entities
         public DateTime Created { get; private set; }
 
         // pro zobrazení všech událostí z VERSION_FLAG bez log souboru
-        public VersionFlagEntity(long iD, string flag, string description, DateTime date, DateTime created)
+        public VersionFlagEntity(long iD, string flag, string description, DateTime date, bool isFile,DateTime created)
         {
             Id = iD;
             Flag = flag;
             Description = description;
             Date = date;
+            IsFile = isFile;
             Created = created;
         }
 

@@ -40,13 +40,16 @@
                 @flagVersion.Flag
             </td>
             <td>
-                @flagVersion.Description
+                @Html.Raw(flagVersion.Description) 
             </td>
             <td>
                 @flagVersion.Date
             </td>
             <td>
-               @Html.ActionLink("log soubor", "GetLogFile", new { versionFlagId=flagVersion.Id})
+                @if (flagVersion.IsFile)
+                {
+                   @Html.ActionLink("log soubor", "GetLogFile", new { versionFlagId=flagVersion.Id})
+                }
             </td>
             <td>
                 @flagVersion.Created

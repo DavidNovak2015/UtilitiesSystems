@@ -15,20 +15,44 @@ namespace VerzovaciSystem.Models
         // pro výběr z VERSION_FLAG podle Id z VERSION_LOG
         public List<VersionFlagEntity> SelectionResult { get; private set; }
 
-        // naplní Selectionresult všemi událostmi k předanému číslu verze
+        // naplní Selectionresult všemi událostmi k předanému číslu verze včetně true/false hodnoty zda je LOGSoubor
         public void GetEventsToVersion(long versionLogId)
         {
             VersionFlagEntity = new VersionFlagEntity(versionLogId);
 
             List<VERSION_FLAG> versionsFlagFromDB = dbRepository.GetAllRecordsFromVERSION_FLAG(versionLogId);
-            SelectionResult = versionsFlagFromDB.Select(x => new VersionFlagEntity(x.VERF_ID,
-                                                                                   x.VERF_FLAG,
-                                                                                   x.VERF_DESC,
-                                                                                   x.VERF_DATE,
-                                                                                   x.VERF_CREATED_DATE
-                                                                                  )
+
+            SelectionResult = versionsFlagFromDB.Where(udalost => udalost.VERF_FILE != null)
+                                              .Select(x => new VersionFlagEntity(x.VERF_ID,
+                                                                                 x.VERF_FLAG,
+                                                                                 x.VERF_DESC.Replace("\n","<br/>"),
+                                                                                 x.VERF_DATE,
+                                                                                 true,
+                                                                                 x.VERF_CREATED_DATE 
+                                                                                )
+                                                     ).OrderByDescending(x => x.Id)
+                                                      .ToList();
+
+            List<VersionFlagEntity> recordsWithoutevent = new List<VersionFlagEntity>();
+
+            recordsWithoutevent = versionsFlagFromDB.Where(udalost => udalost.VERF_FILE == null)
+                                                .Select(x => new VersionFlagEntity(x.VERF_ID,
+                                                                                x.VERF_FLAG,
+                                                                                x.VERF_DESC.Replace("\n", "<br/>"),
+                                                                                x.VERF_DATE,
+                                                                                false,
+                                                                                x.VERF_CREATED_DATE
+                                                                               )
                                                        ).OrderByDescending(x => x.Id)
                                                         .ToList();
+
+            foreach (var udalost in recordsWithoutevent)
+            {
+                SelectionResult.Add(udalost);
+            }
+
+            SelectionResult.OrderByDescending(x => x.Id);
+
         }
 
         // naplní VersionFlagEntity pouze s flagId, versionLogId a log file
