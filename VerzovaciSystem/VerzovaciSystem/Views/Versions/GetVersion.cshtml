@@ -47,7 +47,11 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Version.SqlData, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <p>@Model.Version.SqlData</p>
+            <p>@if(Model.Version.IsSqlData)
+            {
+               @Html.ActionLink("SqlData", "GetSqlData", new { idVersion = Model.Version.Id }, new { @class = "btn btn-default" })
+            }
+            </p>
         </div>
     </div>
 
@@ -110,7 +114,12 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Version.SqlDataCheck, new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <p>@Model.Version.SqlDataCheck</p>
+            <p>
+                @if (Model.Version.IsSqlDataCheck)
+            {
+                @Html.ActionLink("SqlDataCheck", "GetSqlDataCheck", new { idVersion = Model.Version.Id }, new { @class = "btn btn-default" })
+            }
+        </p>
         </div>
     </div>
 

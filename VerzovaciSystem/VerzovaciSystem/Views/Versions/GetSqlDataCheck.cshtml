@@ -1,0 +1,9 @@
+﻿@model VerzovaciSystem.Models.VersionsViewModel
+
+@{
+    ViewBag.Title = "SqlDataCheck";
+}
+
+<h2>Obsah SqlDataCheck (kontrolní Sql) k verzi č. @Model.Version.Id :</h2><br />
+
+@Html.Raw(Model.Version.SqlDataCheck)

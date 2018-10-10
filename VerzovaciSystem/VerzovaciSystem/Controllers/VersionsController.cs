@@ -19,6 +19,19 @@ namespace VerzovaciSystem.Controllers
             return View(versionsViewModel);
         }
 
+        // vrací data z db VER_SQL_DATA kolonky
+        public ActionResult GetSqlData(long idVersion)
+        {
+            versionsViewModel.GetSqlData(idVersion);
+            return View(versionsViewModel);
+        }
+
+        // vrací data z db VER_SQL_DATA_CHECK kolonky
+        public ActionResult GetSqlDataCheck(long idVersion)
+        {
+            versionsViewModel.GetSqlDataCheck(idVersion);
+            return View(versionsViewModel);
+        }
         // vrací verzi z VERSION_LOG k potvrzení odstranění
         public ActionResult GetVersionForDeletion(long idVersion)
         {

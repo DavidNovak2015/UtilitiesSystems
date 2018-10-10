@@ -15,6 +15,9 @@ namespace VerzovaciSystem.Models.Entities
         [StringLength(100, ErrorMessage = "Překročen limit 100 znaků")]
         public string SourcePath { get;  set; }
 
+        [Display(Name = "SqlData")]
+        public bool IsSqlData { get; set; }
+
         [Display(Name ="SqlData")]
         [DataType(DataType.MultilineText)]
         public string SqlData { get;  set; }
@@ -39,6 +42,9 @@ namespace VerzovaciSystem.Models.Entities
         [Range(1,999,ErrorMessage ="Hodnota musí být mezi 1 a 999")]
         [Required(ErrorMessage = "Povinné pole")]
         public byte Delay { get;  set; }
+
+        [Display(Name = "Kontrolní SQL")]
+        public bool IsSqlDataCheck { get; set; }
 
         [Display(Name ="Kontrolní SQL")]
         public string SqlDataCheck { get;  set; }
@@ -76,15 +82,15 @@ namespace VerzovaciSystem.Models.Entities
         [StringLength(10, ErrorMessage = "Překročen limit 10 znaků")]
         public string MailFlag { get;  set; }
 
-        // pro výpis verze
-        public VersionEntity(long iD, string name, string company, string sourcePath, string sqlData, string config, DateTime date, string logUser, DateTime? logDate, DateTime created, string user, string logFlag, byte delay, string sqlDataCheck, string deleted1, string mail, string message, string mode, string group, string flag, string fileFolderToDelete, string mailMessage, string mailFlag)
+        // pro výpis verze s odkazem na SqlData a SqlDataCheck
+        public VersionEntity(long iD, string name, string company, string sourcePath, bool isSqlData, string config, DateTime date, string logUser, DateTime? logDate, DateTime created, string user, string logFlag, byte delay, bool isSqlDataCheck, string deleted1, string mail, string message, string mode, string group, string flag, string fileFolderToDelete, string mailMessage, string mailFlag)
             :base(iD,company, date, created,user, group)
         {
             Id = iD;
             Name = name;
             Company = company;
             SourcePath = sourcePath;
-            SqlData = sqlData;
+            IsSqlData = isSqlData;
             Config = config;
             Date = date;
             LogUser = logUser;
@@ -93,7 +99,7 @@ namespace VerzovaciSystem.Models.Entities
             User = user;
             LogFlagString = logFlag;
             Delay = delay;
-            SqlDataCheck = sqlDataCheck;
+            IsSqlDataCheck = isSqlDataCheck;
             DeletedString = deleted1;
             Mail = mail;
             Message = message;
@@ -103,6 +109,43 @@ namespace VerzovaciSystem.Models.Entities
             FileFolderToDelete = fileFolderToDelete;
             MailMessage = mailMessage;
             MailFlag = mailFlag;
+        }
+
+        // pro výpis verze včetně SqlData a SqlDataCheck pro změnu verze
+        public VersionEntity(long iD, string name, string company, string sourcePath, string sqlData, string config, DateTime date, string logUser, DateTime? logDate, DateTime created, string user, string logFlag, byte delay, string sqlDataCheck, string deleted1, string mail, string message, string mode, string group, string flag, string fileFolderToDelete, string mailMessage, string mailFlag)
+            : base(iD, company, date, created, user, group)
+        {
+            Id = iD;
+            Name = name;
+            Company = company;
+            SourcePath = sourcePath;
+            SqlData = SqlData;
+            Config = config;
+            Date = date;
+            LogUser = logUser;
+            LogDate = logDate;
+            Created = created;
+            User = user;
+            LogFlagString = logFlag;
+            Delay = delay;
+            SqlDataCheck = SqlDataCheck;
+            DeletedString = deleted1;
+            Mail = mail;
+            Message = message;
+            Mode = mode;
+            Group = group;
+            Flag = flag;
+            FileFolderToDelete = fileFolderToDelete;
+            MailMessage = mailMessage;
+            MailFlag = mailFlag;
+        }
+        
+        // pro výpis SqlData a SqlDataCheck ve zvláštním pohledu 
+        public VersionEntity(long id,string sqlData, string sqlDataCheck)
+        {
+            Id = id;
+            SqlData = sqlData;
+            SqlDataCheck = sqlDataCheck;
         }
 
         // pro předvyplnění některých políček do prázdného formuláře nové verze

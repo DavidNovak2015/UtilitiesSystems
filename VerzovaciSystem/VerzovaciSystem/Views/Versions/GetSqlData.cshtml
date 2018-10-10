@@ -1,0 +1,11 @@
+﻿@model VerzovaciSystem.Models.VersionsViewModel
+
+@{
+    ViewBag.Title = "SqlData";
+}
+
+<h2>Obsah SqlData k verzi č. @Model.Version.Id :</h2><br/>
+
+@Html.Raw(Model.Version.SqlData)
+
+

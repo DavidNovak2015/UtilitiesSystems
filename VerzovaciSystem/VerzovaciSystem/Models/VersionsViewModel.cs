@@ -36,11 +36,19 @@ namespace VerzovaciSystem.Models
             VERSION_LOG versionFromDB = new VERSION_LOG();
             versionFromDB = dbRepository.GetVersion(idVersion);
 
+            bool isSqlData = false; bool isSqlDataCheck = false;
+
+            if (versionFromDB.VER_SQL_DATA != null)
+                isSqlData = true;
+
+            if (versionFromDB.VER_SQL_DATA_CHECK != null)
+                isSqlDataCheck = true;
+
             Version = new VersionEntity(versionFromDB.VER_ID,
                                         versionFromDB.VER_NAME,
                                         versionFromDB.VER_COMPANY,
                                         versionFromDB.VER_SOURCE_PATH,
-                                        versionFromDB.VER_SQL_DATA,
+                                        isSqlData,
                                         versionFromDB.VER_CONFIG,
                                         versionFromDB.VER_DATETIME,
                                         versionFromDB.VER_LOG_USER,
@@ -49,7 +57,7 @@ namespace VerzovaciSystem.Models
                                         versionFromDB.VER_CREATED_USER,
                                         versionFromDB.VER_LOCK_FLAG,
                                         versionFromDB.VER_DELAY,
-                                        versionFromDB.VER_SQL_DATA_CHECK,
+                                        isSqlDataCheck,
                                         versionFromDB.VER_DELETED,
                                         versionFromDB.VER_MAIL,
                                         versionFromDB.VER_MAIL_MESSAGE,
@@ -59,6 +67,29 @@ namespace VerzovaciSystem.Models
                                         versionFromDB.VER_FILE_FOLDER_TO_DELETE,
                                         versionFromDB.VER_MAIL_MESSAGE,
                                         versionFromDB.VER_MAIL_FLAG
+                                       );
+        }
+
+        // naplní Version daty z db VER_SQL_Data
+        public void GetSqlData(long idVersion)
+        {
+            VERSION_LOG versionFromDB = new VERSION_LOG();
+            versionFromDB = dbRepository.GetVersion(idVersion);
+
+            Version = new VersionEntity(versionFromDB.VER_ID,
+                                        versionFromDB.VER_SQL_DATA.Replace("\n","<br/>"), 
+                                        null);
+        }
+
+        // naplní Version daty z db VER_SQL_Data_Check
+        public void GetSqlDataCheck(long idVersion)
+        {
+            VERSION_LOG versionFromDB = new VERSION_LOG();
+            versionFromDB = dbRepository.GetVersion(idVersion);
+
+            Version = new VersionEntity(versionFromDB.VER_ID, 
+                                        null, 
+                                        versionFromDB.VER_SQL_DATA_CHECK.Replace("\n","<br/>")
                                        );
         }
 
