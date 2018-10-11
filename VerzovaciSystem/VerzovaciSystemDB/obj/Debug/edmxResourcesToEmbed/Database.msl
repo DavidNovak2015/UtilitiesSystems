@@ -121,5 +121,13 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="V_COMPANY_GROUP">
+      <EntityTypeMapping TypeName="DatabseDB.V_COMPANY_GROUP">
+        <MappingFragment StoreEntitySet="V_COMPANY_GROUP">
+          <ScalarProperty Name="VER_GROUP" ColumnName="VER_GROUP" />
+          <ScalarProperty Name="VER_COMPANY" ColumnName="VER_COMPANY" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

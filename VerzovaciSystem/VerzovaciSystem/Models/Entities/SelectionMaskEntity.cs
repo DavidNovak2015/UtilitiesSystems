@@ -14,6 +14,9 @@ namespace VerzovaciSystem.Models.Entities
         [Display(Name = "Společnost")]
         public string Company { get; set; }
 
+        [Display(Name = "Společnost, skupina serverů")]
+        public string CompanyWithGroup { get; set; }
+
         [Display(Name = "Skupina serverů")]
         [StringLength(10, ErrorMessage = "Překročen limit 10 znaků")]
         public string Group { get; set; }

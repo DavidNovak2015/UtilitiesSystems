@@ -94,6 +94,9 @@
     <Compile Include="VERSION_LOG.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>
+    <Compile Include="V_COMPANY_GROUP.cs">
+      <DependentUpon>Database.tt</DependentUpon>
+    </Compile>
     <Compile Include="V_VERSION_LIST1.cs">
       <DependentUpon>Database.tt</DependentUpon>
     </Compile>

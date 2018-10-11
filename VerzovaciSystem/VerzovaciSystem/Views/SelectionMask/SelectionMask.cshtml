@@ -48,6 +48,15 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.SelectionMaskEntity.CompanyWithGroup, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.SelectionMaskEntity.CompanyWithGroup, new SelectList(Model.CompaniesWithGroups, "Value", "Text"), new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SelectionMaskEntity.CompanyWithGroup, "", new { @class = "text-danger" })
+            </div>
+            <br /><br />
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.SelectionMaskEntity.Group, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.TextBoxFor(model => model.SelectionMaskEntity.Group, new { @class = "form-control" })

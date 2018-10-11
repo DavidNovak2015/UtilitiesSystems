@@ -79,6 +79,24 @@ namespace VerzovaciSystemDB
             }
         }
 
+        // Pro zobrazení vyhledávací masky - data do DropDownListu hledání podle společnosti+skupina serverů
+        public List<V_COMPANY_GROUP> GetCompaniesWithGroups()
+        {
+            try
+            {
+                using (OracleConnectionString accessToDB = new OracleConnectionString())
+                {
+                    return accessToDB.V_COMPANY_GROUP.OrderBy(x => x.VER_COMPANY).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                List<V_COMPANY_GROUP> error = new List<V_COMPANY_GROUP>();
+                error.Add(new V_COMPANY_GROUP { VER_COMPANY = ex.Message.ToString() });
+                return error;
+            }
+        }
+
         // před vyhledáním dle parametrů Vyhledávací masky vloží do V_VERSION_LIST1 výběr dat z VERSION_LOG
         private string ReplaceDbViewV_VERSION_LIST1()
         {

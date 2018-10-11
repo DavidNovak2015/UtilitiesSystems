@@ -60,6 +60,15 @@
     <Property Name="VER_MAIL_FLAG" Type="varchar2" MaxLength="10" />
   </EntityType>
   <!--Errors Found During Generation:
+warning 6002: The table/view 'USYSVER.V_COMPANY_GROUP' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="V_COMPANY_GROUP">
+    <Key>
+      <PropertyRef Name="VER_COMPANY" />
+    </Key>
+    <Property Name="VER_COMPANY" Type="varchar2" MaxLength="100" Nullable="false" />
+    <Property Name="VER_GROUP" Type="varchar2" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
 warning 6002: The table/view 'USYSVER.V_VERSION_LIST1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="V_VERSION_LIST1">
     <Key>
@@ -165,6 +174,12 @@ warning 6002: The table/view 'USYSVER.V_VERSION_LOG_TEMPLATE' does not have a pr
     <EntitySet Name="VERSION_COMPANY" EntityType="Self.VERSION_COMPANY" Schema="USYSVER" store:Type="Tables" />
     <EntitySet Name="VERSION_FLAG" EntityType="Self.VERSION_FLAG" Schema="USYSVER" store:Type="Tables" />
     <EntitySet Name="VERSION_LOG" EntityType="Self.VERSION_LOG" Schema="USYSVER" store:Type="Tables" />
+    <EntitySet Name="V_COMPANY_GROUP" EntityType="Self.V_COMPANY_GROUP" store:Type="Views" store:Schema="USYSVER">
+      <DefiningQuery>SELECT 
+"V_COMPANY_GROUP"."VER_COMPANY" AS "VER_COMPANY", 
+"V_COMPANY_GROUP"."VER_GROUP" AS "VER_GROUP"
+FROM "USYSVER"."V_COMPANY_GROUP" "V_COMPANY_GROUP"</DefiningQuery>
+    </EntitySet>
     <EntitySet Name="V_VERSION_LIST1" EntityType="Self.V_VERSION_LIST1" store:Type="Views" store:Schema="USYSVER">
       <DefiningQuery>SELECT 
 "V_VERSION_LIST1"."VER_ID" AS "VER_ID", 

@@ -23,6 +23,7 @@
       <End Role="VERSION_FLAG" EntitySet="VERSION_FLAG" />
     </AssociationSet>
     <EntitySet Name="V_VERSION_LOG_TEMPLATE" EntityType="DatabseDB.V_VERSION_LOG_TEMPLATE" />
+    <EntitySet Name="V_COMPANY_GROUP" EntityType="DatabseDB.V_COMPANY_GROUP" />
   </EntityContainer>
   <EntityType Name="V_VERSION_LIST1">
     <Key>
@@ -174,5 +175,12 @@
     <Property Name="VER_FILE_FOLDER_TO_DELETE" Type="String" MaxLength="4000" FixedLength="false" Unicode="false" />
     <Property Name="VER_MAIL_MESSAGE" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="VER_MAIL_FLAG" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="V_COMPANY_GROUP">
+    <Key>
+      <PropertyRef Name="VER_COMPANY" />
+    </Key>
+    <Property Name="VER_COMPANY" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="VER_GROUP" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

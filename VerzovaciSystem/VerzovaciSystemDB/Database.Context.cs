@@ -32,5 +32,6 @@ namespace VerzovaciSystemDB
         public virtual DbSet<VERSION_LOG> VERSION_LOG { get; set; }
         public virtual DbSet<VERSION_FLAG> VERSION_FLAG { get; set; }
         public virtual DbSet<V_VERSION_LOG_TEMPLATE> V_VERSION_LOG_TEMPLATE { get; set; }
+        public virtual DbSet<V_COMPANY_GROUP> V_COMPANY_GROUP { get; set; }
     }
 }

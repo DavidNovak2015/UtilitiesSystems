@@ -18,6 +18,8 @@ namespace VerzovaciSystem.Models
 
         public List<SelectListItem> Companies { get; private set; }
 
+        public List<SelectListItem> CompaniesWithGroups { get; private set; }
+
         //public List<SelectListItem> GlobalStatusChoice { get; private set; }
 
         // výsledek výběru z vyhledávací masky
@@ -36,12 +38,16 @@ namespace VerzovaciSystem.Models
 
             List<EX_COMPANY_TYPE> companyTypesFromDB = dbRepository.GetCompanyTypes();
             List<VERSION_COMPANY> companiesFromDB = dbRepository.GetCompanies();
+            List<V_COMPANY_GROUP> companiesWithGroupsFromDB = dbRepository.GetCompaniesWithGroups();
 
             List<CompanyTypeEntity> companyTypes = companyTypesFromDB.Select(x => new CompanyTypeEntity(x.EX_COMPANY_TYPE1, x.EX_DESC)).ToList();
-            List<CompanyEntity> companies = companiesFromDB.Select(x => new CompanyEntity(HelpsMethods.GetIntFromDecimal(x.VER_COMPANY_ID), x.VER_COMPANY)).OrderBy(company => company.Name).ToList();
-            
+            List<CompanyEntity> companies = companiesFromDB.Select(x => new CompanyEntity(HelpsMethods.GetIntFromDecimal(x.VER_COMPANY_ID),
+                                                                                          x.VER_COMPANY)).OrderBy(company => company.Name)                                                                                          
+                                                           .ToList();
+
             CompanyTypes = new List<SelectListItem>();
             Companies = new List<SelectListItem>();
+            CompaniesWithGroups = new List<SelectListItem>();
             //GlobalStatusChoice = new List<SelectListItem>();
 
             CompanyTypes.Add(new SelectListItem { Text = "option", Value = null });
@@ -56,6 +62,16 @@ namespace VerzovaciSystem.Models
                 Companies.Add(new SelectListItem { Text = company.Name, Value = company.Name });
             }
 
+            CompaniesWithGroups.Add(new SelectListItem { Text = "option", Value = null });
+            foreach (var companyWithGroup in companiesWithGroupsFromDB)
+            {
+                if (companyWithGroup.VER_GROUP != null)
+                {
+                    CompaniesWithGroups.Add(new SelectListItem { Text = $"{companyWithGroup.VER_COMPANY}, {companyWithGroup.VER_GROUP}", Value= $"{companyWithGroup.VER_COMPANY }, {companyWithGroup.VER_GROUP }" });
+                }
+            }
+
+            
             //GlobalStatusChoice.Add(new SelectListItem { Text = "options", Value = null });
             //GlobalStatusChoice.Add(new SelectListItem { Text = "Silver", Value = "Silver" });
             //GlobalStatusChoice.Add(new SelectListItem { Text = "Gold", Value = "Gold" });
@@ -98,6 +114,14 @@ namespace VerzovaciSystem.Models
 
             IEnumerable<V_VERSION_LIST1> temporaryRecords = recordsFromDB.OrderByDescending(x => x.VER_ID);
 
+            // CompanyWithGroup
+           
+            if (selectionsparameters.CompanyWithGroup != null)
+            {
+                string[] pole = selectionsparameters.CompanyWithGroup.Split(',');
+                selectionsparameters.Company = pole[0];
+                selectionsparameters.Group = pole[1];
+            }
             // Company a Group
             if ((selectionsparameters.Company != null) && (selectionsparameters.Group != null))
             {
@@ -119,14 +143,14 @@ namespace VerzovaciSystem.Models
                 temporaryRecords = recordsFromDB.Where(companyTyp => companyTyp.VER_COMPANY_TYPE == selectionsparameters.CompanyTyp)
                                               .Where(company => company.VER_COMPANY == selectionsparameters.Company);
             }
-            if ( (selectionsparameters.CompanyTyp !=null) && (selectionsparameters.Company == null) )
+            if ((selectionsparameters.CompanyTyp != null) && (selectionsparameters.Company == null))
             {
                 temporaryRecords = recordsFromDB.Where(companyTyp => companyTyp.VER_COMPANY_TYPE == selectionsparameters.CompanyTyp);
             }
-            if ( (selectionsparameters.CompanyTyp == null) && (selectionsparameters.Company != null) )
-            {
-                temporaryRecords = temporaryRecords.Where(company => company.VER_COMPANY == selectionsparameters.Company);
-            }
+            //if ( (selectionsparameters.CompanyTyp == null) && (selectionsparameters.Company != null) )
+            //{
+            //    temporaryRecords = temporaryRecords.Where(company => company.VER_COMPANY == selectionsparameters.Company);
+            //}
 
             // VersionDateFrom a VersionDateTo
             if ( (selectionsparameters.VersionDateFrom != DateTime.MinValue) && (selectionsparameters.VersionDateTo != DateTime.MinValue)) // otestováno
@@ -175,6 +199,6 @@ namespace VerzovaciSystem.Models
                                                                                         )
                                                      ).OrderByDescending(x => x.Id)
                                                       .ToList();
-        }
+         }
     }
 }
