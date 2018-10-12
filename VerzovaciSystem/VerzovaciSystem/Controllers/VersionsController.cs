@@ -43,7 +43,7 @@ namespace VerzovaciSystem.Controllers
         public ActionResult DeleteVersion(long idVersion)
         {
             TempData["result"] = versionsViewModel.DeleteVersion(idVersion);
-            return RedirectToAction("GetTodayVersions", "SelectionMask");
+            return RedirectToAction("GetVersion",new { idVersion=idVersion });
         }
 
         // vrací verzi z VERSION_LOG k provedení aktualizace

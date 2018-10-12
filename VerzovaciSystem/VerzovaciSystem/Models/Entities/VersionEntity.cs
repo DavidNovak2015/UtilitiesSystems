@@ -61,7 +61,7 @@ namespace VerzovaciSystem.Models.Entities
         [Display(Name = "Zpráva uživatele")]
         public string Message { get;  set; }
 
-        [Display(Name = "C-kopírovat složku Client\n P-clear conn. pool\n R-refresh catalogs\n T-test\n S-restart serveru")]
+        [Display(Name = "Mode")]
         [StringLength(10, ErrorMessage = "Překročen limit 10 znaků")]
         public string Mode { get;  set; }
 

@@ -24,7 +24,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SelectionMaskEntity.Id, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.SelectionMaskEntity.Id, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.SelectionMaskEntity.Id, new { @class = "form-control", @style = "max-width:280px" })
                 @Html.ValidationMessageFor(model => model.SelectionMaskEntity.Id, "", new { @class = "text-danger" })
             </div>
         </div><br />
@@ -32,7 +32,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SelectionMaskEntity.CompanyTyp, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SelectionMaskEntity.CompanyTyp, new SelectList(Model.CompanyTypes, "Value", "Text"),new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.SelectionMaskEntity.CompanyTyp, new SelectList(Model.CompanyTypes, "Value", "Text"),new { @class = "form-control", @style = "max-width:280px" })
                 @Html.ValidationMessageFor(model => model.SelectionMaskEntity.CompanyTyp, "", new { @class = "text-danger" })
             </div>
             <br /><br />
@@ -41,7 +41,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SelectionMaskEntity.Company, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SelectionMaskEntity.Company, new SelectList(Model.Companies, "Value", "Text"), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.SelectionMaskEntity.Company, new SelectList(Model.Companies, "Value", "Text"), new { @class = "form-control", @style = "max-width:280px" })
                 @Html.ValidationMessageFor(model => model.SelectionMaskEntity.Company, "", new { @class = "text-danger" })
             </div>
             <br /><br />
@@ -50,7 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SelectionMaskEntity.CompanyWithGroup, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.SelectionMaskEntity.CompanyWithGroup, new SelectList(Model.CompaniesWithGroups, "Value", "Text"), new { @class = "form-control" })
+                @Html.DropDownListFor(model => model.SelectionMaskEntity.CompanyWithGroup, new SelectList(Model.CompaniesWithGroups, "Value", "Text"), new { @class = "form-control", @style = "max-width:280px" })
                 @Html.ValidationMessageFor(model => model.SelectionMaskEntity.CompanyWithGroup, "", new { @class = "text-danger" })
             </div>
             <br /><br />
@@ -59,7 +59,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SelectionMaskEntity.Group, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.SelectionMaskEntity.Group, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.SelectionMaskEntity.Group, new { @class = "form-control", @style = "max-width:280px" })
                 @Html.ValidationMessageFor(model => model.SelectionMaskEntity.Group, "", new { @class = "text-danger" })
             </div>
         </div><br />
@@ -67,7 +67,7 @@
         <div class="form-group">
                 @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateFrom,  new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.SelectionMaskEntity.VersionDateFrom, @"{0:dd.MM.yyyy}", new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.SelectionMaskEntity.VersionDateFrom, @"{0:dd.MM.yyyy}", new { @class = "form-control", @style = "max-width:280px" })
                 @Html.ValidationMessageFor(model => model.SelectionMaskEntity.VersionDateFrom, "", new { @class = "text-danger" })
             </div>
         </div><br />
@@ -96,6 +96,14 @@
                     @*@Html.ValidationMessageFor(model => model.SelectionMaskEntity.CreationDateTo, "", new { @class = "text-danger" })*@
                 </div>
             </div><br />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SelectionMaskEntity.SearchInDeleted, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.SelectionMaskEntity.SearchInDeleted, new { @class = "form-control", @style = "max-width:280px" })
+                @Html.ValidationMessageFor(model => model.SelectionMaskEntity.SearchInDeleted, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
 
             @*<div class="form-group">
                 @Html.LabelFor(model => model.GlobalStatus, new { @class = "control-label col-md-2" })

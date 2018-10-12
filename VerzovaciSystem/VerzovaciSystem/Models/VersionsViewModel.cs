@@ -93,10 +93,12 @@ namespace VerzovaciSystem.Models
                                        );
         }
 
-        // zašle verzi k odstranění z db
+        // zašle verzi k označení jako smazaná
         public string DeleteVersion(long idVersion)
         {
-            return dbRepository.DeleteVersion(idVersion);
+            VERSION_LOG versionToDeletion = dbRepository.GetVersion(idVersion);
+            versionToDeletion.VER_DELETED = "A";
+            return dbRepository.ChangeVersion(versionToDeletion);
         }
 
         // naplní db model z viewModelu 

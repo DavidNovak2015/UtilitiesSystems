@@ -27,7 +27,8 @@ namespace VerzovaciSystem.Controllers
                 (selectionMaskViewModel.SelectionMaskEntity.VersionDateFrom == DateTime.MinValue) &&
                 (selectionMaskViewModel.SelectionMaskEntity.VersionDateTo == DateTime.MinValue) &&
                 (selectionMaskViewModel.SelectionMaskEntity.CreationDateFrom == DateTime.MinValue) &&
-                (selectionMaskViewModel.SelectionMaskEntity.CreationDateTo == DateTime.MinValue) 
+                (selectionMaskViewModel.SelectionMaskEntity.CreationDateTo == DateTime.MinValue) &&
+                (selectionMaskViewModel.SelectionMaskEntity.SearchInDeleted == false) 
                ) 
                 {
                 TempData["result"] = "Nebylo vyplněno aspoň jedno pole nebo pole nebyla vyplněna správnými hodnotami";

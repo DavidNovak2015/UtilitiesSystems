@@ -4,7 +4,7 @@
     ViewBag.Title = "Odstranění verze";
 }
 
-<h2>Odstranění verze z tabulky:  VERSION_LOG</h2><br/>
+<h2>Označit verzi jako  "smazaná" v tabulce:  VERSION_LOG</h2><br/>
 
 
 
@@ -12,7 +12,7 @@
 
     <div class="row">
         <div class="col-md-1 col-md-10">
-            @Html.ActionLink("Odstranit verzi", "DeleteVersion", new { idVersion=Model.Version.Id}, new { @class = "btn btn-default" })
+            @Html.ActionLink("Označit verzi jako smazanou", "DeleteVersion", new { idVersion=Model.Version.Id}, new { @class = "btn btn-default" })
             @Html.ActionLink("Zrušit", "GetVersion", new { idVersion = Model.Version.Id }, new { @class = "btn btn-default" })
         </div>
     </div>

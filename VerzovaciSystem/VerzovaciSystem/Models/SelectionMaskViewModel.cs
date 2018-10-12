@@ -24,7 +24,7 @@ namespace VerzovaciSystem.Models
 
         // výsledek výběru z vyhledávací masky
         public List<SelectionMaskOutputEntity> SelectionResult { get; private set; }
-        
+
         // popisky polí pro výsledek výběru z vyhledávací masky
         public SelectionMaskOutputEntity SelectionMaskOutputEntity { get; private set; }
 
@@ -67,7 +67,7 @@ namespace VerzovaciSystem.Models
             {
                 if (companyWithGroup.VER_GROUP != null)
                 {
-                    CompaniesWithGroups.Add(new SelectListItem { Text = $"{companyWithGroup.VER_COMPANY}, {companyWithGroup.VER_GROUP}", Value= $"{companyWithGroup.VER_COMPANY }, {companyWithGroup.VER_GROUP }" });
+                    CompaniesWithGroups.Add(new SelectListItem { Text = $"{companyWithGroup.VER_COMPANY}, {companyWithGroup.VER_GROUP}", Value= $"{companyWithGroup.VER_COMPANY },{companyWithGroup.VER_GROUP }" });
                 }
             }
 
@@ -111,17 +111,21 @@ namespace VerzovaciSystem.Models
             SelectionResult.Clear();
 
             List<V_VERSION_LIST1> recordsFromDB = dbRepository.GetAllRecordsFromV_VERSION_LIST1();
-
-            IEnumerable<V_VERSION_LIST1> temporaryRecords = recordsFromDB.OrderByDescending(x => x.VER_ID);
+            recordsFromDB.OrderByDescending(x => x.VER_ID);
+            IEnumerable<V_VERSION_LIST1> temporaryRecords=recordsFromDB.OrderByDescending(x => x.VER_ID);
 
             // CompanyWithGroup
-           
+
             if (selectionsparameters.CompanyWithGroup != null)
             {
                 string[] pole = selectionsparameters.CompanyWithGroup.Split(',');
-                selectionsparameters.Company = pole[0];
-                selectionsparameters.Group = pole[1];
+                string companyWithGroupCompany = pole[0];
+                string companyWithGroupGroup = pole[1];
+
+                temporaryRecords = recordsFromDB.Where(company => company.VER_COMPANY == companyWithGroupCompany)
+                                                .Where(group => group.VER_GROUP == companyWithGroupGroup);
             }
+
             // Company a Group
             if ((selectionsparameters.Company != null) && (selectionsparameters.Group != null))
             {
@@ -147,10 +151,10 @@ namespace VerzovaciSystem.Models
             {
                 temporaryRecords = recordsFromDB.Where(companyTyp => companyTyp.VER_COMPANY_TYPE == selectionsparameters.CompanyTyp);
             }
-            //if ( (selectionsparameters.CompanyTyp == null) && (selectionsparameters.Company != null) )
-            //{
-            //    temporaryRecords = temporaryRecords.Where(company => company.VER_COMPANY == selectionsparameters.Company);
-            //}
+            if ((selectionsparameters.CompanyTyp == null) && (selectionsparameters.Company != null))
+            {
+                temporaryRecords = temporaryRecords.Where(company => company.VER_COMPANY == selectionsparameters.Company);
+            }
 
             // VersionDateFrom a VersionDateTo
             if ( (selectionsparameters.VersionDateFrom != DateTime.MinValue) && (selectionsparameters.VersionDateTo != DateTime.MinValue)) // otestováno
@@ -188,7 +192,25 @@ namespace VerzovaciSystem.Models
                 temporaryRecords = recordsFromDB.Where(versionId => versionId.VER_ID == selectionsparameters.Id).ToList();
             }
 
-            SelectionResult = temporaryRecords.Select(x => new SelectionMaskOutputEntity(x.VER_ID,
+            // vrátit výsledky bez smazaných verzí else včetně smazaných verzí
+            if (!selectionsparameters.SearchInDeleted)
+            {
+                SelectionResult = temporaryRecords.Where(x => x.STATUS != "ZRUŠENO")
+                                                  .Select(x => new SelectionMaskOutputEntity(x.VER_ID,
+                                                                                           x.VER_COMPANY,
+                                                                                           x.VER_GROUP,
+                                                                                           x.VER_DATETIME,
+                                                                                           x.VER_CREATED_DATE,
+                                                                                           x.VER_CREATED_USER,
+                                                                                           x.STATUS,
+                                                                                           x.VER_COMPANY_TYPE
+                                                                                          )
+                                                       ).OrderByDescending(x => x.Id)
+                                                        .ToList();
+            }
+            else
+            {
+                SelectionResult = temporaryRecords.Select(x => new SelectionMaskOutputEntity(x.VER_ID,
                                                                                          x.VER_COMPANY,
                                                                                          x.VER_GROUP,
                                                                                          x.VER_DATETIME,
@@ -199,6 +221,7 @@ namespace VerzovaciSystem.Models
                                                                                         )
                                                      ).OrderByDescending(x => x.Id)
                                                       .ToList();
+            }
          }
     }
 }

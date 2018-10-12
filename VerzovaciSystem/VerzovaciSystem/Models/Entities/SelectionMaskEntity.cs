@@ -37,6 +37,8 @@ namespace VerzovaciSystem.Models.Entities
         [DataType(DataType.Date)]
         public DateTime CreationDateTo { get; set; }
 
+        [Display(Name = "Prohledávat také ve smazaných verzích")]
+        public bool SearchInDeleted { get; set; }
         //[Display(Name = "Global status")]
         //[Required(ErrorMessage = "Vyberte prosím global status")]
         //public string GlobalStatus { get; set; }

@@ -140,7 +140,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Version.Mode, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Version.Mode, new { @class = "form-control" })
+                @Html.TextBoxFor(model => model.Version.Mode, new { @class = "form-control", @style="max-width:280px" }) 
+                C-kopírovat složku Client / P-clear conn. pool / R-refresh catalogs / T-test / S-restart serveru. Nezaleží na pořadí parametrů. Servery se nakopírují, jen pokud bude prázdný
                 @Html.ValidationMessageFor(model => model.Version.Mode, "", new { @class = "text-danger" })
             </div>
         </div>
