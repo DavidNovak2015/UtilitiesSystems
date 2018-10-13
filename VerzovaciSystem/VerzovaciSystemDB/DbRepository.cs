@@ -96,6 +96,38 @@ namespace VerzovaciSystemDB
                 return error;
             }
         }
+        // metodu GetCompanyWithGroupsWithoutEF smazat
+        public List<V_COMPANY_GROUP> GetCompaniesWithGroupsWithoutEF()
+        {
+            List<V_COMPANY_GROUP> companiesWithGroupfromDB = new List<V_COMPANY_GROUP>();
+            try
+            {
+                using (OracleConnection accessToDB = new OracleConnection(oracleConnectionString))
+                {
+                    accessToDB.Open();
+                    using (OracleCommand command = new OracleCommand("SELECT VER_COMPANY, VER_GROUP FROM V_COMPANY_GROUP", accessToDB))
+                    {
+                        OracleDataReader reader = command.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            companiesWithGroupfromDB.Add(new V_COMPANY_GROUP
+                            {
+                                VER_COMPANY = reader["VER_COMPANY"].ToString(),
+                                VER_GROUP = reader["VER_GROUP"].ToString()
+                            }
+                                                        );
+                        }
+                    }
+                }
+                return companiesWithGroupfromDB;
+            }
+
+            catch (Exception ex)
+            {
+                companiesWithGroupfromDB.Add(new V_COMPANY_GROUP { VER_COMPANY = ex.Message.ToString() });
+                return companiesWithGroupfromDB;
+            }
+        }
 
         // před vyhledáním dle parametrů Vyhledávací masky vloží do V_VERSION_LIST1 výběr dat z VERSION_LOG
         private string ReplaceDbViewV_VERSION_LIST1()

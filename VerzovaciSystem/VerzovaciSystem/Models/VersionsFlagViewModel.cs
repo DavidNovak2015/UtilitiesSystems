@@ -33,9 +33,10 @@ namespace VerzovaciSystem.Models
                                                      ).OrderByDescending(x => x.Id)
                                                       .ToList();
 
-            List<VersionFlagEntity> recordsWithoutevent = new List<VersionFlagEntity>();
+            List<VersionFlagEntity> recordsWithouteventWithDESC = new List<VersionFlagEntity>();
 
-            recordsWithoutevent = versionsFlagFromDB.Where(udalost => udalost.VERF_FILE == null)
+            recordsWithouteventWithDESC = versionsFlagFromDB.Where(udalost => udalost.VERF_FILE == null)
+                                                            .Where(description => description.VERF_DESC != null)
                                                 .Select(x => new VersionFlagEntity(x.VERF_ID,
                                                                                 x.VERF_FLAG,
                                                                                 x.VERF_DESC.Replace("\n", "<br/>"),
@@ -46,7 +47,26 @@ namespace VerzovaciSystem.Models
                                                        ).OrderByDescending(x => x.Id)
                                                         .ToList();
 
-            foreach (var udalost in recordsWithoutevent)
+            foreach (var udalost in recordsWithouteventWithDESC)
+            {
+                SelectionResult.Add(udalost);
+            }
+
+            List<VersionFlagEntity> recordsWithouteventWithoutDESC = new List<VersionFlagEntity>();
+
+            recordsWithouteventWithoutDESC = versionsFlagFromDB.Where(udalost => udalost.VERF_FILE == null)
+                                                               .Where(description => description.VERF_DESC == null)
+                                                .Select(x => new VersionFlagEntity(x.VERF_ID,
+                                                                                x.VERF_FLAG,
+                                                                                x.VERF_DESC,
+                                                                                x.VERF_DATE,
+                                                                                false,
+                                                                                x.VERF_CREATED_DATE
+                                                                               )
+                                                       ).OrderByDescending(x => x.Id)
+                                                        .ToList();
+
+            foreach (var udalost in recordsWithouteventWithoutDESC)
             {
                 SelectionResult.Add(udalost);
             }
