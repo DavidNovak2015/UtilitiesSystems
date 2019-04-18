@@ -14,7 +14,6 @@
     }
 </h2>
 
-<p>Pokud po kliku na dnešní verze nebo jsem po startu aplikace pak opravit v DbRepository.ReplaceDbViewV_VERSION_LIST2 v cmdCommand 30.05.2018 za TRUNC(SYSDATE)</p>
 
 <table border="1">
     <thead>
@@ -66,10 +65,10 @@
                     @item.Group
                 </td>
                 <td>
-                    @item.Date.ToString(@"dd/MM/yyyy/hh/:mm")
+                    @item.Date
                 </td>
                 <td>
-                    @item.Created.ToString(@"dd/MM/yyyy/hh/:mm")
+                    @item.Created
                 </td>
                 <td>
                     @item.User

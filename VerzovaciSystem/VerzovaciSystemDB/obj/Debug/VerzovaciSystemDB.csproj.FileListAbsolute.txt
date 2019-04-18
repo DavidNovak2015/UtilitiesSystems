@@ -34,3 +34,15 @@ C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\
 C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.csprojResolveAssemblyReference.cache
 C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.dll
 C:\Users\david\OneDrive\Plocha\29.9\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.pdb
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\VerzovaciSystemDB.dll.config
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\VerzovaciSystemDB.dll
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\VerzovaciSystemDB.pdb
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.dll
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.SqlServer.dll
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\Oracle.ManagedDataAccess.EntityFramework.dll
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.xml
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystemDB\bin\Debug\EntityFramework.SqlServer.xml
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.csprojResolveAssemblyReference.cache
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.dll
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystemDB\obj\Debug\VerzovaciSystemDB.pdb

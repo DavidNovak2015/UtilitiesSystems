@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web.Mvc;
 using VerzovaciSystemDB;
 using VerzovaciSystem.Models.Entities;
+using VerzovaciSystem.Models.Interfaces;
 
 namespace VerzovaciSystem.Models
 {
-    public class SelectionMaskViewModel
+    public class SelectionMaskViewModel: ISelectionMaskViewModel
     {
         DbRepository dbRepository = new DbRepository();
 
@@ -38,7 +39,7 @@ namespace VerzovaciSystem.Models
 
             List<EX_COMPANY_TYPE> companyTypesFromDB = dbRepository.GetCompanyTypes();
             List<VERSION_COMPANY> companiesFromDB = dbRepository.GetCompanies();
-            List<V_COMPANY_GROUP> companiesWithGroupsFromDB = dbRepository.GetCompaniesWithGroups();
+            List<V_COMPANY_GROUP> companiesWithGroupsFromDB = dbRepository.GetCompaniesWithGroupsWithoutEF();
 
             List<CompanyTypeEntity> companyTypes = companyTypesFromDB.Select(x => new CompanyTypeEntity(x.EX_COMPANY_TYPE1, x.EX_DESC)).ToList();
             List<CompanyEntity> companies = companiesFromDB.Select(x => new CompanyEntity(HelpsMethods.GetIntFromDecimal(x.VER_COMPANY_ID),

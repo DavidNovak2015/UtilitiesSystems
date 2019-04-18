@@ -4,10 +4,11 @@ using VerzovaciSystem.Models.Entities;
 using VerzovaciSystemDB;
 using System.Web.Mvc;
 using System.Linq;
+using VerzovaciSystem.Models.Interfaces;
 
 namespace VerzovaciSystem.Models
 {
-    public class VersionsViewModel
+    public class VersionsViewModel: IVersionsViewModel
     {
         DbRepository dbRepository = new DbRepository();
 
@@ -93,12 +94,10 @@ namespace VerzovaciSystem.Models
                                        );
         }
 
-        // zašle verzi k označení jako smazaná
+        // odstraní verzi z tabulky VERSION_LOG
         public string DeleteVersion(long idVersion)
         {
-            VERSION_LOG versionToDeletion = dbRepository.GetVersion(idVersion);
-            versionToDeletion.VER_DELETED = "A";
-            return dbRepository.ChangeVersion(versionToDeletion);
+            return dbRepository.DeleteVersion(idVersion);
         }
 
         // naplní db model z viewModelu 

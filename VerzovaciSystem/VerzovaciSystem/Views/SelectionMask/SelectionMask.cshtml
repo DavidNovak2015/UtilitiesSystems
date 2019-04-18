@@ -67,7 +67,7 @@
         <div class="form-group">
                 @Html.LabelFor(model => model.SelectionMaskEntity.VersionDateFrom,  new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.SelectionMaskEntity.VersionDateFrom, @"{0:dd.MM.yyyy}", new { @class = "form-control", @style = "max-width:280px" })
+                @Html.EditorFor(model => model.SelectionMaskEntity.VersionDateFrom, new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SelectionMaskEntity.VersionDateFrom, "", new { @class = "text-danger" })
             </div>
         </div><br />
@@ -97,13 +97,13 @@
                 </div>
             </div><br />
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.SelectionMaskEntity.SearchInDeleted, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.CheckBoxFor(model => model.SelectionMaskEntity.SearchInDeleted, new { @class = "form-control", @style = "max-width:280px" })
                 @Html.ValidationMessageFor(model => model.SelectionMaskEntity.SearchInDeleted, "", new { @class = "text-danger" })
             </div>
-        </div><br />
+        </div><br />*@
 
             @*<div class="form-group">
                 @Html.LabelFor(model => model.GlobalStatus, new { @class = "control-label col-md-2" })

@@ -43,7 +43,7 @@ namespace VerzovaciSystem.Controllers
         public ActionResult DeleteVersion(long idVersion)
         {
             TempData["result"] = versionsViewModel.DeleteVersion(idVersion);
-            return RedirectToAction("GetVersion",new { idVersion=idVersion });
+            return RedirectToAction("GetTodayVersions", "SelectionMask");
         }
 
         // vrací verzi z VERSION_LOG k provedení aktualizace
@@ -86,7 +86,7 @@ namespace VerzovaciSystem.Controllers
             versionsViewModel.GetTemplateVersionsAndCompanies();
             versionsViewModel.Version = new VersionEntity($"{Environment.MachineName}/{Environment.UserName}",
                                                           DateTime.Now,
-                                                          new DateTime(2018, 05, 30)
+                                                          DateTime.Now
                                                          );
             return View(versionsViewModel);
         }

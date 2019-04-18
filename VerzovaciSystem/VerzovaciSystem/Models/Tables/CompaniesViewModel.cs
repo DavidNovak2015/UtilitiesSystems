@@ -2,11 +2,12 @@
 using System.Linq;
 using VerzovaciSystemDB;
 using VerzovaciSystem.Models.Entities;
+using VerzovaciSystem.Models.Interfaces;
 
 namespace VerzovaciSystem.Models
 {
     // VERSION_COMPANY
-    public class CompaniesViewModel
+    public class CompaniesViewModel: ICompaniesViewModel
     {
         DbRepository dbRepository = new DbRepository();
 

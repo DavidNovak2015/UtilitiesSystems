@@ -191,6 +191,10 @@
     <Compile Include="Models\Entities\TemplateVersionsSelectListItem.cs" />
     <Compile Include="Models\Entities\VersionEntity.cs" />
     <Compile Include="Models\Entities\VersionFlagEntity.cs" />
+    <Compile Include="Models\Interfaces\ICompaniesViewModel.cs" />
+    <Compile Include="Models\Interfaces\ISelectionMaskViewModel.cs" />
+    <Compile Include="Models\Interfaces\IVersionsFlagViewModel.cs" />
+    <Compile Include="Models\Interfaces\IVersionsViewModel.cs" />
     <Compile Include="Models\Tables\CompaniesViewModel.cs" />
     <Compile Include="Models\Entities\CompanyEntity.cs" />
     <Compile Include="Models\Entities\CompanyTypeEntity.cs" />

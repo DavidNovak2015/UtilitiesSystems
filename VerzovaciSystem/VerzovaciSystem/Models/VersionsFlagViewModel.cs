@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using VerzovaciSystem.Models.Entities;
+using VerzovaciSystem.Models.Interfaces;
 using VerzovaciSystemDB;
 
 namespace VerzovaciSystem.Models
 {
-    public class VersionsFlagViewModel
+    public class VersionsFlagViewModel: IVersionsFlagViewModel
     {
         DbRepository dbRepository = new DbRepository();
 

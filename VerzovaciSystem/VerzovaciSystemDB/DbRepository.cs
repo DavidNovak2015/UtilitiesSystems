@@ -7,9 +7,9 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace VerzovaciSystemDB
 {
-    public class DbRepository
+    public class DbRepository: IDbRepository
     {
-        private const string oracleConnectionString= "User Id=USYSVER;Password=verze;Data Source=localhost:1521/XE";
+        private const string oracleConnectionString= "User Id=USYSVER;Password=david;Data Source=localhost:1521/XE";
         // pro výsledek metod
         private string result= ""; 
 
@@ -79,24 +79,25 @@ namespace VerzovaciSystemDB
             }
         }
 
+        // nefunguje, je nahrazena GetCompaniesWithGroupsWithoutEF
+        //public List<V_COMPANY_GROUP> GetCompaniesWithGroups()
+        //{
+        //    try
+        //    {
+        //        using (OracleConnectionString accessToDB = new OracleConnectionString())
+        //        {
+        //            return accessToDB.V_COMPANY_GROUP.OrderBy(x => x.VER_COMPANY).ToList();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        List<V_COMPANY_GROUP> error = new List<V_COMPANY_GROUP>();
+        //        error.Add(new V_COMPANY_GROUP { VER_COMPANY = ex.Message.ToString() });
+        //        return error;
+        //    }
+        //}
+
         // Pro zobrazení vyhledávací masky - data do DropDownListu hledání podle společnosti+skupina serverů
-        public List<V_COMPANY_GROUP> GetCompaniesWithGroups()
-        {
-            try
-            {
-                using (OracleConnectionString accessToDB = new OracleConnectionString())
-                {
-                    return accessToDB.V_COMPANY_GROUP.OrderBy(x => x.VER_COMPANY).ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                List<V_COMPANY_GROUP> error = new List<V_COMPANY_GROUP>();
-                error.Add(new V_COMPANY_GROUP { VER_COMPANY = ex.Message.ToString() });
-                return error;
-            }
-        }
-        // metodu GetCompanyWithGroupsWithoutEF smazat
         public List<V_COMPANY_GROUP> GetCompaniesWithGroupsWithoutEF()
         {
             List<V_COMPANY_GROUP> companiesWithGroupfromDB = new List<V_COMPANY_GROUP>();
@@ -119,7 +120,7 @@ namespace VerzovaciSystemDB
                         }
                     }
                 }
-                return companiesWithGroupfromDB;
+                return companiesWithGroupfromDB.OrderBy(x => x.VER_COMPANY).ToList();
             }
 
             catch (Exception ex)
@@ -170,7 +171,7 @@ namespace VerzovaciSystemDB
         // před načtením dnešních verzí - z V_VERSION_LIST1 vyselektuje dnešní verze
         public string ReplaceDbViewV_VERSION_LIST2()
         {
-            string cmdCommand = "CREATE OR REPLACE VIEW V_VERSION_LIST2 AS SELECT VER_ID,VER_COMPANY,VER_GROUP,VER_DATETIME,VER_CREATED_DATE,VER_CREATED_USER,STATUS,VER_COMPANY_TYPE  FROM V_VERSION_LIST1 WHERE TRUNC(VER_DATETIME) >= '30.05.2018'";
+            string cmdCommand = "CREATE OR REPLACE VIEW V_VERSION_LIST2 AS SELECT VER_ID,VER_COMPANY,VER_GROUP,VER_DATETIME,VER_CREATED_DATE,VER_CREATED_USER,STATUS,VER_COMPANY_TYPE  FROM V_VERSION_LIST1 WHERE TRUNC(VER_DATETIME) >= TRUNC(SYSDATE)";
             result = ReplaceDbView(cmdCommand);
             return result;
         }
@@ -454,8 +455,6 @@ namespace VerzovaciSystemDB
                 return result = $"Požadavek NEBYL proveden.Popis chyby:\n\n { ex.Message.ToString()} ";
             }
         }
-
-
     }
 }
 
