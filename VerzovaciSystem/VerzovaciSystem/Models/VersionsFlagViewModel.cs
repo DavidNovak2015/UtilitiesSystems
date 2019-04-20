@@ -8,7 +8,14 @@ namespace VerzovaciSystem.Models
 {
     public class VersionsFlagViewModel: IVersionsFlagViewModel
     {
-        DbRepository dbRepository = new DbRepository();
+        //Autofac
+        private readonly IDbRepository dbRepository;
+
+        //Autofac
+        public VersionsFlagViewModel(IDbRepository iDbRepository)
+        {
+            dbRepository = iDbRepository;
+        }
 
         // pro labely
         public VersionFlagEntity VersionFlagEntity { get; private set; }

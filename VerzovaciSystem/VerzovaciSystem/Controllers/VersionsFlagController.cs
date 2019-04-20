@@ -1,11 +1,17 @@
 ﻿using System.Web.Mvc;
-using VerzovaciSystem.Models;
+using VerzovaciSystem.Models.Interfaces;
 
 namespace VerzovaciSystem.Controllers
 {
     public class VersionsFlagController : Controller
     {
-        VersionsFlagViewModel versionsFlagViewModel = new VersionsFlagViewModel();
+        //Autofac
+        private readonly IVersionsFlagViewModel versionsFlagViewModel;
+
+        public VersionsFlagController(IVersionsFlagViewModel iVersionsFlagViewModel)
+        {
+            versionsFlagViewModel = iVersionsFlagViewModel;
+        }
 
         // zobrazí události k požadovanému číslu verze z VERSION_LOG 
         public ActionResult GetFlagVersions(long versionLogId)

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using VerzovaciSystem.Models.Entities;
+using VerzovaciSystem.Models.Interfaces;
 using VerzovaciSystemDB;
 
 
@@ -7,8 +8,6 @@ namespace VerzovaciSystem.Models
 {
     public class TablesListViewModel
     {
-        DbRepository dbRepository = new DbRepository();
-
         // Seznam tabulek
         public List<TableListEntity> TablesList { get; private set; }
 
@@ -23,5 +22,6 @@ namespace VerzovaciSystem.Models
             TablesList.Add(new TableListEntity("VERSION_COMPANY_BIGTABLES", "Companies", "Seznam \"velkých tabulek\" "));
             TablesList.Add(new TableListEntity("EX_SCHEMA_EXCEPTIONS", "Companies", "Seznam vyjímek pro konkrétní společnosti, které jsou vyloučené ze sychronizace schémat"));
         }
+
     }
 }

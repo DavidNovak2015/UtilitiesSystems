@@ -4,6 +4,8 @@ namespace VerzovaciSystem.Models.Interfaces
 {
     public interface IVersionsViewModel
     {
+        VersionEntity Version { get; set; }
+
         //Najde verzi z VERSION_LOG
         void GetVersion(long idVersion);
 

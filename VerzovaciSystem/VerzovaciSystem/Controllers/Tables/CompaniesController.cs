@@ -1,13 +1,20 @@
 ﻿using System.Web.Mvc;
 using VerzovaciSystem.Models;
-
+using VerzovaciSystem.Models.Interfaces;
 
 namespace VerzovaciSystem.Controllers
 {
     // VERSION_COMPANY
     public class CompaniesController : Controller
     {
-        CompaniesViewModel companiesViewModel = new CompaniesViewModel();
+        //Autofac
+        private readonly ICompaniesViewModel companiesViewModel;
+
+        //Autofac
+        public CompaniesController(ICompaniesViewModel iCompaniesViewModel)
+        {
+            companiesViewModel = iCompaniesViewModel;
+        }
 
         // ZOBRAZENÍ CELÉ TABULKY
         public ActionResult TableView()

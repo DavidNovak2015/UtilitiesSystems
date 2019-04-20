@@ -11,6 +11,8 @@ namespace VerzovaciSystem.Models
     public class SelectionMaskViewModel: ISelectionMaskViewModel
     {
         DbRepository dbRepository = new DbRepository();
+        //Autofac
+        //private readonly IDbRepository dbRepository;
 
         // popisky polí a uchování vybraných hodnot ve vyhledávací masce
         public SelectionMaskEntity SelectionMaskEntity { get; set; }
@@ -28,6 +30,15 @@ namespace VerzovaciSystem.Models
 
         // popisky polí pro výsledek výběru z vyhledávací masky
         public SelectionMaskOutputEntity SelectionMaskOutputEntity { get; private set; }
+
+        //Autofac
+        //public SelectionMaskViewModel(IDbRepository iDbRepository)
+        //{
+        //    dbRepository = iDbRepository;
+        //}
+
+        public SelectionMaskViewModel()
+        { }
 
         //pro zobrazení vyhledávací masky
         public void GetSelectionMask()

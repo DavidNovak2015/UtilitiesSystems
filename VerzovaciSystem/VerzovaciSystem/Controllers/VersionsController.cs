@@ -3,14 +3,20 @@ using System;
 using VerzovaciSystem.Models;
 using VerzovaciSystem.Models.Entities;
 using System.Collections.Generic;
+using VerzovaciSystem.Models.Interfaces;
 
 namespace VerzovaciSystem.Controllers
 {
     public class VersionsController : Controller
     {
-        VersionsViewModel versionsViewModel = new VersionsViewModel();
+        private readonly IVersionsViewModel versionsViewModel;
 
         public List<SelectListItem> Companies { get; private set; }
+
+        public VersionsController(IVersionsViewModel iVersionsViewModel)
+        {
+            versionsViewModel = iVersionsViewModel;
+        }
 
         // vrací jednu verzi z VERSION_LOG se všemi sloupci
         public ActionResult GetVersion(long idVersion)

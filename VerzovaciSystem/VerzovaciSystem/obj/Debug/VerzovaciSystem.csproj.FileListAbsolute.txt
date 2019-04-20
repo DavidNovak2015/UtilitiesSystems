@@ -432,3 +432,8 @@ D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem
 D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystem\obj\Debug\VerzovaciSystem.csprojResolveAssemblyReference.cache
 D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystem\obj\Debug\VerzovaciSystem.dll
 D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystem\obj\Debug\VerzovaciSystem.pdb
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystem\bin\Autofac.dll
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystem\bin\Autofac.Integration.Mvc.dll
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystem\bin\Autofac.pdb
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystem\bin\Autofac.xml
+D:\RODINA-zalohaDavidMiriamNoe\David\Programovani\MVCProjects\MVCVerzovaciSystem\VerzovaciSystem\VerzovaciSystem\bin\Autofac.Integration.Mvc.xml

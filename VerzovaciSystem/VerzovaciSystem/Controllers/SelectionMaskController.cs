@@ -1,12 +1,20 @@
 ﻿using System;
 using System.Web.Mvc;
 using VerzovaciSystem.Models;
+using VerzovaciSystem.Models.Interfaces;
 
 namespace VerzovaciSystem.Controllers
 {
     public class SelectionMaskController : Controller
     {
-        SelectionMaskViewModel selectionMaskViewModel = new SelectionMaskViewModel();
+        //Autofac
+        private readonly ISelectionMaskViewModel selectionMaskViewModel;
+
+        //Autofac
+        public SelectionMaskController(ISelectionMaskViewModel iSelectionMaskViewModel)
+        {
+            selectionMaskViewModel = iSelectionMaskViewModel;
+        }
 
         // zobrazení nabídky vyhledávací masky
         public ActionResult SelectionMask()

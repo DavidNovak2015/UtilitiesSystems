@@ -12,6 +12,9 @@ namespace VerzovaciSystem.Models
     {
         DbRepository dbRepository = new DbRepository();
 
+        //Autofac
+        //private readonly IDbRepository dbRepository;
+
         // VYHLEDÁVACÍ MASKA
         // Pro labely
         public SelectionMaskOutputEntity SelectionMaskOutputEntity { get; private set; }
@@ -30,6 +33,15 @@ namespace VerzovaciSystem.Models
 
         // pro uložení hodnoty z DropDownList výběru template pro novou verzi
         public long TemplateVersionId { get; set; }
+
+        //Autofac
+        //public VersionsViewModel(IDbRepository iDbRepository)
+        //{
+        //    dbRepository = iDbRepository;
+        //}
+
+        public VersionsViewModel()
+        { }
 
         //Najde verzi z VERSION_LOG
         public void GetVersion(long idVersion)

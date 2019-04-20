@@ -9,13 +9,20 @@ namespace VerzovaciSystem.Models
     // VERSION_COMPANY
     public class CompaniesViewModel: ICompaniesViewModel
     {
-        DbRepository dbRepository = new DbRepository();
+        //Autofac
+        private readonly IDbRepository dbRepository;
 
         // popisky sloupců tabulek + záznam z tabulky VERSION_COMPANY pro změnu a výmaz
         public CompanyEntity CompanyEntity { get; set; }
 
         // pro hodnoty z db tabulky
         public List<CompanyEntity> TableData { get; private set; }
+
+        //Autofac
+        public CompaniesViewModel(IDbRepository iDbRepository)
+        {
+            dbRepository = iDbRepository;
+        }
 
         public CompaniesViewModel()
         {
